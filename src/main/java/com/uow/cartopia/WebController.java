@@ -19,7 +19,7 @@ public class WebController {
 			
 	 @GetMapping("/")
 		public String index(Model model) {
-		 	model.addAttribute("ID", "Carmen");
+		 	model.addAttribute("ID", "");
 			
 			return "index";
 		}
