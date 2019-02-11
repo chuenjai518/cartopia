@@ -23,4 +23,10 @@ public class WebController {
 			
 			return "index";
 		}
+	 @GetMapping("/testPage")
+		public String test(Model model) {
+		 	model.addAttribute("ID", "helli");
+			
+			return "nav";
+		}
 }
