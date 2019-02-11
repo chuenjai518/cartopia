@@ -1,3 +1,18 @@
-h1{
-	color:red
+.btn-primary {
+    color: #b89b6d;
+    background-color: #0f1834;
+    border-color: #0f1834;
+}
+.btn-secondary {
+    color: #fff;
+    background-color: #b89b6d;
+    border-color: #b89b6d;
+}
+
+@font-face {
+    font-family: 'Cleveland'; /*a name to be used later*/
+    src: url('@{http://localhost:8080/font/Cleveland.ttf}'); /*URL to font*/
+}
+.brandFont{
+	font-family: 'Cleveland';
 }
