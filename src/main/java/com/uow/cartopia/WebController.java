@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.uow.Model.CarPark;
 import com.uow.Service.CarParkService;
 
 @Controller
@@ -19,8 +20,11 @@ public class WebController {
 			
 	 @GetMapping("/")
 		public String index(Model model) {
-		 	model.addAttribute("ID", "helli");
-			
+		 	
+		 
+			CarPark carPark = carParkService.getCarPark(1);
+			model.addAttribute("ID", carPark.getCarParkID());
+			model.addAttribute("name", carPark.getName());
 			return "index";
 		}
 	 

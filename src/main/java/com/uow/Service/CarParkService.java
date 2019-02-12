@@ -12,11 +12,11 @@ public class CarParkService {
 	@Autowired
 	CarParkDAO carParkDAO;
 	
-	public int getCarParkID() {
-		System.out.println("Get CarPark ID!!");
-		int carparkID=1;
+	public CarPark getCarPark(int carParkID) {
+		System.out.println("Get CarPark!!");
 		
-		return carparkID;
+		CarPark carPark = carParkDAO.getCarPark(carParkID);
+		return carPark;
 	}
 	
 	public void addCarPark(CarPark carpark) {
