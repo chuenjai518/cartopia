@@ -49,4 +49,10 @@ public class WebController {
 
 		return "login";
 	}
+	
+	@GetMapping("PageTest")
+	public String pageTest(Model model) {
+
+		return "nav";
+	}
 }
