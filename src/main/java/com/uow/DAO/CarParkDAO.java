@@ -1,5 +1,7 @@
 package com.uow.DAO;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -7,9 +9,10 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.uow.Model.CarPark;
+import com.uow.Model.CarParkRowMapper;
 
 @Repository
-public class CarParkDAO {
+public class CarParkDAO{
 	@Autowired
 	private JdbcTemplate db;
 
@@ -21,10 +24,16 @@ public class CarParkDAO {
 	
 	public CarPark getCarPark(int carParkID) {
 		
-		String sql = "SELECT carParkID, name FROM CarPark WHERE carParkID = ?";
+		String sql = "SELECT carParkID, name, address, Time(openTime), Time(closeTime) FROM CarPark WHERE carParkID = ?";
 		RowMapper<CarPark> rowMapper = new BeanPropertyRowMapper<CarPark>(CarPark.class);
 		CarPark carPark = db.queryForObject(sql, rowMapper, carParkID);
 		return carPark;
+	}
+	
+	public List<CarPark> getAllCarPark(){
+		String sql = "SELECT carParkID, name, address, Time(openTime), Time(closeTime) FROM CarPark";
+		RowMapper<CarPark> rowMapper = new CarParkRowMapper();
+		return this.db.query(sql,rowMapper);
 	}
 	
 
