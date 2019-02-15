@@ -27,15 +27,17 @@
   -o-transition: margin 0.25s ease-out;
   transition: margin 0.25s ease-out;
 }
-
-#sidebar-wrapper .sidebar-heading {
+#page-content-wrapper .container-fluid{
+	padding-left: 40px;
+}
+.sidebar-heading {
   padding: 0.875rem 1.25rem;
-  font-size: 2rem;
-  color: #b89b6d;
+  font-size: 1.7rem;
+  color: #b89b6d !important;
 }
 
 #sidebar-wrapper .list-group {
-  width: 15rem;
+  width: 10rem;
 }
 
 #page-content-wrapper {
@@ -63,5 +65,15 @@
 #sidebar-wrapper .list-group-item-action{
 	color: #b89b6d;
 }
-
 /* sidebar */
+.card{
+	border-color: #FFF;
+}
+#admin{
+	background-color:rgb(238, 238, 238);
+}
+a.bg-light:hover, a.bg-light:focus,
+button.bg-light:hover,
+button.bg-light:focus {
+  background-color: #142249!important;
+}
