@@ -1,21 +1,67 @@
 .btn-primary {
-    color: #b89b6d;
-    background-color: #0f1834;
-    border-color: #0f1834;
+  color: #b89b6d;
+  background-color: #0f1834;
+  border-color: #0f1834;
 }
 .btn-secondary {
-    color: #fff;
-    background-color: #b89b6d;
-    border-color: #b89b6d;
+  color: #fff;
+  background-color: #b89b6d;
+  border-color: #b89b6d;
 }
 
 @font-face {
-    font-family: 'Cleveland'; /*a name to be used later*/
-    src: url('http://localhost:8080/font/Cleveland.ttf'); /*URL to font*/
+  font-family: "Cleveland"; /*a name to be used later*/
+  src: url("http://localhost:8080/font/Cleveland.ttf"); /*URL to font*/
 }
-.brandFont{
-	font-family: 'Cleveland';
+.brandFont {
+  font-family: "Cleveland";
 }
-.bg-light{
-	background-color: #0f1834 !important;
+.bg-light {
+  background-color: #0f1834 !important;
 }
+/* sidebar */
+#sidebar-wrapper {
+  min-height: 100vh;
+  -webkit-transition: margin 0.25s ease-out;
+  -moz-transition: margin 0.25s ease-out;
+  -o-transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 2rem;
+  color: #b89b6d;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+#sidebar-wrapper .list-group-item-action{
+	color: #b89b6d;
+}
+
+/* sidebar */

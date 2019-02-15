@@ -52,7 +52,7 @@ public class WebController {
 	
 	@GetMapping("PageTest")
 	public String pageTest(Model model) {
-
-		return "test";
+		
+		return "AdminDash";
 	}
 }
