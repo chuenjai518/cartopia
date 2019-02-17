@@ -3,6 +3,8 @@ package com.uow.cartopia;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +26,7 @@ public class WebController {
 
 	@GetMapping("/index")
 	public String index(Model model) {
-		return "AdminDash";
+		return "test";
 	}
 	
 
@@ -36,15 +38,17 @@ public class WebController {
 	}
 
 	@GetMapping("login")
-	public String login(Model model) {
-
+	public String login(Model model, HttpSession session) {
+		if(session.getAttribute("userID") != null) {
+			return "redirect:/index";
+		}
 		return "login";
 	}
 	
 	@GetMapping("PageTest")
-	public String pageTest(Model model) {
-		
-		return "AdminDash";
+	public String pageTest(Model model, HttpSession session) {
+		model.addAttribute("userID", session.getAttribute("userID"));
+		return "test";
 	}
 	
 	

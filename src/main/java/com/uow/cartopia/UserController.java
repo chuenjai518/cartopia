@@ -1,5 +1,7 @@
 package com.uow.cartopia;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,14 +20,26 @@ public class UserController {
 	UserService userService;
 	
 	@GetMapping("/loginProcess")
-	public String loginProcess(Model model) {
+	public String loginProcess(Model model, HttpSession session) {
 		Login login = new Login();
-		login.setUsername("admin");
-		login.setPassword("admin");
+		login.setUsername("user");
+		login.setPassword("user");
 		int userID = userService.loginProcess(login);
 		if(userID == 0) {
+			model.addAttribute("message", "Incorrect username or password!");
 			return "login";
 		}
+		session.setAttribute("userID", userID);
+		return "redirect:/index";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(Model model, HttpSession session) {
+		
+		if(session.getAttribute("userID") != null) {
+			session.removeAttribute("userID");
+		}
+		
 		return "redirect:/index";
 	}
 	
