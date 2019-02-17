@@ -25,22 +25,22 @@ public class WebController {
 	@GetMapping("/")
 	public String index(Model model) {
 		CarPark carPark = carParkService.getCarPark(1);
-		model.addAttribute("carpark", carPark);
+		model.addAttribute("ID", carPark.getCarParkID());
+		model.addAttribute("name", carPark.getName());
 		return "index";
 	}
 	
 	@GetMapping("carpark/{carParkID}")
 	public String carpark(Model model, @PathVariable("carParkID") Integer id) {
 		CarPark carPark = carParkService.getCarPark(id);
-		System.out.println(carPark.getOpenTime());
-		model.addAttribute("carPark", carPark);
+		model.addAttribute("ID", carPark.getCarParkID());
+		model.addAttribute("name", carPark.getName());
 		return "index";
 	}
 
 	@GetMapping("carpark")
 	public ResponseEntity<List<CarPark>> getAllCarPark() {
 		List<CarPark> list = carParkService.getAllCarPark();
-		System.out.println(list.get(0).getOpenTime());
 		return new ResponseEntity<List<CarPark>>(list, HttpStatus.OK);
 	}
 
@@ -72,5 +72,11 @@ public class WebController {
 	public String userCreate(Model model) {
 		
 		return "userC";
+	}
+	
+	@GetMapping("admin/user/read")
+	public String userRead(Model model) {
+		
+		return "userR";
 	}
 }
