@@ -18,20 +18,20 @@ public class CarParkDAO{
 
 	public void addCarPark(CarPark carPark) {
 		System.out.println("EXCUTE INSERT CarPark - " + carPark.getName());
-		db.update("INSERT INTO carpark(name, address, description, openTime, closeTime) " + "Values (?,?,?,?,?)",
+		db.update("INSERT INTO carpark(name, address, description, openTime, closeTime, Description) " + "Values (?,?,?,?,?)",
 				carPark.getName(), carPark.getAddress(), carPark.getDescription(), carPark.getOpenTime(), carPark.getCloseTime());
 	}
 	
 	public CarPark getCarPark(int carParkID) {
 		
-		String sql = "SELECT carParkID, name, address, Time(openTime), Time(closeTime) FROM CarPark WHERE carParkID = ?";
-		RowMapper<CarPark> rowMapper = new BeanPropertyRowMapper<CarPark>(CarPark.class);
+		String sql = "SELECT carParkID, name, address, Time(openTime), Time(closeTime), Description FROM CarPark WHERE carParkID = ?";
+		RowMapper<CarPark> rowMapper = new CarParkRowMapper();
 		CarPark carPark = db.queryForObject(sql, rowMapper, carParkID);
 		return carPark;
 	}
 	
 	public List<CarPark> getAllCarPark(){
-		String sql = "SELECT carParkID, name, address, Time(openTime), Time(closeTime) FROM CarPark";
+		String sql = "SELECT carParkID, name, address, Time(openTime), Time(closeTime), Description FROM CarPark";
 		RowMapper<CarPark> rowMapper = new CarParkRowMapper();
 		return this.db.query(sql,rowMapper);
 	}

@@ -6,7 +6,11 @@
     <link th:href="@{/css/style.css}" href="../css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-    <div th:text=" ${ID} + ${name} + '!'" /></div>
+    <div th:text=" ${carPark.getCarParkID()} +'. ' + ${carPark.getName()} + '!'" /></div>
+    <div th:text="'Address:  ' + ${carPark.getAddress()}" /></div>
+    <div th:text="'Opening Time:  ' + ${carPark.getOpenTime()}" /></div>
+    <div th:text="'Closing Time:  ' + ${carPark.getCloseTime()}" /></div>
+    <div th:text="'Description:  ' + ${carPark.getDescription()}" /></div>
     <h1>H1 is Red!</h1>
     <div id="demo"></div>
 
