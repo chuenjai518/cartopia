@@ -73,4 +73,10 @@ public class WebController {
 		
 		return "userC";
 	}
+	
+	@GetMapping("admin/user/read")
+	public String userRead(Model model) {
+		
+		return "userR";
+	}
 }
