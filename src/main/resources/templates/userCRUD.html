@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head th:include="adminNav :: head">
+<body id="admin">
+	<div class="d-flex" id="wrapper">
+		<nav th:include="adminNav :: nav"></nav>
+		<!-- This is the content -->
+		<div id="page-content-wrapper">
+			<div class="container-fluid mt-4 row">
+				<div class="col-12">
+					<h3>User Overview</h3>
+				</div>
+
+				<div class="col-sm-4">
+					<div class="shadow card">
+						<div class="card-body">
+							<h5 class="card-title">Total User Number</h5>
+							<p class="card-text">50</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="shadow card">
+						<div class="card-body">
+							<h5 class="card-title">New Member</h5>
+							<p class="card-text">20</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<a href="/admin/user/create" class="shadow card btn btn-primary">
+						<div class="card-body">
+							<h5 class="card-title">Create New Member</h5>
+						</div>
+					</a>
+				</div>
+				<div class="col-12 mt-4">
+					<div class="shadow card">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-6">	
+									<h5 class="card-title">Users</h5>
+								</div>
+								<div class="col-6">
+									<form>
+										<div class="form-group">
+										 <input
+												type="email" class="form-control" id="exampleInputEmail1"
+												aria-describedby="emailHelp" placeholder="Search By Keywords...">
+										</div>
+									</form>
+								</div>
+							</div>
+							<table class="table">
+								<thead class="bg-primary">
+									<tr>
+										<th scope="col">UserId</th>
+										<th scope="col">First</th>
+										<th scope="col">Last</th>
+										<th scope="col">Email</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th scope="row">1</th>
+										<td>Mark</td>
+										<td>Otto</td>
+										<td>aaa@aaa.com</td>
+									</tr>
+									<tr>
+										<th scope="row">2</th>
+										<td>Jacob</td>
+										<td>Thornton</td>
+										<td>BBB@BBB.com</td>
+									</tr>
+									<tr>
+										<th scope="row">3</th>
+										<td>Larry</td>
+										<td>the Bird</td>
+										<td>CCC@CCC.COM</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Content End -->
+	</div>
+</body>
+</html>

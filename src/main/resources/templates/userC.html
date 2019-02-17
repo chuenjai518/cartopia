@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head th:include="adminNav :: head">
+<body id="admin">
+	<div class="d-flex" id="wrapper">
+		<nav th:include="adminNav :: nav"></nav>
+		<!-- This is the content -->
+		<div id="page-content-wrapper">
+			<div class="container-fluid mt-4">
+				<h3>Create New User </h3>
+				<div class="shadow card">
+					<div class="card-body">
+						<form>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="inputEmail4">First Name</label> <input type="text"
+										class="form-control" id="inputEmail4" placeholder="Email">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="inputPassword4">Last Name</label> <input
+										type="text" class="form-control" id="inputPassword4"
+										placeholder="Password">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="inputAddress">Emil Address</label> <input
+									type="email" class="form-control" id="inputAddress"
+									placeholder="1234 Main St">
+							</div>
+							<div class="form-group">
+								<label for="inputAddress2">Address</label> <input type="text"
+									class="form-control" id="inputAddress2"
+									placeholder="Apartment, studio, or floor">
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-4">
+									<label for="inputState">User type</label> <select
+										id="userType" class="form-control">
+										<option value="member" selected>Member</option>
+										<option value="CarParkOwner">Car Park Owner</option>
+									</select>
+								</div>
+							</div>
+							<div id="CarParkOwner">
+								<div class="form-group">
+								<label for="CarParkName">Carpark Name</label> <input type="text"
+									class="form-control" id="CarParkName"
+									placeholder="Car Park Name">
+								</div>
+								<div class="form-group">
+								<label for="carParkAddress">Carpark Address</label> <input type="text"
+									class="form-control" id="carParkAddress"
+									placeholder="Location, District, ...">
+								</div>
+								<div class="form-row">
+								<div class="form-group col-md-3">
+									<label for="Motor">Motor</label> <input type="text"
+										class="form-control" id="inputEmail4" placeholder="Capacity of Motor">
+								</div>								
+								
+								<div class="form-group col-md-3">
+									<label for="Private Car">Private Car</label> <input
+										type="text" class="form-control" id="Private Car"
+										placeholder="Capacity of Private Car">
+								</div>
+								<div class="form-group col-md-3">
+									<label for="Electronic Car">Electronic Car</label> <input
+										type="text" class="form-control" id="Electronic Car"
+										placeholder="Capacity of Eletronic Car">
+								</div>
+								</div>
+							</div>
+							<div id="member">
+								<div class="form-group">
+								<label for="CarParkName">Carpark Name</label> <input type="text"
+									class="form-control" id="CarParkName"
+									placeholder="Car Park Name">
+								</div>
+								<div class="form-group">
+								<label for="carParkAddress">Carpark Address</label> <input type="text"
+									class="form-control" id="carParkAddress"
+									placeholder="Location, District, ...">
+								</div>
+							</div>
+							</div>
+							<button type="submit" class="btn btn-primary">Save</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Content End -->
+	</div>
+</body>
+</html>
