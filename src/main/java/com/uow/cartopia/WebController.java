@@ -22,12 +22,9 @@ public class WebController {
 	@Autowired
 	CarParkService carParkService;
 
-	@GetMapping("/")
+	@GetMapping("/index")
 	public String index(Model model) {
-		CarPark carPark = carParkService.getCarPark(1);
-		model.addAttribute("ID", carPark.getCarParkID());
-		model.addAttribute("name", carPark.getName());
-		return "index";
+		return "AdminDash";
 	}
 	
 

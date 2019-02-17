@@ -17,8 +17,7 @@ public class CarParkController {
 	@GetMapping("carpark/{carParkID}")
 	public String carpark(Model model, @PathVariable("carParkID") Integer id) {
 		CarPark carPark = carParkService.getCarPark(id);
-		model.addAttribute("ID", carPark.getCarParkID());
-		model.addAttribute("name", carPark.getName());
+		model.addAttribute("carPark", carPark);
 		return "index";
 	}
 }
