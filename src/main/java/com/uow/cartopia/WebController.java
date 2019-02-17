@@ -30,13 +30,7 @@ public class WebController {
 		return "index";
 	}
 	
-	@GetMapping("carpark/{carParkID}")
-	public String carpark(Model model, @PathVariable("carParkID") Integer id) {
-		CarPark carPark = carParkService.getCarPark(id);
-		model.addAttribute("ID", carPark.getCarParkID());
-		model.addAttribute("name", carPark.getName());
-		return "index";
-	}
+
 
 	@GetMapping("carpark")
 	public ResponseEntity<List<CarPark>> getAllCarPark() {
@@ -56,27 +50,5 @@ public class WebController {
 		return "AdminDash";
 	}
 	
-	@GetMapping("admin")
-	public String admin(Model model) {
-		
-		return "AdminDash";
-	}
 	
-	@GetMapping("admin/user")
-	public String userOverview(Model model) {
-		
-		return "userCRUD";
-	}
-	
-	@GetMapping("admin/user/create")
-	public String userCreate(Model model) {
-		
-		return "userC";
-	}
-	
-	@GetMapping("admin/user/read")
-	public String userRead(Model model) {
-		
-		return "userR";
-	}
 }
