@@ -55,4 +55,22 @@ public class WebController {
 		
 		return "AdminDash";
 	}
+	
+	@GetMapping("admin")
+	public String admin(Model model) {
+		
+		return "AdminDash";
+	}
+	
+	@GetMapping("admin/user")
+	public String userOverview(Model model) {
+		
+		return "userCRUD";
+	}
+	
+	@GetMapping("admin/user/create")
+	public String userCreate(Model model) {
+		
+		return "userC";
+	}
 }

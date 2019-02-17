@@ -22,6 +22,7 @@
 /* sidebar */
 #sidebar-wrapper {
   min-height: 100vh;
+  height: 100%;
   -webkit-transition: margin 0.25s ease-out;
   -moz-transition: margin 0.25s ease-out;
   -o-transition: margin 0.25s ease-out;
@@ -77,3 +78,10 @@ button.bg-light:hover,
 button.bg-light:focus {
   background-color: #142249!important;
 }
+
+.bg-primary{
+	color: #b89b6d;
+  background-color: #0f1834 !important;
+}
+
+
