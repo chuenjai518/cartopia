@@ -3,6 +3,7 @@ package com.uow.DAO;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -23,10 +24,16 @@ public class CarParkDAO{
 	}
 	
 	public CarPark getCarPark(int carParkID) {
-		
+		CarPark carPark = new CarPark();
 		String sql = "SELECT carParkID, name, address, Time(openTime), Time(closeTime), Description FROM CarPark WHERE carParkID = ?";
 		RowMapper<CarPark> rowMapper = new CarParkRowMapper();
-		CarPark carPark = db.queryForObject(sql, rowMapper, carParkID);
+		try {
+			carPark = db.queryForObject(sql, rowMapper, carParkID);
+			System.out.println("Found CarPark");
+		} catch (EmptyResultDataAccessException e) {
+
+		}
+		
 		return carPark;
 	}
 	

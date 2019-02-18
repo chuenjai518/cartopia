@@ -23,12 +23,17 @@ public class WebController {
 
 	@Autowired
 	CarParkService carParkService;
+	
+	@GetMapping("/")
+	public String index(Model model) {
+		return "redirect:/index";
+	}
 
 	@GetMapping("/index")
-	public String index(Model model) {
+	public String home(Model model) {
 		return "test";
 	}
-	
+
 
 
 	@GetMapping("carpark")

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.uow.DAO.UserDAO;
 import com.uow.Model.CarPark;
+import com.uow.Model.Driver;
 import com.uow.Model.User;
 import com.uow.Model.Login;
 
@@ -31,8 +32,18 @@ public class UserService {
 		}
 	}
 	
-	public void checkUser(User user) {
-		
+	public User getUserInfo(int userID) {
+		return userDAO.getUserInfo(userID);
 	}
+	
+	public Driver getDriverInfo(int userID) {
+		return userDAO.getDriverInfo(userID);
+	}
+	
+	public boolean addCredit(int driverID, int amount) {
+		return userDAO.addCredit(driverID, amount);
+	}
+	
+	
 
 }
