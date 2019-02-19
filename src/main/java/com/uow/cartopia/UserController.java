@@ -60,9 +60,9 @@ public class UserController {
 	
 	@PostMapping("/registerProcess")
 	public RedirectView registerProcess(@ModelAttribute User user,RedirectAttributes model, HttpSession session) {
-//		Login login = new Login();
-//		login.setUsername("user");
-//		login.setPassword("user");
+		Login login = new Login();
+		login.setUsername("user");
+		login.setPassword("user");
 		boolean valid = userService.registerProcess(user);
 		if(!valid) {
 			model.addFlashAttribute("message", "username has been used!");
