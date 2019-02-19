@@ -1,0 +1,24 @@
+.btn-link{
+	color:#b89b6d;
+}
+.btn-link:hover{
+	color:#0f1834;
+}
+.btn-primary:hover{
+	color:#C4AD87;
+	background-color:#3A4258;
+}
+
+.loginBrand{
+	color:#b89b6d;
+	font-size: 60px;
+	text-decoration: none;
+}
+
+.loginTitle{
+	font-size:40px;
+}
+
+.errorText{
+ color:red;	
+}

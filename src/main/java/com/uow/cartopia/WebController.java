@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uow.Model.CarPark;
+import com.uow.Model.Login;
 import com.uow.Service.CarParkService;
 
 @Controller
@@ -44,6 +45,7 @@ public class WebController {
 
 	@GetMapping("login")
 	public String login(Model model, HttpSession session) {
+		model.addAttribute("login", new Login());
 		if(session.getAttribute("userID") != null) {
 			return "redirect:/index";
 		}

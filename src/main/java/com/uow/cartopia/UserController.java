@@ -7,9 +7,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.uow.Model.CarPark;
@@ -26,17 +30,17 @@ public class UserController {
 	
 	//Need change to Post
 	@PostMapping("/loginProcess")
-	public String loginProcess(@ModelAttribute Login login, Model model, HttpSession session) {
+	public RedirectView loginProcess(@ModelAttribute Login login,RedirectAttributes model, HttpSession session) {
 //		Login login = new Login();
 //		login.setUsername("user");
 //		login.setPassword("user");
 		int userID = userService.loginProcess(login);
 		if(userID == 0) {
-			model.addAttribute("message", "Incorrect username or password!");
-			return "login";
+			model.addFlashAttribute("message", "Incorrect username or password!");
+			return new RedirectView("login");
 		}
 		session.setAttribute("userID", userID);
-		return "redirect:/index";
+		return new RedirectView("index");
 	}
 	
 	//Need change to Post
