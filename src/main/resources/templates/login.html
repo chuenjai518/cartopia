@@ -9,109 +9,145 @@
 </head>
 <nav th:insert="nav :: nav"></nav>
 <body class="text-center" data-gr-c-s-loaded="true">
+	<br>
+	<br>
 	<div class="container p-3 rounded col-sm-10 col-md-4 col-lg-4">
 		<div class="shadow border bg-white rounded">
-		<br>
-		<span class="brandFont loginBrand" href="#">Cartopia</span>
+			<br> <span class="brandFont loginBrand" href="#">Cartopia</span>
 			<br>
 			<h1 class="loginTitle textcolor">Login</h1>
 			<hr>
 			<br>
 			<div class="container">
-				<form action="#" th:action="@{/loginProcess}" th:object="${login}" method="POST">
+				<form action="#" th:action="@{/loginProcess}" th:object="${login}"
+					method="POST">
 					<div class="container">
 						<div class="form-group row ">
-							<label for="inputUsername" class="col-sm-2 col-form-label offset-sm-1 textcolor">Username:
+							<label for="inputUsername"
+								class="col-sm-2 col-form-label offset-sm-1 textcolor">Username:
 							</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control"
-									id="inputUsername" placeholder="Username" th:field="*{username}">
+								<input type="text" class="form-control" id="inputUsername"
+									placeholder="Username" th:field="*{username}">
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="inputPassword" class="col-sm-2 col-form-label offset-sm-1 textcolor">Password:
+							<label for="inputPassword"
+								class="col-sm-2 col-form-label offset-sm-1 textcolor">Password:
 							</label>
 							<div class="col-sm-8">
-								<input type="password" class="form-control"
-									id="inputPassword" placeholder="Password" th:field="*{password}">
+								<input type="password" class="form-control" id="inputPassword"
+									placeholder="Password" th:field="*{password}">
 							</div>
 						</div>
-						<span class="errorText" th:text="${message != null} ? ${message} : ''"></span><br> <br />
+						<span class="errorText"
+							th:text="${message != null} ? ${message} : ''"></span><br> <br />
 						<button type="submit" class="btn btn-primary col-sm-3">Login</button>
-						<br />
-						<br>
-						<a class="btn btn-link col-sm-3" href="#registerPop">Register</a>
+						<br /> <br> <a class="btn btn-link col-sm-3"
+							href="#registerPop">Register</a>
 					</div>
 				</form>
-				<br>
-				<br>
+				<br> <br>
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="text-center overlay" id="registerPop">
+		<br> <br>
 		<div class="container p-3 rounded col-sm-10 col-md-4 col-lg-4">
-		<div class="shadow border bg-white rounded">
-		<br>
-		<span class="brandFont loginBrand">Cartopia</span>
-			<br>
-			<h1 class="loginTitle textcolor">Register</h1>
-			<hr>
-			<br>
-			<div class="container">
-				<form>
+			<div class="shadow border bg-white rounded">
+				<br> <span class="brandFont loginBrand">Cartopia</span> <br>
+				<h1 class="loginTitle textcolor">Register</h1>
+				<hr>
+				<br>
 				<div class="container">
-					<div class="form-group row ">
-					<label for="registerUsername" class="col-sm-4 col-form-label textcolor text-right">Username: </label>
-					<div class="col-sm-7">
-						<input type="text" class="form-control"
-						id="inputUsername" placeholder="Username">
-					</div>
-					</div>
-					<div class="form-group row ">
-					<label for="registerPassword" class="col-sm-4 col-form-label textcolor text-right">Password: </label>
-					<div class="col-sm-7">
-						<input type="password" class="form-control"
-						id="inputPassword" placeholder="Password">
-					</div>
-					</div>
-					<div class="form-group row ">
-					<label for="confirmPassword" class="col-sm-4 col-form-label textcolor text-right">Confirm Password: </label>
-					<div class="col-sm-7">
-						<input type="password" class="form-control"
-						id="comfirnPassword" placeholder="Confirm Password">
-					</div>
-					</div>
-					<div class="form-group row ">
-					<label for="firstName" class="col-sm-4 col-form-label textcolor text-right">First Name: </label>
-					<div class="col-sm-7">
-						<input type="text" class="form-control"
-						id="firstName" placeholder="First Name">
-					</div>
-					</div>
-					<div class="form-group row ">
-					<label for="lastName" class="col-sm-4 col-form-label textcolor text-right">Last Name: </label>
-					<div class="col-sm-7">
-						<input type="text" class="form-control"
-						id="lastName" placeholder="last Name">
-					</div>
-					</div>
-					<div class="form-group row ">
-					<label for="email" class="col-sm-4 col-form-label textcolor text-right">E-mail: </label>
-					<div class="col-sm-7">
-						<input type="email" class="form-control"
-						id="email" placeholder="E-mail">
-					</div>
-					</div>
-					<br>
-					<a href="#" class="btn btn-link col-sm-3">Cancel</a>
-					<button type="submit" class="btn btn-primary col-sm-3">Register</button></div>
-					<br>
-					<br>
-				</form>
+					<form>
+						<div class="container">
+							<div class="form-group row ">
+								<label for="registerUsername"
+									class="col-sm-4 col-form-label textcolor text-right">Username:
+								</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="registerUsername"
+										placeholder="Username" required>
+								</div>
+							</div>
+							<div class="form-group row ">
+								<label for="registerPassword"
+									class="col-sm-4 col-form-label textcolor text-right">Password:
+								</label>
+								<div class="col-sm-7">
+									<input type="password" class="form-control"
+										id="registerPassword" placeholder="Password" required>
+								</div>
+							</div>
+							<div class="form-group row ">
+								<label for="confirmPassword"
+									class="col-sm-4 col-form-label textcolor text-right">Confirm
+									Password: </label>
+								<div class="col-sm-7">
+									<input type="password" class="form-control"
+										id="confirmPassword" placeholder="Confirm Password">
+								</div>
+								<img class="tick" th:src='@{/images/tick.png}' />
+							</div>
+							<div id="checkPassword"></div>
+							<div class="form-group row ">
+								<label for="firstName"
+									class="col-sm-4 col-form-label textcolor text-right">First
+									Name: </label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="firstName"
+										placeholder="First Name" required>
+								</div>
+							</div>
+							<div class="form-group row ">
+								<label for="lastName"
+									class="col-sm-4 col-form-label textcolor text-right">Last
+									Name: </label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="lastName"
+										placeholder="last Name" required>
+								</div>
+							</div>
+							<div class="form-group row ">
+								<label for="email"
+									class="col-sm-4 col-form-label textcolor text-right">E-mail:
+								</label>
+								<div class="col-sm-7">
+									<input type="email" class="form-control" id="email"
+										placeholder="E-mail" required>
+								</div>
+							</div>
+							<br> <a href="#" class="btn btn-link col-sm-3">Cancel</a>
+							<button type="submit" class="btn btn-primary col-sm-3">Register</button>
+
+						</div>
+						<br> <br>
+					</form>
+				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 </body>
+<script th:src="@{/js/jquery.min.js}" src="@{/js/jquery.min.js}"></script>
+
+<script>
+	function checkPassword() {
+		var user = $("#registerUsername").val();
+		var password = $('#registerPassword').val();
+		var confirmPassword = $('#confirmPassword').val();
+		if (password != confirmPassword) {
+			$('#checkPassword').html("Passwords do not match!");
+		} else {
+			$('#checkPassword').html("<img th:src='@{/images/tick.png}'/>");
+		}
+	}
+	$(document).ready(function() {
+
+		$('#confirmPassword').keyup(function() {
+			checkPassword();
+		});
+	});
+</script>
 </html>
