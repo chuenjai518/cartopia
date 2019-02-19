@@ -1,10 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:include="nav :: head">
     <title>login</title>
+       
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css}" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 </head>
+ <nav th:include="nav :: nav"></nav>
 <body class="text-center" data-gr-c-s-loaded="true">
 	<div class="container p-3 rounded col-sm-10 col-md-4 col-lg-4">
 	<div class="shadow border bg-white rounded">
