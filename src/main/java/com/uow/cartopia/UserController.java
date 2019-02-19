@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.uow.Model.CarPark;
 import com.uow.Model.Driver;
@@ -24,11 +25,11 @@ public class UserController {
 	UserService userService;
 	
 	//Need change to Post
-	@GetMapping("/loginProcess")
-	public String loginProcess(Model model, HttpSession session) {
-		Login login = new Login();
-		login.setUsername("user");
-		login.setPassword("user");
+	@PostMapping("/loginProcess")
+	public String loginProcess(@ModelAttribute Login login, Model model, HttpSession session) {
+//		Login login = new Login();
+//		login.setUsername("user");
+//		login.setPassword("user");
 		int userID = userService.loginProcess(login);
 		if(userID == 0) {
 			model.addAttribute("message", "Incorrect username or password!");
@@ -39,7 +40,7 @@ public class UserController {
 	}
 	
 	//Need change to Post
-	@GetMapping("/logout")
+	@PostMapping("/logout")
 	public String logout(Model model, HttpSession session) {
 		
 		if(session.getAttribute("userID") != null) {
