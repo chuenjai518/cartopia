@@ -22,9 +22,32 @@ public class UserDAO {
 
 	public void addUser(User user) {
 		System.out.println("EXCUTE INSERT User - " + user.getUsername());
-		db.update("INSERT INTO User(roleID, username, password, firstName, lastName, email) " + "Values (?,?,?,?,?,?)",
-				user.getRoleID(), user.getUsername(), user.getPassword(), user.getFirstName(), user.getLastName(),
-				user.getEmail());
+		String sql = "INSERT INTO User(roleID, username, password, firstName, lastName, email) "
+				+ "Values (?,?,?,?,?,?)";
+		db.update(sql, user.getRoleID(), user.getUsername(), user.getPassword(), user.getFirstName(),
+				user.getLastName(), user.getEmail());
+	}
+
+	public void registerProcess(User user) {
+		System.out.println("EXCUTE INSERT User - " + user.getUsername());
+		user.setRoleID(1);
+		String sql = "INSERT INTO User(roleID, username, password, firstName, lastName, email) "
+				+ "Values (?,?,?,?,?,?)";
+		db.update(sql, user.getRoleID(), user.getUsername(), user.getPassword(), user.getFirstName(),
+				user.getLastName(), user.getEmail());
+	}
+
+	public boolean checkUsername(String username) {
+		boolean valid = false;
+		String sql = "SELECT username FROM User WHERE username = ?";
+		RowMapper<User> rowMapper = new UserRowMapper();
+		try {
+			User user = db.queryForObject(sql, rowMapper, username);
+			System.out.println("Found User - " + user.getUsername());
+		} catch (EmptyResultDataAccessException e) {
+			valid = true;
+		}
+		return valid;
 	}
 
 	public Login checkLogin(Login login) {

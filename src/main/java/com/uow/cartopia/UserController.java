@@ -58,6 +58,19 @@ public class UserController {
 		return "redirect:/index";
 	}
 	
+	@PostMapping("/registerProcess")
+	public RedirectView registerProcess(@ModelAttribute User user,RedirectAttributes model, HttpSession session) {
+//		Login login = new Login();
+//		login.setUsername("user");
+//		login.setPassword("user");
+		boolean valid = userService.registerProcess(user);
+		if(!valid) {
+			model.addFlashAttribute("message", "username has been used!");
+			return new RedirectView("login");
+		}
+		return new RedirectView("login");
+	}
+	
 	@GetMapping("user/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable("id") Integer id) {
 		User user = userService.getUserInfo(id);

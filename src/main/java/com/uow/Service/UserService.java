@@ -32,6 +32,14 @@ public class UserService {
 		}
 	}
 	
+	public boolean registerProcess(User user) {
+		boolean valid = userDAO.checkUsername(user.getUsername());
+		if(valid) {
+			userDAO.registerProcess(user);
+		}
+		return valid;
+	}
+	
 	public User getUserInfo(int userID) {
 		return userDAO.getUserInfo(userID);
 	}
