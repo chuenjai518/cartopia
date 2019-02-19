@@ -52,6 +52,11 @@ public class WebController {
 		return "login";
 	}
 	
+	@GetMapping("/register")
+	public String register(Model model) {
+		return "register";
+	}
+	
 	@GetMapping("PageTest")
 	public String pageTest(Model model, HttpSession session) {
 		model.addAttribute("userID", session.getAttribute("userID"));
