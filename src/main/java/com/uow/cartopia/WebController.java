@@ -39,12 +39,6 @@ public class WebController {
 
 
 
-	@GetMapping("carpark")
-	public ResponseEntity<List<CarPark>> getAllCarPark() {
-		List<CarPark> list = carParkService.getAllCarPark();
-		return new ResponseEntity<List<CarPark>>(list, HttpStatus.OK);
-	}
-
 	@GetMapping("login")
 	public String login(Model model, HttpSession session) {
 		model.addAttribute("login", new Login());

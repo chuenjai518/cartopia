@@ -9,7 +9,6 @@ public class DriverRowMapper implements RowMapper<Driver> {
 
 	@Override
 	public Driver mapRow(ResultSet row, int rowNum) throws SQLException {
-		System.out.println("Driver Mapper");
 		Driver driver = new Driver();
 		driver.setDriverID(row.getInt("driverID"));
 		driver.setUserID(row.getInt("userID"));

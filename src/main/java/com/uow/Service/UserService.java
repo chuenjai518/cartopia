@@ -1,5 +1,7 @@
 package com.uow.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,6 +54,9 @@ public class UserService {
 		return userDAO.addCredit(driverID, amount);
 	}
 	
+	public List<User> getAllUser(){
+		return userDAO.getAllUser();
+	}
 	
 
 }

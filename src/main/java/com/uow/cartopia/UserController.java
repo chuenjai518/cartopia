@@ -1,5 +1,7 @@
 package com.uow.cartopia;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +77,12 @@ public class UserController {
 	public ResponseEntity<User> getUserById(@PathVariable("id") Integer id) {
 		User user = userService.getUserInfo(id);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
+	}
+	
+	@GetMapping("user")
+	public ResponseEntity<List<User>> getAllUser() {
+		List<User> list = userService.getAllUser();
+		return new ResponseEntity<List<User>>(list, HttpStatus.OK);
 	}
 	
 	@GetMapping("driver/{id}")
