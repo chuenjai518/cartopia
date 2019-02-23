@@ -1,6 +1,10 @@
 package com.uow.cartopia;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,4 +24,13 @@ public class CarParkController {
 		model.addAttribute("carPark", carPark);
 		return "index";
 	}
+	
+
+
+	@GetMapping("carpark")
+	public ResponseEntity<List<CarPark>> getAllCarPark() {
+		List<CarPark> list = carParkService.getAllCarPark();
+		return new ResponseEntity<List<CarPark>>(list, HttpStatus.OK);
+	}
+	
 }
