@@ -89,7 +89,7 @@
 									<input type="password" class="form-control"
 										id="confirmPassword" placeholder="Confirm Password">
 								</div>
-								//<img id="tick" class="tick" th:src='@{/images/tick.png}' />
+								<!--  <img id="tick" class="tick" th:src='@{/images/tick.png}' /> -->
 							</div>
 							<div id="checkPassword"></div>
 							<div class="form-group row ">
@@ -139,8 +139,8 @@
 		var confirmPassword = $('#confirmPassword').val();
 		if (password != confirmPassword) {
 			$('#checkPassword').html("Passwords do not match!");
-		} else {
-			$('#checkPassword').html("<img th:src='@{/images/tick.png}'/>");
+		}else{
+			$('#checkPassword').html("");
 		}
 	}
 	$(document).ready(function() {
