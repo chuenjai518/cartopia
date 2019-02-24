@@ -49,6 +49,11 @@ public class WebController {
 		return "login";
 	}
 	
+	@GetMapping("driverPage")
+	public String driverPage(Model model, HttpSession session) {
+
+		return "driverPage";
+	}
 	
 	@GetMapping("PageTest")
 	public String pageTest(Model model, HttpSession session) {
