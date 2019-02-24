@@ -4,21 +4,54 @@
 <title>DriverPage</title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link href="/css/driverPage.css" th:href="@{/css/driverPage.css}" rel="stylesheet" type="text/css"/>
-<link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" />
+<link th:href="@{static/css/driverPage.css}" rel="stylesheet" type="text/css"/>
+<link th:href="@{static/css/bootstrap.css}" rel="stylesheet" type="text/css" />
 
 </head>
 <nav th:include="navDriver :: nav"></nav>
 <body class="text-center" data-gr-c-s-loaded="true">
 	<div class="container ">
-		<br> 
-		<span class="brandFont driverPageBrand">Cartopia</span>
-		<div class="jumbotron jumbotron-fluid">
+		<div class="jumbotron">
 		  <div class="container">
-		    <h1 class="display-4">Welcome~</h1>
-		   
+		    <h2 class="brandFont driverPageBrand">Cartopia</h2>
+		    <p>Welcome!</p>
+		    <div class="container row justify-content-around">
+		    	<div class="col-sm-4">Credits: 
+		    	<span id="memberCredits"></span>
+		    	</div>
+		    	<div class="col-sm-4">Redemptions: 
+		    	<span id="memberRedemptions"></span>
+		    	</div>    	
+		    </div>
 		  </div>
 		</div>
+		<div class="container ">
+		<h2>Bookmark Car Park</h2>
+		
+		<div class="row sm-2">
+        <div class="col-sm-3">
+          <div class="card flex-sm-row sm-4 shadow-sm h-md-250">
+			<img style="height: 100%; width: 100%; object-fit: contain" src="/images/carparkPict.jpg"/>
+          </div>
+        </div>
+            <div class="col-sm-3">
+          <div class="card flex-sm-row sm-4 shadow-sm h-md-250">
+			<img style="height: 100%; width: 100%; object-fit: contain" src="/images/carparkPict.jpg"/>
+          </div>
+        </div>
+            <div class="col-sm-3">
+          <div class="card flex-sm-row sm-4 shadow-sm h-md-250">
+			<img style="height: 100%; width: 100%; object-fit: contain" src="/images/carparkPict.jpg"/>
+          </div>
+        </div>
+           <div class="col-sm-3">
+          <div class="card flex-sm-row sm-4 shadow-sm h-md-250">
+			<img style="height: 100%; width: 100%; object-fit: contain" src="/images/carparkPict.jpg"/>
+          </div>
+        </div>
+		
+		</div>
+		
 	</div>
 </body>
 <script th:src="@{/js/jquery.min.js}" src="@{/js/jquery.min.js}">
