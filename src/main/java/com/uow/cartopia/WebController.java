@@ -52,7 +52,7 @@ public class WebController {
 	@GetMapping("driverPage")
 	public String driverPage(Model model, HttpSession session) {
 
-		return "driverPage";
+		return "driverHome";
 	}
 	
 	@GetMapping("PageTest")
