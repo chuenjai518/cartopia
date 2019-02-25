@@ -51,6 +51,7 @@ public class UserController {
 			return new RedirectView("login");
 		}
 		session.setAttribute("userID", userID);
+		session.setAttribute("username", login.getUsername());
 		return new RedirectView("index");
 	}
 	

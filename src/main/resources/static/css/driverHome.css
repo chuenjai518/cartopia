@@ -1,36 +1,42 @@
-.btn-link{
-	color:#b89b6d;
-}
-.btn-link:hover{
-	color:#0f1834;
-}
-.btn-primary:hover{
-	color:#C4AD87;
-	background-color:#3A4258;
-}
-
-.driverPageBrand{
-	color:#b89b6d;
-	font-size: 60px;
-	text-decoration: none;
-}
-.jumbotron{
-	background-color: #fff;
-}
-
-.bgColor{
+.background{
 	background-color: #ddd;
+	height:100%;
+}
+
+.centerText{
+	text-align:center;
+}
+
+.leftText{
+	text-align:left;
+}
+
+.text-gold{
+	color:#b89b6d;
+}
+
+.text-darkblue{
+	color:#0f1834; 
+}
+
+.text-white{
+	color:white;
+}
+
+a:hover{
+	color: #C4AD87;
+}
+
+.white{
+	background-color: white !important
+}
+.darkblue{
+	background-color: #0f1834; 
 }
 
 .card{
-	border-color:#ddd;
-	background-color:#ddd;
+	background-color: #0f1834;
 }
-
-
-fieldset, label { margin: 0; padding: 0; }
-body{ margin: 20px; }
-h1 { font-size: 1.5em; margin: 10px; }
 
 /****** Style Star Rating Widget *****/
 

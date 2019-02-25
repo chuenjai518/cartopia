@@ -97,6 +97,11 @@ tbody tr:hover {
 	background-color: #e7e7e7;
 }
 
+
+.text-gold{
+	color: #b89b6d;
+}
+
 .home {
 	background: #ddd;
 }
@@ -144,3 +149,4 @@ tbody tr:hover {
 	font-weight: 700;
 	background-color:#0f1834;
 }
+
