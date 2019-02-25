@@ -51,7 +51,7 @@ public class WebController {
 	
 	@GetMapping("driverPage")
 	public String driverPage(Model model, HttpSession session) {
-
+		model.addAttribute("username", session.getAttribute("username"));
 		return "driverHome";
 	}
 	
