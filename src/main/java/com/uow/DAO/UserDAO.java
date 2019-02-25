@@ -32,7 +32,6 @@ public class UserDAO {
 
 	public void registerProcess(User user) {
 		System.out.println("EXCUTE INSERT User - " + user.getUsername());
-		user.setRoleID(1);
 		String sql = "INSERT INTO User(roleID, username, password, firstName, lastName, email) "
 				+ "Values (?,?,?,?,?,?)";
 		db.update(sql, user.getRoleID(), user.getUsername(), user.getPassword(), user.getFirstName(),

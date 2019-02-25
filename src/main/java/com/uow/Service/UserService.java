@@ -37,6 +37,7 @@ public class UserService {
 	public boolean registerProcess(User user) {
 		boolean valid = userDAO.checkUsername(user.getUsername());
 		if(valid) {
+			user.setRoleID(1);
 			userDAO.registerProcess(user);
 		}
 		return valid;
