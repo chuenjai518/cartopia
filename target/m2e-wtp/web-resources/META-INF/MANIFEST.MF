@@ -1,9 +1,15 @@
 Manifest-Version: 1.0
 Implementation-Title: cartopia
 Implementation-Version: 0.0.1-SNAPSHOT
+<<<<<<< HEAD
 Built-By: thc95
 Implementation-Vendor-Id: com.example
 Build-Jdk: 1.8.0_161
+=======
+Built-By: chuen
+Implementation-Vendor-Id: com.example
+Build-Jdk: 1.8.0_201
+>>>>>>> ab96d8abb52f1c4a5551be9b2f3eda5c598f6a92
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/cartopia
 Created-By: Maven Integration for Eclipse
