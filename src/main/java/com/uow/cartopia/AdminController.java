@@ -50,7 +50,6 @@ public class AdminController {
 		
 		return "userR";
 	}
-<<<<<<< HEAD
 	@GetMapping("admin/carpark")
 	public String carparkOverview(Model model) {
 		
@@ -68,7 +67,7 @@ public class AdminController {
 		
 		return "carparkR";
 	}
-=======
+
 	
 	@PostMapping("/adminCreateUserProcess")
 	public RedirectView createUserProcess(@ModelAttribute User user,RedirectAttributes model, HttpSession session) {
@@ -79,6 +78,4 @@ public class AdminController {
 		}
 		return new RedirectView("admin/user");
 	}
-	
->>>>>>> ab96d8abb52f1c4a5551be9b2f3eda5c598f6a92
 }
