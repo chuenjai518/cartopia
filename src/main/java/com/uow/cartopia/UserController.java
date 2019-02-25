@@ -30,6 +30,15 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	public boolean checkLogin(HttpSession session) {
+		boolean login = false;
+		if(session.getAttribute("userID") != null) {
+			login = true;
+		}
+		
+		return login;
+	}
+	
 	//Need change to Post
 	@PostMapping("/loginProcess")
 	public RedirectView loginProcess(@ModelAttribute Login login,RedirectAttributes model, HttpSession session) {
@@ -62,9 +71,6 @@ public class UserController {
 	
 	@PostMapping("/registerProcess")
 	public RedirectView registerProcess(@ModelAttribute User user,RedirectAttributes model, HttpSession session) {
-		Login login = new Login();
-		login.setUsername("user");
-		login.setPassword("user");
 		boolean valid = userService.registerProcess(user);
 		if(!valid) {
 			model.addFlashAttribute("message", "username has been used!");
@@ -103,6 +109,14 @@ public class UserController {
 			System.out.println("Credit Update failed");
 		}
 		return "redirect:/driver/"+ driver.getDriverID();
+	}
+	
+	//Need change to Post
+	@GetMapping("/booking/{carParkID}")
+	public void bookingCarPark(Model model, HttpSession session, @PathVariable("carParkID") Integer carParkID) {
+		if(checkLogin(session)) {
+			Driver driver = (Driver)session.getAttribute("driver");
+		}
 	}
 	
 	
