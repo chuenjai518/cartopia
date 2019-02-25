@@ -30,4 +30,21 @@ public class AdminController {
 		
 		return "userR";
 	}
+	@GetMapping("admin/carpark")
+	public String carparkOverview(Model model) {
+		
+		return "carparkCRUD";
+	}
+	
+	@GetMapping("admin/carpark/create")
+	public String carparkCreate(Model model) {
+		
+		return "carparkC";
+	}
+	
+	@GetMapping("admin/carpark/read")
+	public String carparkRead(Model model) {
+		
+		return "carparkR";
+	}
 }
