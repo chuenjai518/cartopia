@@ -90,4 +90,44 @@ tbody tr:hover{
 	background-color: #e7e7e7;
 }
 
+.home{
+	 background:#ddd;
+}
+.homecarimagesize{
+	width:200px;
+	height:100px;
+}
+.searchbar{
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 60px;
+    background-color: #0f1834;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+.search_input{
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    caret-color:transparent;
+    line-height: 40px;
+    padding: 0 10px;
+    width: 450px;
+    caret-color:red;
+}
+
+.search_icon{
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #b89b6d;
+    color: #0f1834;
+}
 
