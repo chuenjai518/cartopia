@@ -61,5 +61,14 @@ public class WebController {
 		return "test";
 	}
 	
-	
+
+	@GetMapping("/home")
+	public String Home(Model model) {
+		return "home";
+	}
+
+	@GetMapping("/carparkInfo")
+	public String CarParkInfo(Model model) {
+		return "carparkInfo";
+	}
 }
