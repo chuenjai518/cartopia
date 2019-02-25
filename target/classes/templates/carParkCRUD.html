@@ -8,13 +8,13 @@
 		<div id="page-content-wrapper">
 			<div class="container-fluid mt-4 row">
 				<div class="col-12">
-					<h3>User Overview</h3>
+					<h3>CarPark Overview</h3>
 				</div>
 
 				<div class="col-sm-4">
 					<div class="shadow card">
 						<div class="card-body">
-							<h5 class="card-title">Total User Number</h5>
+							<h5 class="card-title">Total Carpark Number</h5>
 							<p class="card-text">50</p>
 						</div>
 					</div>
@@ -22,15 +22,15 @@
 				<div class="col-sm-4">
 					<div class="shadow card">
 						<div class="card-body">
-							<h5 class="card-title">New Member</h5>
+							<h5 class="card-title">New Carpark</h5>
 							<p class="card-text">20</p>
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-4">
-					<a href="/admin/user/create" class="shadow card btn btn-primary">
+					<a href="/admin/carpark/create" class="shadow card btn btn-primary">
 						<div class="card-body">
-							<h5 class="card-title">Create New Member</h5>
+							<h5 class="card-title">Create New CarPark</h5>
 						</div>
 					</a>
 				</div>
@@ -39,7 +39,7 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-6">	
-									<h5 class="card-title">Users</h5>
+									<h5 class="card-title">Carparks</h5>
 								</div>
 								<div class="col-6">
 									<form>
@@ -54,21 +54,25 @@
 							<table class="table">
 								<thead class="bg-primary">
 									<tr >
-										<th  scope="col">UserId</th>
-										<th scope="col">First</th>
-										<th scope="col">Last</th>
-										<th scope="col">Email</th>
-										<th scope="col">User Type</th>
+										<th  scope="col">CarParkId</th>
+										<th scope="col">Name</th>
+										<th scope="col">Address</th>
+										<th scope="col">Available Slot</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="user : ${userList}" onclick="location.href='/admin/user/read/${user.getUserID()}'">
-										<th th:text="${user.getUserID()}" scope="row"></th>
-										<td th:text="${user.getFirstName()}"></td>
-										<td th:text="${user.getLastName()}"></td>
-										<td th:text="${user.getEmail()}"></td>
-										<td th:text="${user.getRoleID()}"></td>
+									<tr onclick="location.href='/admin/carpark/read'">
+										<th scope="row">1</th>
+										<td>Wilson</td>
+										<td>111 Chai Wan rd</td>
+										<td>30</td>
 									</tr>
+									<tr>
+										<th scope="row">2</th>
+										<td>Jacob</td>
+										<td>222 North Point rd</td>
+										<td>14</td>
+									</tr> 
 								</tbody>
 							</table>
 						</div>
