@@ -1,5 +1,7 @@
 package com.uow.DAO;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -30,7 +32,6 @@ public class UserDAO {
 
 	public void registerProcess(User user) {
 		System.out.println("EXCUTE INSERT User - " + user.getUsername());
-		user.setRoleID(1);
 		String sql = "INSERT INTO User(roleID, username, password, firstName, lastName, email) "
 				+ "Values (?,?,?,?,?,?)";
 		db.update(sql, user.getRoleID(), user.getUsername(), user.getPassword(), user.getFirstName(),
@@ -101,6 +102,12 @@ public class UserDAO {
 			}
 		}
 		return success;
+	}
+	
+	public List<User> getAllUser(){
+		String sql = "SELECT roleID, userID, username, firstName, lastName, email FROM User";
+		RowMapper<User> rowMapper = new UserRowMapper();
+		return this.db.query(sql,rowMapper);
 	}
 
 }

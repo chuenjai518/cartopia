@@ -39,12 +39,6 @@ public class WebController {
 
 
 
-	@GetMapping("carpark")
-	public ResponseEntity<List<CarPark>> getAllCarPark() {
-		List<CarPark> list = carParkService.getAllCarPark();
-		return new ResponseEntity<List<CarPark>>(list, HttpStatus.OK);
-	}
-
 	@GetMapping("login")
 	public String login(Model model, HttpSession session) {
 		model.addAttribute("login", new Login());
@@ -55,6 +49,11 @@ public class WebController {
 		return "login";
 	}
 	
+	@GetMapping("driverPage")
+	public String driverPage(Model model, HttpSession session) {
+		model.addAttribute("username", session.getAttribute("username"));
+		return "driverHome";
+	}
 	
 	@GetMapping("PageTest")
 	public String pageTest(Model model, HttpSession session) {
@@ -62,5 +61,14 @@ public class WebController {
 		return "test";
 	}
 	
-	
+
+	@GetMapping("/home")
+	public String Home(Model model) {
+		return "home";
+	}
+
+	@GetMapping("/carparkInfo")
+	public String CarParkInfo(Model model) {
+		return "carparkInfo";
+	}
 }

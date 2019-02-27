@@ -7,4 +7,3 @@ Build-Jdk: 1.8.0_101
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/cartopia
 Created-By: Maven Integration for Eclipse
-
