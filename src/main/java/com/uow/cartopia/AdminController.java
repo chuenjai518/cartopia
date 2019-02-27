@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -45,9 +46,10 @@ public class AdminController {
 		return "userC";
 	}
 	
-	@GetMapping("admin/user/read")
-	public String userRead(Model model) {
-		
+	@GetMapping("admin/user/read/{userID}")
+	public String userRead(Model model, @PathVariable("userID") Integer id) {
+		User user = userService.getUserInfo(id);
+		model.addAttribute("user", user);
 		return "userR";
 	}
 	@GetMapping("admin/carpark")
