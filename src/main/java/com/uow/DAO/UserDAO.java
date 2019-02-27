@@ -109,5 +109,16 @@ public class UserDAO {
 		RowMapper<User> rowMapper = new UserRowMapper();
 		return this.db.query(sql,rowMapper);
 	}
+	
+	public List<CarPark> getCPOCarPark(int userID){
+		String sql = "SELECT cpo.carParkID, name, address, Time(openTime), Time(closeTime), description FROM User u right join CarParkOwnerCarPark cpo on u.userID = cpo.userID right join CarPark cp on cpo.carparkID = cp.carparkID where u.userID = ?";
+		try {
+			RowMapper<CarPark> rowMapper = new CarParkRowMapper();
+			return this.db.query(sql, rowMapper, userID);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	
+	}
 
 }
