@@ -21,16 +21,15 @@ public class UserService {
 		userDAO.addUser(user);
 	}
 	
-	public int loginProcess(Login login) {
+	public User loginProcess(Login login) {
 		
-		login = userDAO.checkLogin(login);
+		User user = userDAO.checkLogin(login);
 		
-		if(login.getUserID() != 0) {
-			System.out.println("OK userID:"+ login.getUserID());
-			return login.getUserID();
+		if(user != null) {
+			System.out.println("OK username:"+ login.getUsername());
+			return user;
 		}else {
-			System.out.println(login.getUserID());
-			return 0;
+			return null;
 		}
 	}
 	
