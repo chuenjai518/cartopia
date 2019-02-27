@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head th:fragment="head">
-    <meta charset="utf-8" />
-    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
-    <div th:fragment="nav">
+<html lang="en" dir="ltr">
+<head th:fragment="head">
+<meta charset="utf-8">
+	<link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" />
+
+  	<link th:href="@{/css/loginStyle.css}" rel="stylesheet" type="text/css" />
+
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  	<link th:href="@{/css/driverHome.css}" rel="stylesheet" type="text/css" />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<div th:fragment="nav" >
 		<nav class="navbar navbar-expand-lg navbar-dark bg-light">
 			<a class="navbar-brand brandFont" href="#">Cartopia</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -13,11 +24,13 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse justify-content-end">
-				      <a class="navbar-brand" href="#">
-					    <img src="/images/memberIcon.png" width="30" height="30" alt="">
-					  </a>
-				  </li>
-				</ul>
+			  <div class="w3-dropdown-hover" style="background-color: #0f1834;">
+   			 <button class="w3-button "style="background-color: #0f1834!important"><img src="/images/memberIcon.png" width="30" height="30" alt="" style="background-color: #0f1834;"></button>
+			    <div class="w3-dropdown-content w3-bar-block w3-border">
+			      <a href="#" class="w3-bar-item w3-button">Profile</a>
+			      <a href="#" class="w3-bar-item w3-button">Logout</a>
+			    </div>
+			  </div>
 			</div>
 		</nav>
     </div>

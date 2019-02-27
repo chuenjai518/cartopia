@@ -55,6 +55,12 @@ public class WebController {
 		return "driverHome";
 	}
 	
+	@GetMapping("driverProfile")
+	public String driverProfile(Model model, HttpSession session) {
+		model.addAttribute("username", session.getAttribute("username"));
+		return "driverProfile";
+	}
+	
 	@GetMapping("PageTest")
 	public String pageTest(Model model, HttpSession session) {
 		model.addAttribute("userID", session.getAttribute("userID"));
