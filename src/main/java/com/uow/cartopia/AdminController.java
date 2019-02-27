@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.uow.Model.CarPark;
+import com.uow.Model.Driver;
 import com.uow.Model.Login;
 import com.uow.Model.User;
 import com.uow.Service.AdminService;
@@ -50,8 +52,19 @@ public class AdminController {
 	public String userRead(Model model, @PathVariable("userID") Integer id) {
 		User user = userService.getUserInfo(id);
 		model.addAttribute("user", user);
-		return "userR";
+		if(user.getRoleID()==1) {
+			Driver driver = userService.getDriverInfo(id);
+			model.addAttribute("driver",driver);
+			return "userR";
+		}else if(user.getRoleID()==3){
+			List<CarPark> carParkList = userService.getCPOCarPark(id);
+			model.addAttribute("carParkList", carParkList);
+			return "cpoR";
+		}else {
+			return "redirect:/admin/user";
+		}
 	}
+	
 	@GetMapping("admin/carpark")
 	public String carparkOverview(Model model) {
 		

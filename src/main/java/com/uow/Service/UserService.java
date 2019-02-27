@@ -59,5 +59,9 @@ public class UserService {
 		return userDAO.getAllUser();
 	}
 	
+	public List<CarPark> getCPOCarPark(int userID){
+		return userDAO.getCPOCarPark(userID);
+	}
+	
 
 }
