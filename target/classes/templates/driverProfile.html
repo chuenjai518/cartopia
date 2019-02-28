@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <title>Profile Page</title>
 <link rel="stylesheet" th:href="@{/css/DriverHome.css}">
+<link rel="stylesheet" th:href="@{/css/loginStyle.css}">
 
 <link rel="stylesheet"
 	href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
@@ -12,6 +13,11 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <nav th:include="navDriver :: nav"></nav>
 
+<style>
+html{
+  background-color:#ddd;
+}
+</style>
 </head>
 <body>
 	<div class="background">
@@ -21,10 +27,58 @@
 				<h3 class="text-white">Welcome! <span th:text="${username}"></span></h3>
 			</div>
 		</div>
-		<div class="centerText container">
-			<h1 align="left">Profile</h1>
-				
-		
+		<div class="row container-fluid">
+		<div class=" col-6">
+				<div class="shadow p-3 mb-5 rounded white">
+					<h1 align="left">Profile</h1>
+					<b style="font-size:16px;">Username: </b><span style="font-size:16px;">Test</span><br><br>
+					<button type="button" class="btn btn-primary">Reset Password</button>
+					<hr>
+					<b style="font-size:16px;">First Name: </b><span style="font-size:16px;">Test</span><br>
+					<b style="font-size:16px;">Last Name: </b><span style="font-size:16px;">Test</span><br>
+					<b style="font-size:16px;">Email: </b><span style="font-size:16px;">Test</span><br><br>
+					<button type="button" class="btn btn-primary">Edit Information</button><br>
+					<hr>
+					<b style="font-size:16px;">Credit: </b><span style="font-size:16px;">100    </span>
+					<a href="#"><img src="/images/add.png" style="height:25px;weight:25px;"></a><br>
+					<br>
+							<div class="container ">
+							<div Class="row">
+							<div class="offset-2 col-8 align-self-center">
+							
+							</div>
+
+							</div>
+							</div>
+				</div>
 		</div>
-	</div>
+		<div class=" col-6">
+			<div class="card shadow">
+								<div class="card text-center">
+								<div class="card-body">
+									<b class="card-title text-gold" style="font-size:20px;">Your Car</b>
+									<table class="table">
+										<thead class="bg-primary">
+											<tr>
+												<th scope="col"><a href="#" style="text-decoration: none;"><img src="/images/add.png" style="height:23px;weight:23px;">  Add Car</a><br></th>
+												<th scope="col">Index</th>
+												<th scope="col">License</th>
+												<th scope="col">CarType</th>
+											</tr>
+										</thead>
+										<tbody class="white">
+											<tr>
+												<td><a href="#"><img src="/images/Del.png" style="height:25px;weight:25px;"></a></td>
+												<th scope="row">1</th>
+												<td>AA 1231</td>
+												<td>Private Car</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								</div>
+							</div>
+		</div>
+		</div>
+</div>
 </body>
