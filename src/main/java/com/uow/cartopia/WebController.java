@@ -27,6 +27,7 @@ public class WebController {
 	@Autowired
 	CarParkService carParkService;
 	
+	
 	@GetMapping("/")
 	public String index(Model model) {
 		return "redirect:/index";
@@ -51,8 +52,20 @@ public class WebController {
 	
 	@GetMapping("driverPage")
 	public String driverPage(Model model, HttpSession session) {
+		if(session.getAttribute("userID") == null) {
+			return "redirect:/login";
+		}
 		model.addAttribute("username", session.getAttribute("username"));
 		return "driverHome";
+	}
+	
+	@GetMapping("driverProfile")
+	public String driverProfile(Model model, HttpSession session) {
+		if(session.getAttribute("userID") == null) {
+			return "redirect:/login";
+		}
+		model.addAttribute("username", session.getAttribute("username"));
+		return "driverProfile";
 	}
 	
 	@GetMapping("PageTest")

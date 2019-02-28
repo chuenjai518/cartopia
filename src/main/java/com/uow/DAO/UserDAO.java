@@ -51,16 +51,18 @@ public class UserDAO {
 		return valid;
 	}
 
-	public Login checkLogin(Login login) {
+	public User checkLogin(Login login) {
 		System.out.println("checkLogin UserDAO");
-		String sql = "SELECT userID, username, roleID FROM User WHERE username = ? AND password = ?";
-		RowMapper<Login> rowMapper = new LoginRowMapper();
+		String sql = "SELECT userID, username, roleID, firstName, lastName, email FROM User WHERE username = ? AND password = ?";
+		RowMapper<User> rowMapper = new UserRowMapper();
 		try {
-			login = db.queryForObject(sql, rowMapper, login.getUsername(), login.getPassword());
+			User user = db.queryForObject(sql, rowMapper, login.getUsername(), login.getPassword());
 			System.out.println("Found User - " + login.getUsername());
+			return user;
 		} catch (EmptyResultDataAccessException e) {
+			return null;
 		}
-		return login;
+		
 	}
 
 	public User getUserInfo(int userID) {
@@ -108,6 +110,17 @@ public class UserDAO {
 		String sql = "SELECT roleID, userID, username, firstName, lastName, email FROM User";
 		RowMapper<User> rowMapper = new UserRowMapper();
 		return this.db.query(sql,rowMapper);
+	}
+	
+	public List<CarPark> getCPOCarPark(int userID){
+		String sql = "SELECT cpo.carParkID, name, address, Time(openTime), Time(closeTime), description FROM User u right join CarParkOwnerCarPark cpo on u.userID = cpo.userID right join CarPark cp on cpo.carparkID = cp.carparkID where u.userID = ?";
+		try {
+			RowMapper<CarPark> rowMapper = new CarParkRowMapper();
+			return this.db.query(sql, rowMapper, userID);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	
 	}
 
 }

@@ -30,33 +30,31 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	public boolean checkLogin(HttpSession session) {
-		boolean login = false;
-		if(session.getAttribute("userID") != null) {
-			login = true;
-		}
-		
-		return login;
-	}
-	
 	//Need change to Post
 	@PostMapping("/loginProcess")
 	public RedirectView loginProcess(@ModelAttribute Login login,RedirectAttributes model, HttpSession session) {
 //		Login login = new Login();
 //		login.setUsername("user");
 //		login.setPassword("user");
-		int userID = userService.loginProcess(login);
-		if(userID == 0) {
+		User user = userService.loginProcess(login);
+		if(user == null) {
 			model.addFlashAttribute("message", "Incorrect username or password!");
 			return new RedirectView("login");
 		}
-		session.setAttribute("userID", userID);
+		session.setAttribute("userID", user.getUserID());
 		session.setAttribute("username", login.getUsername());
-		return new RedirectView("index");
+		session.setAttribute("roleID", user.getRoleID());
+		if(user.getRoleID()==1) {
+			return new RedirectView("driverPage");
+		}else if(user.getRoleID() == 2) {
+			return new RedirectView("admin");
+		}else{
+			return new RedirectView("cpo");
+		}
+			
 	}
 	
-	//Need change to Post
-	@PostMapping("/logout")
+	@GetMapping("/logout")
 	public String logout(Model model, HttpSession session) {
 		
 		if(session.getAttribute("userID") != null) {
@@ -115,9 +113,7 @@ public class UserController {
 	//Need change to Post
 	@GetMapping("/booking/{carParkID}")
 	public void bookingCarPark(Model model, HttpSession session, @PathVariable("carParkID") Integer carParkID) {
-		if(checkLogin(session)) {
-			Driver driver = (Driver)session.getAttribute("driver");
-		}
+		
 	}
 	
 	

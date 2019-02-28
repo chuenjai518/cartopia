@@ -1,6 +1,10 @@
 .background{
 	background-color: #ddd;
-	height:100%;
+
+}
+
+html{
+  background-color:#ddd;
 }
 
 .centerText{
@@ -12,7 +16,7 @@
 }
 
 .text-gold{
-	color:#b89b6d;
+	color:#b89b6d
 }
 
 .text-darkblue{
@@ -31,12 +35,14 @@ a:hover{
 	background-color: white !important
 }
 .darkblue{
-	background-color: #0f1834; 
+	background-color: #0f1834 !important; 
 }
 
 .card{
 	background-color: #0f1834;
 }
+
+
 
 /****** Style Star Rating Widget *****/
 

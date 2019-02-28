@@ -62,7 +62,8 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="user : ${userList}" onclick="location.href='/admin/user/read/${user.getUserID()}'">
+									<!-- <tr th:each="user : ${userList}" th:onclick="'location.href=/admin/user/read/\''+${user.getUserID()}+'\'"> -->
+									<tr th:each="user : ${userList}" th:onclick="'location.href=\''+ @{/admin/user/read/{id} (id=${user.getUserID()})}+'\''">  
 										<th th:text="${user.getUserID()}" scope="row"></th>
 										<td th:text="${user.getFirstName()}"></td>
 										<td th:text="${user.getLastName()}"></td>
