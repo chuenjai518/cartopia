@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.uow.Model.CarPark;
+import com.uow.Model.Booking;
 import com.uow.Model.CarParkRowMapper;
 import com.uow.Model.Driver;
 import com.uow.Model.DriverCar;
@@ -149,11 +150,11 @@ public class UserDAO {
 			return null;
 		}
 	}
-<<<<<<< HEAD
+
 	public void updateCar(DriverCar car) {
 		String sql = "UPDATE DriverCar SET carTypeID = ?, licensePlateNum = ? WHERE DriverCarID =?";
 			db.update(sql, car.getCarTypeID(), car.getLicensePlateNum(),car.getDriverCarID());
-=======
+	}
 
 	public void booking(Booking booking) {
 		String sql = "INSERT INTO DriverCar(carParkID, driverCarID) " + "Values(?, ?)";
@@ -165,7 +166,6 @@ public class UserDAO {
 		String sql = "SELECT COUNT(driverID) FROM Driver WHERE createDate >= CURDATE() + interval 1 MONTH;";
 		result = db.queryForObject(sql, Integer.class);
 		return result;
->>>>>>> 645dfc38c2db89935a574edc6f411644318539b0
 	}
 	
 	public void addComment() {
