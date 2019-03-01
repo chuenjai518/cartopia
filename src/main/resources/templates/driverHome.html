@@ -219,21 +219,17 @@
 											style="height: 23px; weight: 23px;"> Add Car</a><br></th>
 									<th scope="col">Index</th>
 									<th scope="col">License</th>
-									<th scope="col">CarType</th>
+									<th scope="col">Car Type</th>
 								</tr>
 							</thead>
 							<tbody class="white">
 								<tr th:each="car : ${carList}">
 									<td><a href="#delCar"><img src="/images/Del.png"
 											style="height: 25px; weight: 25px;"></a></td>
-<<<<<<< HEAD
-									<th th:text="${car.getDriverCarID()}" scope="row"></th>
-=======
-									<th th:text="${car.getDriverCarID}" scope="row"></th>
->>>>>>> e5a8152fc521128e13cd2916d02549aafb364c7c
+									<th th:text="${carStat.index}+1" scope="row"></th>
 									<td th:text="${car.getLicensePlateNum()}"></td>
-									<td th:if="${car.getCarTypeID() == '1'}"></td>
-									<td th:unless="${car.getCarTypeID() == '1'}"></td>
+									<td th:if="${car.getCarTypeID() == 1}">Private Car</td>
+									<td th:unless="${car.getCarTypeID() == 1}">Motorcycle</td>
 								</tr>
 							</tbody>
 						</table>
@@ -260,7 +256,7 @@
 				</h1>
 				<hr>
 				<div class="container">
-					<form action="#" method="POST" onsubmit="return checkPassword()">
+					<form action="resetPassword" method="POST" onsubmit="return checkPassword()">
 						<div class="container">
 							<div class="form-group row ">
 								<label for="password"
@@ -358,7 +354,7 @@
 				</h1>
 				<hr>
 				<div class="container">
-					<form action="#" method="POST">
+					<form action="driverProfile/addCar" method="POST" th:object="${driverCar}">
 						<div class="container">
 							<div class="form-group row ">
 								<label for="license"
@@ -366,7 +362,7 @@
 								</label>
 								<div class="col-sm-7">
 									<input type="text" class="form-control" id="license"
-										placeholder="License" required>
+										placeholder="License" th:field="*{licensePlateNum}" required>
 								</div>
 							</div>
 
@@ -375,9 +371,9 @@
 									class="col-sm-3 col-form-label textcolor text-right">Car
 									Type: </label>
 								<div class="col-sm-7">
-									<select class="form-control">
-										<option>Private Car</option>
-										<option>Motorcycle</option>
+									<select class="form-control" th:field="*{carTypeID}">
+										<option value="1">Private Car</option>
+										<option value="2">Motorcycle</option>
 									</select>
 								</div>
 							</div>
@@ -443,7 +439,7 @@
 				<div class="container">
 					<form action="" method="POST">
 						<p>Are you confirmed to delete the car</p>
-						<h3 class="carWarning">Test</h3>
+						<h3 class="carWarning" >TEST</h3>
 
 						<br> <a href="#drivePage" class="btn btn-link col-sm-3">Cancel</a>
 						<button type="submit" class="btn btn-primary col-sm-3">Confirm</button>
