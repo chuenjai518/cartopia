@@ -1,10 +1,50 @@
 Manifest-Version: 1.0
 Implementation-Title: cartopia
 Implementation-Version: 0.0.1-SNAPSHOT
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+Built-By: felixtsang
+Implementation-Vendor-Id: com.example
+Build-Jdk: 1.8.0_101
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/cartopia
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 005a854233468b30f053c6db8671eb2b42efb954
+Built-By: chuen
+Implementation-Vendor-Id: com.example
+Build-Jdk: 1.8.0_201
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/cartopia
+<<<<<<< HEAD
+=======
+=======
+<<<<<<< HEAD
+>>>>>>> b53d1c78bf34d5436ea67367159734d8f44856f9
+>>>>>>> 262a484515dfd0064313bdbed2cf55dd32008372
 Built-By: Carmen
 Implementation-Vendor-Id: com.example
 Build-Jdk: 1.8.0_191
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/cartopia
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+=======
+Implementation-Vendor-Id: com.example
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/cartopia
+>>>>>>> 29feb5ac858a3787115a1910f28ad443b5767a1d
+>>>>>>> 85768d0939384c9ac2cc7ba3f6ac454866fa3f56
+>>>>>>> b53d1c78bf34d5436ea67367159734d8f44856f9
+>>>>>>> ad26a5af8bf533a96fe2f80184f3d8c58877d085
+>>>>>>> 005a854233468b30f053c6db8671eb2b42efb954
+>>>>>>> 262a484515dfd0064313bdbed2cf55dd32008372
 Created-By: Maven Integration for Eclipse
 
