@@ -159,8 +159,21 @@ public class UserDAO {
 	
 	public int countNewDriver() {
 		int result;
-		String sql = "SELECT COUNT(driverID) FROM Driver WHERE createDate = CURDATE() + interval 1 MONTH;";
+		String sql = "SELECT COUNT(driverID) FROM Driver WHERE createDate >= CURDATE() + interval 1 MONTH;";
 		result = db.queryForObject(sql, Integer.class);
 		return result;
 	}
+	
+	public void addComment() {
+		String sql = "";
+		
+	}
+	
+	public String getComment() {
+		String sql = "";
+		String cm = "";
+		return cm;
+	}
+	
+	
 }
