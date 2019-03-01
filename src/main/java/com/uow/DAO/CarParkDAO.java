@@ -56,10 +56,11 @@ public class CarParkDAO{
 				
 	}
 	
-	public int getCarparkSpace(CarPark carpark) {
+	public int getCarparkRealTimeSpace(CarPark carpark) {
 		int result;
-		String sql = "SELECT numOfSlot FROM CarParkSlotInfo WHERE carParkID = " + carpark.getCarParkID();
-		result = db.queryForObject(sql, Integer.class);
+		String sql = "SELECT COUNT(CarParkSlotID) FROM CarParkSlotInfo WHERE carParkID = " + carpark.getCarParkID() + "and status = 'free';";
+		String sql2 = "SELECT NumOfSlot FROM CarParkSlotInfo WHERE carParkID = " + carpark.getCarParkID();
+		result = db.queryForObject(sql2, Integer.class) - db.queryForObject(sql, Integer.class);
 		return result;
 	}
 }
