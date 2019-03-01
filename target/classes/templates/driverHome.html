@@ -193,15 +193,15 @@
 				</h1>
 				<hr>
 				<b style="font-size: 16px;">Username: </b><span
-					style="font-size: 16px;" th:text="${username}"></span><br>
+					style="font-size: 16px;" th:text="${user.getUsername()}"></span><br>
 				<br> <a class="btn btn-primary" href="#resetPassword">Reset
 					Password</a>
 				<hr>
 				<b style="font-size: 16px;">First Name: </b><span
-					style="font-size: 16px;"></span><br> <b
+					style="font-size: 16px;" th:text="${user.getFirstName()}"></span><br> <b
 					style="font-size: 16px;">Last Name: </b><span
-					style="font-size: 16px;">Test</span><br> <b
-					style="font-size: 16px;">Email: </b><span style="font-size: 16px;">Test</span><br>
+					style="font-size: 16px;" th:text="${user.getLastName()}"></span><br> <b
+					style="font-size: 16px;">Email: </b><span style="font-size: 16px;" th:text="${user.getEmail()}"></span><br>
 				<br> <a class="btn btn-primary" href="#editInfor">Edit
 					Information</a><br>
 
@@ -226,7 +226,7 @@
 								<tr th:each="car : ${carList}">
 									<td><a href="#delCar"><img src="/images/Del.png"
 											style="height: 25px; weight: 25px;"></a></td>
-									<th th:text="${car.getDriverID}" scope="row"></th>
+									<th th:text="${car.getDriverCarID}" scope="row"></th>
 									<td th:text="${car.getLicensePlateNum()}"></td>
 									<td th:if="${car.getCarTypeID() == '1'}"></td>
 									<td th:unless="${car.getCarTypeID() == '1'}"></td>
@@ -263,7 +263,7 @@
 									class="col-sm-4 col-form-label textcolor text-right">Password:
 								</label>
 								<div class="col-sm-7">
-									<input type="password" class="form-control" id="password"
+									<input type="password" class="form-control" id="password" name="password"
 										placeholder="Password" required>
 								</div>
 							</div>
@@ -302,15 +302,15 @@
 				</h1>
 				<hr>
 				<div class="container">
-					<form action="#" method="POST">
+					<form action="editProfile" method="POST">
 						<div class="container">
 							<div class="form-group row ">
 								<label for="firstName"
 									class="col-sm-4 col-form-label textcolor text-right">First
 									Name: </label>
 								<div class="col-sm-7">
-									<input type="text" class="form-control" id="firstName"
-										value="Test" required>
+									<input type="text" class="form-control" id="firstName" name="firstName"
+										th:value="${user.getFirstName()}" required>
 								</div>
 							</div>
 							<div class="form-group row ">
@@ -319,7 +319,15 @@
 									Name: </label>
 								<div class="col-sm-7">
 									<input type="text" class="form-control" id="lastName"
-										value="Test" required>
+										th:value="${user.getLastName()}" name="lastName" required>
+								</div>
+							</div>
+							<div class="form-group row ">
+								<label for="confirmPassword"
+									class="col-sm-4 col-form-label textcolor text-right">Email: </label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="lastName"
+										th:value="${user.getEmail()}" name="email" required>
 								</div>
 							</div>
 						</div>
