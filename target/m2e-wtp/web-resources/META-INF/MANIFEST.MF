@@ -1,7 +1,11 @@
 Manifest-Version: 1.0
 Implementation-Title: cartopia
 Implementation-Version: 0.0.1-SNAPSHOT
+<<<<<<< HEAD
 Built-By: Carmen
+=======
+Built-By: leung
+>>>>>>> 30ba29992229830cddecdfc17b1337ecb4eb9ea2
 Implementation-Vendor-Id: com.example
 Build-Jdk: 1.8.0_191
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
