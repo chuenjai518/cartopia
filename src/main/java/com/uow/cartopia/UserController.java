@@ -31,99 +31,106 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
-
-	// Need change to Post
+	
+	@PostMapping("/userInfo/{userID}")
+	public String user(Model model, @PathVariable("userID") Integer id) {
+		User user = userService.getUserInfo(id);
+		model.addAttribute("user", user);
+		return "userInfo";
+	}
+	
+	//Need change to Post
 	@PostMapping("/loginProcess")
-	public RedirectView loginProcess(@ModelAttribute Login login, RedirectAttributes model, HttpSession session) {
+	public RedirectView loginProcess(@ModelAttribute Login login,RedirectAttributes model, HttpSession session) {
 //		Login login = new Login();
 //		login.setUsername("user");
 //		login.setPassword("user");
 		User user = userService.loginProcess(login);
-		if (user == null) {
+		if(user == null) {
 			model.addFlashAttribute("message", "Incorrect username or password!");
 			return new RedirectView("login");
 		}
 		session.setAttribute("userID", user.getUserID());
 		session.setAttribute("username", login.getUsername());
 		session.setAttribute("roleID", user.getRoleID());
-		if (user.getRoleID() == 1) {
+		if(user.getRoleID()==1) {
 			Driver driver = userService.getDriverInfo(user.getUserID());
 			session.setAttribute("driver", driver);
 			return new RedirectView("driverPage");
-		} else if (user.getRoleID() == 2) {
+		}else if(user.getRoleID() == 2) {
 			return new RedirectView("admin");
-		} else {
+		}else{
 			return new RedirectView("cpo");
 		}
-
+			
 	}
-
+	
 	@GetMapping("/logout")
 	public String logout(Model model, HttpSession session) {
-
-		if (session.getAttribute("userID") != null) {
+		
+		if(session.getAttribute("userID") != null) {
 			session.removeAttribute("userID");
 		}
-
-		if (session.getAttribute("driver") != null) {
+		
+		if(session.getAttribute("driver") != null) {
 			session.removeAttribute("driver");
 		}
-
+		
 		return "redirect:/index";
 	}
-
+	
 	@PostMapping("/registerProcess")
-	public RedirectView registerProcess(@ModelAttribute User user, RedirectAttributes model, HttpSession session) {
+	public RedirectView registerProcess(@ModelAttribute User user,RedirectAttributes model, HttpSession session) {
 		boolean valid = userService.registerProcess(user);
-		if (!valid) {
+		if(!valid) {
 			model.addFlashAttribute("message", "username has been used!");
 			return new RedirectView("login");
 		}
 		return new RedirectView("login");
 	}
-
+	
 	@GetMapping("user/{id}")
 	public ResponseEntity<User> getUserById(@PathVariable("id") Integer id) {
 		User user = userService.getUserInfo(id);
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
-
+	
 	@GetMapping("user")
 	public ResponseEntity<List<User>> getAllUser() {
 		List<User> list = userService.getAllUser();
 		return new ResponseEntity<List<User>>(list, HttpStatus.OK);
 	}
-
+	
 	@GetMapping("driver/{id}")
 	public ResponseEntity<Driver> getDriverById(@PathVariable("id") Integer id, HttpSession session) {
 		Driver driver = userService.getDriverInfo(id);
 		session.setAttribute("driver", driver);
 		return new ResponseEntity<Driver>(driver, HttpStatus.OK);
 	}
-
-	// Need change to Post
+	
+	//Need change to Post
 	@GetMapping("/addCredit/{amount}")
 	public String addCredit(@PathVariable("amount") Integer amount, HttpSession session) {
-		Driver driver = (Driver) session.getAttribute("driver");
+		Driver driver = (Driver)session.getAttribute("driver");
 		boolean success = userService.addCredit(driver.getDriverID(), amount);
-		if (success) {
+		if(success) {
 			System.out.println("Credit Updated!");
-		} else {
+		}else {
 			System.out.println("Credit Update failed");
 		}
-		return "redirect:/driver/" + driver.getDriverID();
+		return "redirect:/driver/"+ driver.getDriverID();
 	}
-
-	// Need change to Post
+	
+	//Need change to Post
 	@GetMapping("/booking/{carParkID}")
 	public void bookingCarPark(Model model, HttpSession session, @ModelAttribute Booking booking) {
 //		if(session.getAttribute("userID") == null) {
 //			return "redirect:/login";
 //		}
-		userService.booking(booking);
-
+		userService.booking(booking);	
+		
 	}
-
+	
 	@GetMapping("driverPage")
 	public String driverPage(Model model, HttpSession session) {
 //		if(session.getAttribute("userID") == null) {
@@ -134,31 +141,43 @@ public class UserController {
 		model.addAttribute("username", session.getAttribute("username"));
 		return "driverHome";
 	}
-
+	
 	@GetMapping("driverProfile")
 	public String driverProfile(Model model, HttpSession session) {
 //		if(session.getAttribute("userID") == null) {
 //			return "redirect:/login";
 //		}
-		model.addAttribute("DriverCar", new DriverCar());
 		model.addAttribute("username", session.getAttribute("username"));
 		return "driverProfile";
 	}
-
-	@PostMapping("driverProfile/addCar")
+	
+	@GetMapping("driverProfile/addCar")
 	public String addCar(@ModelAttribute DriverCar car, Model model, HttpSession session) {
 //		if(session.getAttribute("userID") == null) {
 //		return "redirect:/login";
 //	}
-		Driver driver = (Driver) session.getAttribute("driver");
-
+		Driver driver = (Driver)session.getAttribute("driver");
+		
 //		DriverCar car = new DriverCar();
 //		car.setCarTypeID(1);
 //		car.setLicensePlateNum("UX1234");
-
+		
 		car.setDriverID(driver.getDriverID());
 		userService.addCar(car);
 		return "redirect:/driverProfile";
 	}
+	
+	@PostMapping ("driverProfile/updateCar")
+	public String updateCar(@ModelAttribute DriverCar car,Model model) {
+		userService.updateCar(car);
+		return "redirect:/driverProfile";
+	}
 
+	@PostMapping ("driverProfile/deleteCar")
+	public String deleteCar(@ModelAttribute DriverCar car,Model model) {
+		userService.deleteCar(car);
+		return "redirect:/driverProfile";
+	}
+	
+	
 }

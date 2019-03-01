@@ -46,7 +46,7 @@ public class CarParkDAO{
 	public void editCarPark(CarPark carPark) {
 	System.out.println("EXCUTE INSERT CarParkID - "+ carPark.getCarParkID());
 	db.update("UPDATE carpark SET name = ? , address = ? , description = ? , openTime = ? , closeTime = ? WHERE carParkID = ?" ,
-			carPark.getName(), carPark.getAddress(), carPark.getDescription(), carPark.getOpenTime(), carPark.getCloseTime());
+			carPark.getName(), carPark.getAddress(), carPark.getDescription(), carPark.getOpenTime(), carPark.getCloseTime(),carPark.getCarParkID());
 	}
 
 	public void deleteCarPark(CarPark carPark) {
@@ -54,5 +54,13 @@ public class CarParkDAO{
 		db.update("DELETE FROM carPark WHERE carParkID = ?",
 				carPark.getCarParkID());
 				
+	}
+	
+	public int getCarparkRealTimeSpace(CarPark carpark) {
+		int result;
+		String sql = "SELECT COUNT(CarParkSlotID) FROM CarParkSlotInfo WHERE carParkID = " + carpark.getCarParkID() + "and status = 'free';";
+		String sql2 = "SELECT NumOfSlot FROM CarParkSlotInfo WHERE carParkID = " + carpark.getCarParkID();
+		result = db.queryForObject(sql2, Integer.class) - db.queryForObject(sql, Integer.class);
+		return result;
 	}
 }

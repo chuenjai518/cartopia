@@ -10,29 +10,25 @@
 				<h3>User Edit</h3>
 				<div class="shadow card">
 					<div class="card-body">
-						<form th:action="@{/updateUser}"  th:object="${user}" >
+						<form th:action="@{/updateUser}" th:object="${user}">
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label th:field="*{firstName}" for="FirstName">First Name</label> <input
-										th:value="${user.getFirstName()}" type="text"
+									<label th:field="*{firstName}" for="FirstName">First
+										Name</label> <input th:value="${user.getFirstName()}" type="text"
 										class="form-control" id="FirstName"
 										placeholder="First Name...">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="LastName">Last Name</label> <input type="text"
-										th:field="*{lastName}"  th:value="${user.getLastName()}" class="form-control" id="LastName" placeholder="Last Name...">
-								</div>
-								<div class="form-group col-md-6">
-									<label for="Password">Password</label> <input type="password"
-										 th:field="*{password}"  class="form-control" id="password" placeholder="Password...">
+										th:field="*{lastName}" th:value="${user.getLastName()}"
+										class="form-control" id="LastName" placeholder="Last Name...">
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
-								<label for="credit">Credit</label> <input
+									<label for="credit">Credit</label> <input
 										th:value="${driver.getCredit()}" type="number"
-										class="form-control" id="credit"
-										placeholder="Credit...">
+										class="form-control" id="credit" placeholder="Credit...">
 								</div>
 							</div>
 							<span class="errorText"
