@@ -15,12 +15,13 @@
 <nav th:include="navDriver :: nav"></nav>
 
 </head>
-<body>
-	<div class="background">
+<body class="background">
 		<div class="darkblue p-3 mb-5 ">
 			<div class="centerText">
 				<h1 class="brandFont text-gold">Cartopia</h1>
 				<h3 class="text-white">Welcome! <span th:text="${username}"></span></h3>
+				<span class="text-white">Credit: </span><span class="text-white" style="font-size:16px;">  100</span>
+				<a href="#"><img src="/images/add.png" style="height:23px;weight:23px;"></a><br>
 			</div>
 		</div>
 
@@ -154,6 +155,6 @@
 
 			</div>
 		</div>
-	</div>
+
 </body>
 </html>

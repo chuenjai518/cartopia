@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.uow.DAO.UserDAO;
 import com.uow.Model.CarPark;
 import com.uow.Model.Driver;
+import com.uow.Model.DriverCar;
 import com.uow.Model.User;
 import com.uow.Model.Login;
 
@@ -62,5 +63,15 @@ public class UserService {
 		return userDAO.getCPOCarPark(userID);
 	}
 	
-
+	public void addCar(DriverCar car) {
+		userDAO.addCar(car);
+	}
+	
+	public List<DriverCar> getAllCar(int driverID){
+		return userDAO.getAllCar(driverID);
+	}
+	
+	public List<DriverCar> getAllCar(){
+		return userDAO.getAllCar();
+	}
 }
