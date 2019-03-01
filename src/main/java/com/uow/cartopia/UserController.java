@@ -119,7 +119,7 @@ public class UserController {
 		}else {
 			System.out.println("Credit Update failed");
 		}
-		return "redirect:/driverPage";
+		return "redirect:/driverHome";
 	}
 	
 
@@ -149,14 +149,7 @@ public class UserController {
 		return "driverHome";
 	}
 	
-	@GetMapping("driverProfile")
-	public String driverProfile(Model model, HttpSession session) {
-		if(session.getAttribute("userID") == null) {
-			return "redirect:/login";
-		}
-		model.addAttribute("username", session.getAttribute("username"));
-		return "driverProfile";
-	}
+
 
 	
 	
@@ -173,26 +166,26 @@ public class UserController {
 		
 		car.setDriverID(driver.getDriverID());
 		userService.addCar(car);
-		return "redirect:/driverProfile";
+		return "redirect:/driverHome";
 	}
 	
 	@PostMapping ("driverProfile/updateCar")
 	public String updateCar(@ModelAttribute DriverCar car,Model model) {
 		userService.updateCar(car);
-		return "redirect:/driverProfile";
+		return "redirect:/driverHome";
 	}
 	
 	@PostMapping("driverProfile/updateUserProcess")
 	public String updateUserProcess(@ModelAttribute User user,Model model, HttpSession session) {
 		user.setUserID((int)session.getAttribute("userID"));
 		userService.updateUserProcess(user);
-		return "redirect:/driverProfile";
+		return "redirect:/driverHome";
 	}
 
 	@PostMapping ("driverProfile/deleteCar/{driverCarID}")
 	public String deleteCar(@PathVariable("driverCarID") Integer driverCarID, Model model) {
 		userService.deleteCar(driverCarID);
-		return "redirect:/driverProfile";
+		return "redirect:/driverHome";
 	}
 	
 	
@@ -201,7 +194,7 @@ public class UserController {
 	public String resetPassword(@RequestParam String password, Model model, HttpSession session) {
 		int userID = (int)session.getAttribute("userID");
 		userService.resetPassword(password, userID);
-		return "redirect:/driverProfile";
+		return "redirect:/driverHome";
 	}
 	
 	
