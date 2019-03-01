@@ -77,4 +77,7 @@ public class UserService {
 	public void updateCar(DriverCar car) {
 		userDAO.updateCar(car);
 	}
+	public void deleteCar(DriverCar car) {
+		userDAO.deleteCar(car);
+	}
 }

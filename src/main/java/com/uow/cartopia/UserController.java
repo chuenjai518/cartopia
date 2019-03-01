@@ -157,7 +157,11 @@ public class UserController {
 		return "redirect:/driverProfile";
 	}
 
-	
+	@PostMapping ("driverProfile/deleteCar")
+	public String deleteCar(@ModelAttribute DriverCar car,Model model) {
+		userService.deleteCar(car);
+		return "redirect:/driverProfile";
+	}
 	
 	
 }
