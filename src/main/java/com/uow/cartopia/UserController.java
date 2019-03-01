@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.uow.Model.CarPark;
 import com.uow.Model.Driver;
+import com.uow.Model.DriverCar;
 import com.uow.Model.Login;
 import com.uow.Model.User;
 import com.uow.Service.UserService;
@@ -45,6 +46,8 @@ public class UserController {
 		session.setAttribute("username", login.getUsername());
 		session.setAttribute("roleID", user.getRoleID());
 		if(user.getRoleID()==1) {
+			Driver driver = userService.getDriverInfo(user.getUserID());
+			session.setAttribute("driver", driver);
 			return new RedirectView("driverPage");
 		}else if(user.getRoleID() == 2) {
 			return new RedirectView("admin");
@@ -114,7 +117,43 @@ public class UserController {
 	@GetMapping("/booking/{carParkID}")
 	public void bookingCarPark(Model model, HttpSession session, @PathVariable("carParkID") Integer carParkID) {
 		
+		
 	}
+	
+	@GetMapping("driverPage")
+	public String driverPage(Model model, HttpSession session) {
+//		if(session.getAttribute("userID") == null) {
+//			return "redirect:/login";
+//		}
+		model.addAttribute("username", session.getAttribute("username"));
+		return "driverHome";
+	}
+	
+	@GetMapping("driverProfile")
+	public String driverProfile(Model model, HttpSession session) {
+//		if(session.getAttribute("userID") == null) {
+//			return "redirect:/login";
+//		}
+		model.addAttribute("username", session.getAttribute("username"));
+		return "driverProfile";
+	}
+	
+	@GetMapping("driverProfile/addCar")
+	public String addCar(Model model, HttpSession session) {
+		Driver driver = (Driver)session.getAttribute("driver");
+		
+		DriverCar car = new DriverCar();
+		car.setCarTypeID(1);
+		car.setLicensePlateNum("UX1234");
+		
+		car.setDriverID(1);
+		userService.addCar(car);
+		return "redirect:/driverProfile";
+	}
+	
+	
+	
+
 	
 	
 	

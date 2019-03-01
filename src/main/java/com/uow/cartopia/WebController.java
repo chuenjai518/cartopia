@@ -17,15 +17,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uow.Model.CarPark;
+import com.uow.Model.DriverCar;
 import com.uow.Model.Login;
 import com.uow.Model.User;
 import com.uow.Service.CarParkService;
+import com.uow.Service.UserService;
 
 @Controller
 public class WebController {
 
 	@Autowired
 	CarParkService carParkService;
+	@Autowired
+	UserService userService;
 	
 	
 	@GetMapping("/")
@@ -50,23 +54,7 @@ public class WebController {
 		return "login";
 	}
 	
-	@GetMapping("driverPage")
-	public String driverPage(Model model, HttpSession session) {
-//		if(session.getAttribute("userID") == null) {
-//			return "redirect:/login";
-//		}
-		model.addAttribute("username", session.getAttribute("username"));
-		return "driverHome";
-	}
-	
-	@GetMapping("driverProfile")
-	public String driverProfile(Model model, HttpSession session) {
-//		if(session.getAttribute("userID") == null) {
-//			return "redirect:/login";
-//		}
-		model.addAttribute("username", session.getAttribute("username"));
-		return "driverProfile";
-	}
+
 	
 	@GetMapping("PageTest")
 	public String pageTest(Model model, HttpSession session) {
@@ -83,5 +71,17 @@ public class WebController {
 	@GetMapping("/carparkInfo")
 	public String CarParkInfo(Model model) {
 		return "carparkInfo";
+	}
+	
+	@GetMapping("carList")
+	public ResponseEntity<List<DriverCar>> carList(){
+		List<DriverCar> list = userService.getAllCar();
+		return new ResponseEntity<List<DriverCar>>(list, HttpStatus.OK);
+	}
+	
+	@GetMapping("carList/{driverID}")
+	public ResponseEntity<List<DriverCar>> carList(@PathVariable("driverID") Integer driverID){
+		List<DriverCar> list = userService.getAllCar(driverID);
+		return new ResponseEntity<List<DriverCar>>(list, HttpStatus.OK);
 	}
 }
