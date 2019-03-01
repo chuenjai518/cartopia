@@ -188,6 +188,12 @@ public class UserController {
 		return "redirect:/driverProfile";
 	}
 	
+	@GetMapping("resetPassword")
+	public String resetPassword(@RequestParam String password, Model model, HttpSession session) {
+		int userID = (int)session.getAttribute("userID");
+		userService.resetPassword(password, userID);
+		return "redirect:/driverProfile";
+	}
 	
 	
 }

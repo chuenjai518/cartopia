@@ -86,4 +86,8 @@ public class UserService {
 	public void booking(Booking booking) {
 		userDAO.booking(booking);
 	}
+	
+	public void resetPassword(String password, int userID) {
+		userDAO.resetPassword(password, userID);
+	}
 }
