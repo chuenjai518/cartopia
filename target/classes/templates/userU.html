@@ -10,7 +10,7 @@
 				<h3>User Edit</h3>
 				<div class="shadow card">
 					<div class="card-body">
-						<form th:action="@{/updateUser}" th:object="${user}">
+						<form method="POST" th:action="@{/adminUpdateUserProcess/} + ${user.getUserID()}" th:object="${user}">
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label th:field="*{firstName}" for="FirstName">First
@@ -23,14 +23,13 @@
 										th:field="*{lastName}" th:value="${user.getLastName()}"
 										class="form-control" id="LastName" placeholder="Last Name...">
 								</div>
-							</div>
-							<div class="form-row">
-								<div class="form-group col-md-6">
-									<label for="credit">Credit</label> <input
-										th:value="${driver.getCredit()}" type="number"
-										class="form-control" id="credit" placeholder="Credit...">
+								<div class="form-group col-md-12">
+									<label for="Email">Email</label> <input type="text"
+										th:field="*{email}" th:value="${user.getEmail()}"
+										class="form-control" id="Email" placeholder="Email...">
 								</div>
 							</div>
+							
 							<span class="errorText"
 								th:text="${message != null} ? ${message} : ''"></span><br>
 							<br />

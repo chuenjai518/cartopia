@@ -11,11 +11,11 @@
 
 				<div class="shadow card">
 					<div class="card-body">
-						<form th:action="@{/updateUser}" th:object="${user}">
+						<form method="POST" th:action="@{/adminUpdateUserProcess/} + ${user.getUserID()}" th:object="${user}">
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label th:field="*{firstName}" for="FirstName">First
-										Name</label> <input th:value="${user.getFirstName()}" type="text"
+										Name</label> <input th:field="*{firstName}" th:value="${user.getFirstName()}" type="text"
 										class="form-control" id="FirstName"
 										placeholder="First Name...">
 								</div>
@@ -28,10 +28,16 @@
 							<div class="form-row">
 								<div class="form-group col-md-12">
 									<label for="credit">Car Park:</label>
-									<div th:each="cp : ${carParkList}"class="form-check form-check-inline">
-										<input th:text="${cp.getName()}" class="form-check-input" type="checkbox"
-											id="inlineCheckbox1" value="option1"> <label
-											class="form-check-label" for="inlineCheckbox1">1</label>
+									<div th:each="all : ${allList}"
+										class="form-check form-check-inline">
+										<span th:each="cp : ${carParkList}" th:if="${cp.getCarParkID()} == ${all.getCarParkID()}"> <input
+											th:text="${all.getName()}" class="form-check-input"
+											type="checkbox" id="inlineCheckbox1" value="option1" checked>
+										</span>
+										<span th:each="cp : ${carParkList}" th:unless="${cp.getCarParkID()} == ${all.getCarParkID()}"> <input
+											th:text="${all.getName()}" class="form-check-input"
+											type="checkbox" id="inlineCheckbox1" value="option1">
+										</span>
 									</div>
 								</div>
 							</div>

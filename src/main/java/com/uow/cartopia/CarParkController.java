@@ -44,13 +44,11 @@ public class CarParkController {
 		return ("redirect:/admin/carpark");
 	}
 	
-	@PostMapping("updateCarPark")
-	public String editCarPark(@ModelAttribute CarPark carPark,Model model) {
+	@PostMapping("updateCarPark/{id}")
+	public String editCarPark(@ModelAttribute CarPark carPark, @PathVariable("id")Integer id, Model model) {
+		carPark.setCarParkID(id);
+		System.out.println(carPark.getDescription());
 		carParkService.updateCarPark(carPark);
-<<<<<<< HEAD
-=======
-
->>>>>>> fdfa66064ee6ea6d45da04d8f5e76e823fc993c7
 		return ("redirect:/admin/carpark");	
 	}
 	

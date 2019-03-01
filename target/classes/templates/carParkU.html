@@ -11,46 +11,68 @@
 
 				<div class="shadow card">
 					<div class="card-body">
-						<form th:action="@{/updateCarPark}" th:object="${carPark}">
+						<form method="POST" th:action="@{/updateCarPark/} + ${carPark.getCarParkID()}" th:object="${carPark}">
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label for="Name">Name</label> <input
-										th:field="*{name}"  th:value="${carPark.getName()}" type="text"
+									<label for="Name">Name</label> <input th:field="*{name}"
+										th:value="${carPark.getName()}" type="text"
 										class="form-control" id="FirstName"
-										placeholder="First Name...">
+										placeholder="First Name..." required>
 								</div>
 							</div>
-								<div class="form-row">
-									<div class="form-group col-md-6">
-										<label  for="OpenTime">Open Time</label> <input
-											th:field="*{openTime}" th:value="${carPark.getOpenTime()}" type="text"
-											class="form-control" id="OpenTime"
-											placeholder="OpenTime...">
-									</div>
-									<div class="form-group col-md-6">
-										<label  for="CloseTime">Close Time</label> <input
-											th:field="*{closeTime}" th:value="${carPark.getCloseTime()}" type="text"
-											class="form-control" id="CloseTime"
-											placeholder="Close Time...">
-									</div>
-									<div class="form-group col-md-6">
-										<label  for="Description">Description</label> <textarea
-											th:field="*{description}" th:value="${carPark.getDescription()}" type="text"
-											class="form-control" id="Description"
-											placeholder="Description"></textarea>
-									</div>
-									<div class="form-group col-md-4">
-									<label for="pcSlot">Private car slot</label> <input type="number"
-										class="form-control" id="pcSlot"
-										placeholder="Number of private car slots...">
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="OpenTime">Open Time</label> <input
+										th:field="*{openTime}" th:value="${carPark.getOpenTime()}"
+										type="text" class="form-control" id="OpenTime"
+										placeholder="OpenTime..." required>
 								</div>
-								<div class="form-group col-md-4">
+								<div class="form-group col-md-6">
+									<label for="CloseTime">Close Time</label> <input
+										th:field="*{closeTime}" th:value="${carPark.getCloseTime()}"
+										type="text" class="form-control" id="CloseTime"
+										placeholder="Close Time..." required>
+								</div>
+								<div class="form-group col-md-6">
+									<label for="Description">Description</label>
+									<textarea th:field="*{description}"
+										th:value="${carPark.getDescription()}" type="text"
+										class="form-control" id="Description"
+										placeholder="Description"></textarea>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-5">
+									<label for="pcSlot">Private car slot</label> <input
+										th:field="*{privateCarSlot}" th:value="${carPark.getPrivateCarSlot()}" type="number" class="form-control" id="pcSlot"
+										placeholder="Number of private car slots..." required>
+								</div>
+								<div class="form-group col-md-2">
+									<label for="pcFee">Private car Fee</label> <input
+										th:field="*{privateCarSlot}" th:value="${carPark.getPrivateCarFee()}" type="number" class="form-control" id="pcFee"
+										placeholder="Fee..." required>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-5">
 									<label for="motorSlot">Motor slot</label> <input type="number"
-										class="form-control" id="motorSlot"
-										placeholder="Number of motor slots...">
+										th:field="*{motorSlot}" th:value="${carPark.getMotorSlot()}" class="form-control" id="motorSlot"
+										placeholder="Number of motor slots..."required>
 								</div>
+								<div class="form-group col-md-2">
+									<label for="motorFee">Motor Fee</label> <input
+										th:field="*{motorFee}" th:value="${carPark.getMotorFee()}" type="number" class="form-control" id="motorFee"
+										placeholder="Fee..."required>
 								</div>
-							
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-12">
+									<label for="photoLink">Photo Link</label> <input type="text"
+										th:field="*{photoLink}" th:value="${carPark.getPhotoLink()}" class="form-control" id="photoLink"
+										placeholder="Photo URL...">
+								</div>
+							</div>
+
 
 							<span class="errorText"
 								th:text="${message != null} ? ${message} : ''"></span><br>

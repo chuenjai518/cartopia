@@ -56,6 +56,7 @@ public class UserDAO {
 	}
 	
 	public void updateUserProcess(User user) {
+		System.out.println("Update user ID -" + user.getUserID() + user.getFirstName());
 		String sql = "Update User set firstname = ?, lastname = ? where userID = ?";
 		db.update(sql, user.getFirstName(), user.getLastName(), user.getUserID());
 	}
@@ -122,7 +123,7 @@ public class UserDAO {
 	}
 
 	public List<CarPark> getCPOCarPark(int userID) {
-		String sql = "SELECT cpo.carParkID, name, address, Time(openTime), Time(closeTime), description FROM User u right join CarParkOwnerCarPark cpo on u.userID = cpo.userID right join CarPark cp on cpo.carparkID = cp.carparkID where u.userID = ?";
+		String sql = "SELECT cpo.carParkID, name, address, Time(openTime), Time(closeTime), description, privateCarSlot, privateCarFee, motorSlot, motorFee, photoLink FROM User u right join CarParkOwnerCarPark cpo on u.userID = cpo.userID right join CarPark cp on cpo.carparkID = cp.carparkID where u.userID = ?";
 		try {
 			RowMapper<CarPark> rowMapper = new CarParkRowMapper();
 			return this.db.query(sql, rowMapper, userID);

@@ -101,7 +101,9 @@ public class AdminController {
 			return "userU";
 		} else if (user.getRoleID() == 3) {
 			List<CarPark> carParkList = userService.getCPOCarPark(id);
+			List<CarPark> carParkList2 = carParkService.getAllCarPark();
 			model.addAttribute("carParkList", carParkList);
+			model.addAttribute("allList", carParkList2);
 			return "cpoU";
 		} 
 		return "userCRUD";
@@ -168,14 +170,15 @@ public class AdminController {
 		return new RedirectView("admin/user");
 	}
 	
-	@PostMapping("/adminUpdateUserProcess")
-	public String adminUpdateUserProcess(@ModelAttribute User user, Model model, HttpSession session) {
+	@PostMapping("/adminUpdateUserProcess/{id}")
+	public String adminUpdateUserProcess(@ModelAttribute User user, @PathVariable("id") Integer id, Model model, HttpSession session) {
 //		if(session.getAttribute("userID") == null) {
 //		return "redirect:/login";
 //	}
 //	if((int)session.getAttribute("userID") != 2) {
 //		return "redirect:/login";
-//	}
+//	}	
+		user.setUserID(id);
 		adminService.updateUserProcess(user);
 		
 		return ("redirect:/admin/user");
