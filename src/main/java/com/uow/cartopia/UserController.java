@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uow.Model.Booking;
 import com.uow.Model.CarPark;
@@ -109,8 +110,8 @@ public class UserController {
 	}
 	
 	//Need change to Post
-	@GetMapping("/addCredit/{amount}")
-	public String addCredit(@PathVariable("amount") Integer amount, HttpSession session) {
+	@GetMapping("/addCredit/")
+	public String addCredit(@RequestParam Integer amount, HttpSession session) {
 		Driver driver = (Driver)session.getAttribute("driver");
 		boolean success = userService.addCredit(driver.getDriverID(), amount);
 		if(success) {
@@ -118,7 +119,7 @@ public class UserController {
 		}else {
 			System.out.println("Credit Update failed");
 		}
-		return "redirect:/driver/"+ driver.getDriverID();
+		return "redirect:/driverPage";
 	}
 	
 	//Need change to Post
@@ -138,18 +139,16 @@ public class UserController {
 //		}
 		int userID = (int) session.getAttribute("userID");
 		Driver driver = userService.getDriverInfo(userID);
-		model.addAttribute("username", session.getAttribute("username"));
+		
+		User user = userService.getUserInfo(userID);
+		List<DriverCar> list = userService.getAllCar(driver.getDriverID());
+		
+		model.addAttribute("user", user);
+		model.addAttribute("carList", list);
+		
 		return "driverHome";
 	}
 	
-	@GetMapping("driverProfile")
-	public String driverProfile(Model model, HttpSession session) {
-//		if(session.getAttribute("userID") == null) {
-//			return "redirect:/login";
-//		}
-		model.addAttribute("username", session.getAttribute("username"));
-		return "driverProfile";
-	}
 	
 	@GetMapping("driverProfile/addCar")
 	public String addCar(@ModelAttribute DriverCar car, Model model, HttpSession session) {
