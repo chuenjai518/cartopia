@@ -20,7 +20,7 @@ public class CarParkDAO {
 	public void addCarPark(CarPark carPark) {
 		System.out.println("EXCUTE INSERT CarPark - " + carPark.getName());
 		db.update(
-				"INSERT INTO CarPark(name, address, description, openTime, closeTime, privateCarSlot, privateCarFee, motorSlot, motorFee) "
+				"INSERT INTO CarPark(name, address, description, openTime, closeTime, privateCarSlot, privateCarFee, motorSlot, motorFee, photoLink) "
 						+ "Values (?,?,?,?,?,?,?,?,?)",
 				carPark.getName(), carPark.getAddress(), carPark.getDescription(), carPark.getOpenTime(),
 				carPark.getCloseTime(), carPark.getPrivateCarSlot(), carPark.getPrivateCarFee(), carPark.getMotorSlot(),
@@ -29,7 +29,7 @@ public class CarParkDAO {
 
 	public CarPark getCarPark(int carParkID) {
 		CarPark carPark = new CarPark();
-		String sql = "SELECT carParkID, name, address, Time(openTime), Time(closeTime), Description, privateCarSlot, privateCarFee, motorSlot, motorFee FROM CarPark WHERE carParkID = ?";
+		String sql = "SELECT carParkID, name, address, Time(openTime), Time(closeTime), Description, privateCarSlot, privateCarFee, motorSlot, motorFee, photoLink FROM CarPark WHERE carParkID = ?";
 		RowMapper<CarPark> rowMapper = new CarParkRowMapper();
 		try {
 			carPark = db.queryForObject(sql, rowMapper, carParkID);
@@ -42,7 +42,7 @@ public class CarParkDAO {
 	}
 
 	public List<CarPark> getAllCarPark() {
-		String sql = "SELECT carParkID, name, address, Time(openTime), Time(closeTime), Description, privateCarSlot, privateCarFee, motorSlot, motorFee FROM CarPark";
+		String sql = "SELECT carParkID, name, address, Time(openTime), Time(closeTime), Description, privateCarSlot, privateCarFee, motorSlot, motorFee, photoLink FROM CarPark";
 		RowMapper<CarPark> rowMapper = new CarParkRowMapper();
 		return this.db.query(sql, rowMapper);
 	}
