@@ -136,6 +136,8 @@ public class UserController {
 //		if(session.getAttribute("userID") == null) {
 //			return "redirect:/login";
 //		}
+		int userID = (int) session.getAttribute("userID");
+		Driver driver = userService.getDriverInfo(userID);
 		model.addAttribute("username", session.getAttribute("username"));
 		return "driverHome";
 	}
