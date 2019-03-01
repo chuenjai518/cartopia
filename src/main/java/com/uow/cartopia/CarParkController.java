@@ -56,4 +56,10 @@ public class CarParkController {
 		carParkService.deleteCarPark(carPark);
 		return ("redirect:/admin/carpark");
 	}
+	
+	@PostMapping("getCarparkSpace")
+	public String getCarparkSpace(@ModelAttribute CarPark carPark,Model model) {
+		carParkService.getCarparkSpace(carPark);
+		return ("redirect:/admin/carpark");
+	}
 }

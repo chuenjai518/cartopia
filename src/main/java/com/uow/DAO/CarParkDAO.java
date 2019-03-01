@@ -55,4 +55,11 @@ public class CarParkDAO{
 				carPark.getCarParkID());
 				
 	}
+	
+	public int getCarparkSpace(CarPark carpark) {
+		int result;
+		String sql = "SELECT numOfSlot FROM CarParkSlotInfo WHERE carParkID = " + carpark.getCarParkID();
+		result = db.queryForObject(sql, Integer.class);
+		return result;
+	}
 }
