@@ -46,6 +46,7 @@ public class CarParkDAO {
 		RowMapper<CarPark> rowMapper = new CarParkRowMapper();
 		return this.db.query(sql, rowMapper);
 	}
+<<<<<<< HEAD
 
 	public void updateCarPark(CarPark carPark) {
 		System.out.println("EXCUTE INSERT CarParkID - " + carPark.getCarParkID());
@@ -54,6 +55,13 @@ public class CarParkDAO {
 				carPark.getName(), carPark.getDescription(), carPark.getOpenTime(), carPark.getCloseTime(),
 				carPark.getPrivateCarSlot(), carPark.getPrivateCarFee(), carPark.getMotorSlot(), carPark.getMotorFee(),
 				carPark.getCarParkID());
+=======
+	
+	public void editCarPark(CarPark carPark) {
+	System.out.println("EXCUTE INSERT CarParkID - "+ carPark.getCarParkID());
+	db.update("UPDATE CarPark SET name = ? , description = ? , openTime = ? , closeTime = ? WHERE carParkID = ?" ,
+			carPark.getName(), carPark.getDescription(), carPark.getOpenTime(), carPark.getCloseTime(),carPark.getCarParkID());
+>>>>>>> f38801e7f2c1d1a4c6501b8b98cf5aa948b937fb
 	}
 
 	public void deleteCarPark(CarPark carPark) {
