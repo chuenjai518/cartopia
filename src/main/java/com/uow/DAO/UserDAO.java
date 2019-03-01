@@ -31,6 +31,7 @@ public class UserDAO {
 				+ "Values (?,?,?,?,?,?)";
 		db.update(sql, user.getRoleID(), user.getUsername(), user.getPassword(), user.getFirstName(),
 				user.getLastName(), user.getEmail());
+
 	}
 
 	public void registerProcess(User user) {
@@ -65,7 +66,7 @@ public class UserDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
-		
+
 	}
 
 	public User getUserInfo(int userID) {
@@ -108,14 +109,14 @@ public class UserDAO {
 		}
 		return success;
 	}
-	
-	public List<User> getAllUser(){
+
+	public List<User> getAllUser() {
 		String sql = "SELECT roleID, userID, username, firstName, lastName, email FROM User";
 		RowMapper<User> rowMapper = new UserRowMapper();
-		return this.db.query(sql,rowMapper);
+		return this.db.query(sql, rowMapper);
 	}
-	
-	public List<CarPark> getCPOCarPark(int userID){
+
+	public List<CarPark> getCPOCarPark(int userID) {
 		String sql = "SELECT cpo.carParkID, name, address, Time(openTime), Time(closeTime), description FROM User u right join CarParkOwnerCarPark cpo on u.userID = cpo.userID right join CarPark cp on cpo.carparkID = cp.carparkID where u.userID = ?";
 		try {
 			RowMapper<CarPark> rowMapper = new CarParkRowMapper();
@@ -123,15 +124,15 @@ public class UserDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
-	
+
 	}
-	
+
 	public void addCar(DriverCar car) {
 		String sql = "INSERT INTO DriverCar(driverID, carTypeID, licensePlateNum) " + "Values(?, ?, ?)";
 		db.update(sql, car.getDriverID(), car.getCarTypeID(), car.getLicensePlateNum());
 	}
-	
-	public List<DriverCar> getAllCar(){
+
+	public List<DriverCar> getAllCar() {
 		String sql = "SELECT driverCarID, driverID, carTypeID, licensePlateNum FROM DriverCar";
 		try {
 			RowMapper<DriverCar> rowMapper = new DriverCarRowMapper();
@@ -140,8 +141,8 @@ public class UserDAO {
 			return null;
 		}
 	}
-	
-	public List<DriverCar> getAllCar(int driverID){
+
+	public List<DriverCar> getAllCar(int driverID) {
 		String sql = "SELECT driverCarID, driverID, carTypeID, licensePlateNum FROM DriverCar where driverID = ?";
 		try {
 			RowMapper<DriverCar> rowMapper = new DriverCarRowMapper();
@@ -150,7 +151,7 @@ public class UserDAO {
 			return null;
 		}
 	}
-	
+
 	public void booking(Booking booking) {
 		String sql = "INSERT INTO DriverCar(carParkID, driverCarID) " + "Values(?, ?)";
 		db.update(sql, booking.getCarParkID(), booking.getDriverCarID());
