@@ -20,6 +20,8 @@ public class AdminService {
 		boolean valid = userDAO.checkUsername(user.getUsername());
 		if(valid) {
 			userDAO.registerProcess(user);
+			int userID = userDAO.getUserID(user.getUsername());
+			userDAO.addDriver(userID);
 		}
 		return valid;
 		

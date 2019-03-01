@@ -110,7 +110,7 @@ public class UserController {
 	}
 	
 	//Need change to Post
-	@GetMapping("/addCredit/")
+	@PostMapping("/addCredit")
 	public String addCredit(@RequestParam Integer amount, HttpSession session) {
 		Driver driver = (Driver)session.getAttribute("driver");
 		boolean success = userService.addCredit(driver.getDriverID(), amount);

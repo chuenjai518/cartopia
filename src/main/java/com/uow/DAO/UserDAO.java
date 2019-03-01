@@ -33,6 +33,15 @@ public class UserDAO {
 		db.update(sql, user.getRoleID(), user.getUsername(), user.getPassword(), user.getFirstName(),
 				user.getLastName(), user.getEmail());
 	}
+	
+	public int getUserID(String username) {
+		
+		String sql = "Select userID from User where username = ?";
+		
+		int userID = (int) db.queryForObject(sql, int.class, username);
+		
+		return userID;
+	}
 
 	public void registerProcess(User user) {
 		System.out.println("EXCUTE INSERT User - " + user.getUsername());
@@ -40,6 +49,11 @@ public class UserDAO {
 				+ "Values (?,?,?,?,?,?)";
 		db.update(sql, user.getRoleID(), user.getUsername(), user.getPassword(), user.getFirstName(),
 				user.getLastName(), user.getEmail());
+	}
+	
+	public void addDriver(int userID) {
+		String sql = "INSERT INTO Driver(userID) " + "VALUES(?)";
+		db.update(sql, userID);
 	}
 
 	public boolean checkUsername(String username) {

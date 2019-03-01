@@ -40,6 +40,8 @@ public class UserService {
 		if(valid) {
 			user.setRoleID(1);
 			userDAO.registerProcess(user);
+			int userID = userDAO.getUserID(user.getUsername());
+			userDAO.addDriver(userID);
 		}
 		return valid;
 	}
