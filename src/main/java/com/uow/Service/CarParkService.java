@@ -36,4 +36,9 @@ public class CarParkService {
 	public void deleteCarPark(CarPark carPark){
 		carParkDAO.deleteCarPark(carPark);
 	}
+	
+	public int getCarparkSpace(CarPark carPark) {
+		return carParkDAO.getCarparkSpace(carPark);
+	}
+	
 }
