@@ -77,11 +77,8 @@ public class WebController {
 
 	@GetMapping("/home")
 	public String Home(Model model) {
+		List<CarPark> list = carParkService.getAllCarPark();
+		model.addAttribute("carParkList", list);
 		return "home";
-	}
-
-	@GetMapping("/carparkInfo")
-	public String CarParkInfo(Model model) {
-		return "carparkInfo";
 	}
 }
