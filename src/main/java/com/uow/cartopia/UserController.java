@@ -139,14 +139,14 @@ public class UserController {
 	}
 	
 	@GetMapping("driverProfile/addCar")
-	public String addCar(Model model, HttpSession session) {
+	public String addCar(@ModelAttribute DriverCar car, Model model, HttpSession session) {
 		Driver driver = (Driver)session.getAttribute("driver");
 		
-		DriverCar car = new DriverCar();
-		car.setCarTypeID(1);
-		car.setLicensePlateNum("UX1234");
+//		DriverCar car = new DriverCar();
+//		car.setCarTypeID(1);
+//		car.setLicensePlateNum("UX1234");
 		
-		car.setDriverID(1);
+		car.setDriverID(driver.getDriverID());
 		userService.addCar(car);
 		return "redirect:/driverProfile";
 	}
