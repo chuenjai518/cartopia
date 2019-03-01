@@ -35,14 +35,8 @@ public class WebController {
 	
 	@GetMapping("/")
 	public String index(Model model) {
-		return "redirect:/index";
+		return "redirect:/home";
 	}
-
-	@GetMapping("/index")
-	public String home(Model model) {
-		return "test";
-	}
-
 
 
 	@GetMapping("login")
@@ -55,15 +49,7 @@ public class WebController {
 		return "login";
 	}
 	
-
 	
-	@GetMapping("PageTest")
-	public String pageTest(Model model, HttpSession session) {
-		model.addAttribute("userID", session.getAttribute("userID"));
-		return "test";
-	}
-	
-
 	@GetMapping("/home")
 	public String Home(Model model) {
 		List<CarPark> list = carParkService.getAllCarPark();

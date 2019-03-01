@@ -28,4 +28,8 @@ public class AdminService {
 	public int countNewDriver() {
 		return userDAO.countNewDriver();
 	}
+	
+	public void updateUserProcess(User user) {
+		userDAO.updateUserProcess(user);
+	}
 }

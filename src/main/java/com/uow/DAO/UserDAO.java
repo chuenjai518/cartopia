@@ -54,6 +54,11 @@ public class UserDAO {
 		}
 		return valid;
 	}
+	
+	public void updateUserProcess(User user) {
+		String sql = "Update User set firstname = ?, lastname = ? where userID = ?";
+		db.update(sql, user.getFirstName(), user.getLastName(), user.getUserID());
+	}
 
 	public User checkLogin(Login login) {
 		System.out.println("checkLogin UserDAO");

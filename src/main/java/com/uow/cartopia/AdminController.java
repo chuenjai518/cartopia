@@ -165,4 +165,17 @@ public class AdminController {
 		}
 		return new RedirectView("admin/user");
 	}
+	
+	@PostMapping("/adminUpdateUserProcess")
+	public String adminUpdateUserProcess(@ModelAttribute User user, Model model, HttpSession session) {
+//		if(session.getAttribute("userID") == null) {
+//		return "redirect:/login";
+//	}
+//	if((int)session.getAttribute("userID") != 2) {
+//		return "redirect:/login";
+//	}
+		adminService.updateUserProcess(user);
+		
+		return ("redirect:/admin/user");
+	}
 }

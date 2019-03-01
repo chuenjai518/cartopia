@@ -18,6 +18,11 @@ public class CarParkRowMapper implements RowMapper<CarPark>{
 			carPark.setOpenTime(row.getTime("Time(openTime)"));
 			carPark.setCloseTime(row.getTime("Time(closeTime)"));
 			carPark.setDescription(row.getString("Description"));
+			carPark.setPrivateCarSlot(row.getInt("privateCarSlot"));
+			carPark.setPrivateCarFee(row.getInt("privateCarFee"));
+			carPark.setMotorSlot(row.getInt("motorSlot"));
+			carPark.setMotorFee(row.getInt("motorFee"));
+			carPark.setPhotoLink(row.getString("photoLink"));
 			return carPark;
 		}
 
