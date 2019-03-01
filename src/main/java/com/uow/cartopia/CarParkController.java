@@ -45,7 +45,7 @@ public class CarParkController {
 	}
 	
 	@PostMapping("updateCarPark")
-	public String editCarPark(@ModelAttribute CarPark carPark,Model model) {
+	public String updateCarPark(@ModelAttribute CarPark carPark,Model model) {
 		carParkService.updateCarPark(carPark);
 		return ("redirect:/admin/carpark");	
 	}

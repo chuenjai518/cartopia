@@ -70,8 +70,8 @@ public class UserDAO {
 	}
 	
 	public void updateUserProcess(User user) {
-		String sql = "Update User set firstname = ?, lastname = ? where userID = ?";
-		db.update(sql, user.getFirstName(), user.getLastName(), user.getUserID());
+		String sql = "Update User set firstname = ?, lastname = ?, email = ?where userID = ?";
+		db.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getUserID());
 	}
 
 	public User checkLogin(Login login) {

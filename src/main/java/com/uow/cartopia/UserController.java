@@ -181,12 +181,21 @@ public class UserController {
 		userService.updateCar(car);
 		return "redirect:/driverProfile";
 	}
+	
+	@PostMapping("driverProfile/updateUserProcess")
+	public String updateUserProcess(@ModelAttribute User user,Model model, HttpSession session) {
+		user.setUserID((int)session.getAttribute("userID"));
+		userService.updateUserProcess(user);
+		return "redirect:/driverProfile";
+	}
 
 	@PostMapping ("driverProfile/deleteCar/{driverCarID}")
 	public String deleteCar(@PathVariable("driverCarID") Integer driverCarID, Model model) {
 		userService.deleteCar(driverCarID);
 		return "redirect:/driverProfile";
 	}
+	
+	
 	
 	@GetMapping("resetPassword")
 	public String resetPassword(@RequestParam String password, Model model, HttpSession session) {

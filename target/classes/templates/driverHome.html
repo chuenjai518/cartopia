@@ -226,7 +226,7 @@
 								<tr th:each="car : ${carList}">
 									<td><a href="#delCar"><img src="/images/Del.png"
 											style="height: 25px; weight: 25px;"></a></td>
-									<th th:text="${car.getDriverID}" scope="row"></th>
+									<th th:text="${car.getDriverCarID()}" scope="row"></th>
 									<td th:text="${car.getLicensePlateNum()}"></td>
 									<td th:if="${car.getCarTypeID() == '1'}"></td>
 									<td th:unless="${car.getCarTypeID() == '1'}"></td>

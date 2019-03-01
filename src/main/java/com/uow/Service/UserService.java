@@ -90,4 +90,8 @@ public class UserService {
 	public void resetPassword(String password, int userID) {
 		userDAO.resetPassword(password, userID);
 	}
+	
+	public void updateUserProcess(User user) {
+		userDAO.updateUserProcess(user);
+	}
 }
