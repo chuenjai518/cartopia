@@ -41,8 +41,8 @@
 			<div class="centerText">
 				<h1 class="brandFont text-gold">Cartopia</h1>
 				<h3 class="text-white">Welcome! <span th:text="${username}"></span></h3>
-				<span class="text-white">Credit: </span><span class="text-white" style="font-size:16px;">  100</span>
-				<a href="#addCredit"><img src="/images/add.png" style="height:23px;weight:23px;"></a><br>
+				<span class="text-white">Credit: </span><span class="text-white" style="font-size:16px;" th:text="${driver.getCredit()}"></span>
+				<a href="#addCredit" ><img src="/images/add.png" style="height:23px;weight:23px;"></a><br>
 			</div>
 		</div>
 
@@ -185,10 +185,10 @@
 					<a href="driverPage"><img src="/images/X.png " class="rounded float-right" id="cross"></a>
 					<h1 ><b>Profile</b></h1>
 					<hr>
-					<b style="font-size:16px;">Username: </b><span style="font-size:16px;">Test</span><br><br>
+					<b style="font-size:16px;">Username: </b><span style="font-size:16px;" th:text="${username}"></span><br><br>
 					<a class="btn btn-primary" href="#resetPassword">Reset Password</a>
 					<hr>
-					<b style="font-size:16px;">First Name: </b><span style="font-size:16px;">Test</span><br>
+					<b style="font-size:16px;">First Name: </b><span style="font-size:16px;" ></span><br>
 					<b style="font-size:16px;">Last Name: </b><span style="font-size:16px;">Test</span><br>
 					<b style="font-size:16px;">Email: </b><span style="font-size:16px;">Test</span><br><br>
 					<a class="btn btn-primary" href="#editInfor" >Edit Information</a><br>
@@ -207,11 +207,12 @@
 											</tr>
 										</thead>
 										<tbody class="white">
-											<tr>
+											<tr th:each="car : ${carList}" >
 												<td><a href="#delCar"><img src="/images/Del.png" style="height:25px;weight:25px;"></a></td>
 												<th scope="row">1</th>
-												<td>AA 1231</td>
-												<td>Private Car</td>
+												<td th:text="${car.getLicesnsePlateNum()}"></td>
+												<td th:if="${car.getCarType() == '1'}">Private Car</td>
+													<td th:unless="${car.getCarType() == '1'}">Motor</td>
 											</tr>
 										</tbody>
 									</table>
@@ -367,7 +368,7 @@
 					<h1 ><b>Top-up Credit</b></h1>
 					<hr>
 					<div class="container">
-					<form  action="#" method="POST">
+					<form  action="addCredit" method="POST" >
 						<div class="container">
 							<div class="form-group row ">
 								<label for="addCredit"
@@ -375,7 +376,7 @@
 								</label>
 								<div class="col-sm-7">
 									<input type="number" min="0" class="form-control"
-										id="addCredit" placeholder="Amount" required>
+										id="addCredit" placeholder="Amount"  th:value="${amount}" required>
 								</div>
 							</div>
 						</div>	
@@ -400,7 +401,7 @@
 					<div class="container">
 					<form  action="#" method="POST">
 						<p>Are you confirmed to delete the car</p>
-						<h3 class="carWarning">Test</h3>
+						<h3 class="carWarning" >Test</h3>
 							
 							<br> 
 							<a href="#drivePage" class="btn btn-link col-sm-3">Cancel</a>

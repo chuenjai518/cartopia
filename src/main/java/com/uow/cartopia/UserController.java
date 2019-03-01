@@ -133,20 +133,21 @@ public class UserController {
 	
 	@GetMapping("driverPage")
 	public String driverPage(Model model, HttpSession session) {
-//		if(session.getAttribute("userID") == null) {
-//			return "redirect:/login";
-//		}
+		if(session.getAttribute("userID") == null) {
+			return "redirect:/login";
+		}
 		int userID = (int) session.getAttribute("userID");
 		Driver driver = userService.getDriverInfo(userID);
+		model.addAttribute("driver", driver);
 		model.addAttribute("username", session.getAttribute("username"));
 		return "driverHome";
 	}
 	
 	@GetMapping("driverProfile")
 	public String driverProfile(Model model, HttpSession session) {
-//		if(session.getAttribute("userID") == null) {
-//			return "redirect:/login";
-//		}
+		if(session.getAttribute("userID") == null) {
+			return "redirect:/login";
+		}
 		model.addAttribute("username", session.getAttribute("username"));
 		return "driverProfile";
 	}
