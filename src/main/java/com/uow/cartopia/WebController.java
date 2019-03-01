@@ -66,8 +66,11 @@ public class WebController {
 
 	@GetMapping("/home")
 	public String Home(Model model) {
+		List<CarPark> list = carParkService.getAllCarPark();
+		model.addAttribute("carParkList", list);
 		return "home";
 	}
+
 
 	@GetMapping("/carparkInfo")
 	public String CarParkInfo(Model model) {
@@ -86,4 +89,5 @@ public class WebController {
 		List<DriverCar> list = userService.getAllCar(driverID);
 		return new ResponseEntity<List<DriverCar>>(list, HttpStatus.OK);
 	}
+
 }

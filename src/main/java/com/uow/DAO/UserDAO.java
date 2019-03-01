@@ -156,5 +156,11 @@ public class UserDAO {
 		String sql = "INSERT INTO DriverCar(carParkID, driverCarID) " + "Values(?, ?)";
 		db.update(sql, booking.getCarParkID(), booking.getDriverCarID());
 	}
-
+	
+	public int countNewDriver() {
+		int result;
+		String sql = "SELECT COUNT(driverID) FROM Driver WHERE createDate = CURDATE() + interval 1 MONTH;";
+		result = db.queryForObject(sql, Integer.class);
+		return result;
+	}
 }
