@@ -61,18 +61,12 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr onclick="location.href='/admin/carpark/read'">
-										<th scope="row">1</th>
-										<td>Wilson</td>
-										<td>111 Chai Wan rd</td>
-										<td>30</td>
+									<tr th:each="cpl : ${carParkList}" th:onclick="'location.href=\''+ @{/admin/carpark/read/{id} (id=${cpl.getCarParkID()})}+'\''">
+										<th th:text="${cpl.getCarParkID()}" scope="row"></th>
+										<td th:text="${cpl.getName()}"></td>
+										<td th:text="${cpl.getAddress()}"></td>
+										<td th:text="${cpl.getOpenTime()}"></td>
 									</tr>
-									<tr>
-										<th scope="row">2</th>
-										<td>Jacob</td>
-										<td>222 North Point rd</td>
-										<td>14</td>
-									</tr> 
 								</tbody>
 							</table>
 						</div>

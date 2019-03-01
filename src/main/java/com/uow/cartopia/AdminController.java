@@ -115,7 +115,6 @@ public class AdminController {
 //	if((int)session.getAttribute("userID") != 2) {
 //		return "redirect:/login";
 //	}
-		
 		List<CarPark> list = carParkService.getAllCarPark();
 		model.addAttribute("carParkList", list);
 		return "carparkCRUD";
@@ -133,14 +132,22 @@ public class AdminController {
 	}
 
 	@GetMapping("admin/carpark/read/{carparkID}")
-	public String carparkRead(Model model,@PathVariable("userID") Integer id, HttpSession session) {
+	public String carparkRead(Model model,@PathVariable("carparkID") Integer id, HttpSession session) {
 //		if(session.getAttribute("userID") == null) {
 //		return "redirect:/login";
 //	}
 //	if((int)session.getAttribute("userID") != 2) {
 //		return "redirect:/login";
 //	}
+		CarPark carPark = carParkService.getCarPark(id);
+		model.addAttribute("carPark", carPark);
 		return "carparkR";
+	}
+	
+	@GetMapping("admin/carpark/update/{carParkID}")
+	public String carparkUpdate(Model model, @PathVariable("carParkID") Integer id, HttpSession session) {
+		
+		return "carParkU";
 	}
 
 	@PostMapping("/adminCreateUserProcess")
