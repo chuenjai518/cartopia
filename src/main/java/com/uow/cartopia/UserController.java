@@ -77,7 +77,7 @@ public class UserController {
 			session.removeAttribute("driver");
 		}
 		
-		return "redirect:/index";
+		return "redirect:/home";
 	}
 	
 	@PostMapping("/registerProcess")
@@ -121,6 +121,8 @@ public class UserController {
 		}
 		return "redirect:/driverPage";
 	}
+	
+
 	
 	//Need change to Post
 	@GetMapping("/booking/{carParkID}")
@@ -180,11 +182,12 @@ public class UserController {
 		return "redirect:/driverProfile";
 	}
 
-	@PostMapping ("driverProfile/deleteCar")
-	public String deleteCar(@ModelAttribute DriverCar car,Model model) {
-		userService.deleteCar(car);
+	@PostMapping ("driverProfile/deleteCar/{driverCarID}")
+	public String deleteCar(@PathVariable("driverCarID") Integer driverCarID, Model model) {
+		userService.deleteCar(driverCarID);
 		return "redirect:/driverProfile";
 	}
+	
 	
 	
 }

@@ -80,8 +80,8 @@ public class UserService {
 	public void updateCar(DriverCar car) {
 		userDAO.updateCar(car);
 	}
-	public void deleteCar(DriverCar car) {
-		userDAO.deleteCar(car);
+	public void deleteCar(int driverCarID) {
+		userDAO.deleteCar(driverCarID);
 	}
 	public void booking(Booking booking) {
 		userDAO.booking(booking);

@@ -201,9 +201,9 @@ public class UserDAO {
 		String cm = "";
 		return cm;
 	}
-	public void deleteCar(DriverCar car) {
-		String sql = "DELETE FROM DriverCar WHERE licensePlateNum = ?";
-		db.update(sql,car.getLicensePlateNum());
+	public void deleteCar(int driverCarID) {
+		String sql = "DELETE FROM DriverCar WHERE driverCarID = ?";
+		db.update(sql, driverCarID);
 	}
 
 
