@@ -33,4 +33,24 @@ public class CarParkController {
 		return new ResponseEntity<List<CarPark>>(list, HttpStatus.OK);
 	}
 	
+	
+	
+	@PostMapping("addCarPark")
+	public RedirectView addCarPark(@ModelAttribute CarPark carPark,RedirectAttributies model) {
+		carParkService.addCarPark(carPark);
+		return new RedirectView("admin/carpark");
+	}
+	
+	
+	@PostMapping("editCarPark")
+	public RedirectView editCarPark(@ModelAttribute CarPark carPark,RedirectAttributies model) {
+		carParkService.editCarPark(carPark);
+		return new RedirectView("admin/carpark");	
+	}
+	
+	@PostMapping("deleteCarPark")
+	public RedirectView deleteCarPark(@ModelAttribute CarPark carPark,RedirectAttributies model) {
+	carParkService.deleteCarPark(carPark);
+	return new RedirectView("admin/carpark");
+	}
 }

@@ -26,11 +26,14 @@ public class CarParkService {
 	}
 	
 	public void editCarPark(CarPark carPark) {
-		
+		carParkDAO.editCarPark(carPark);
 	}
 	
-	public void addCarPark(CarPark carpark) {
-		carParkDAO.addCarPark(carpark);
+	public void addCarPark(CarPark carPark) {
+		carParkDAO.addCarPark(carPark);
 	}
-
+	
+	public void deleteCarPark(CarPark carPark){
+		carParkDAO.deleteCarPark(carPark);
+	}
 }
