@@ -70,14 +70,11 @@ public class UserDAO {
 	}
 	
 	public void updateUserProcess(User user) {
-<<<<<<< HEAD
+
 		System.out.println("Update user ID -" + user.getUserID() + user.getFirstName());
-		String sql = "Update User set firstname = ?, lastname = ? where userID = ?";
-		db.update(sql, user.getFirstName(), user.getLastName(), user.getUserID());
-=======
-		String sql = "Update User set firstname = ?, lastname = ?, email = ?where userID = ?";
+
+		String sql = "Update User set firstname = ?, lastname = ?, email = ? where userID = ?";
 		db.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getUserID());
->>>>>>> 96d257aae0419285385021dc88cdff63f6759219
 	}
 
 	public User checkLogin(Login login) {
@@ -142,11 +139,8 @@ public class UserDAO {
 	}
 
 	public List<CarPark> getCPOCarPark(int userID) {
-<<<<<<< HEAD
+
 		String sql = "SELECT cpo.carParkID, name, address, Time(openTime), Time(closeTime), description, privateCarSlot, privateCarFee, motorSlot, motorFee, photoLink FROM User u right join CarParkOwnerCarPark cpo on u.userID = cpo.userID right join CarPark cp on cpo.carparkID = cp.carparkID where u.userID = ?";
-=======
-		String sql = "SELECT cpo.carParkID, name, address, Time(openTime), Time(closeTime), description, photoLink, privateCarSlot, privateCarFee, motorSlot, motorFee FROM User u right join CarParkOwnerCarPark cpo on u.userID = cpo.userID right join CarPark cp on cpo.carparkID = cp.carparkID where u.userID = ?";
->>>>>>> 96d257aae0419285385021dc88cdff63f6759219
 		try {
 			RowMapper<CarPark> rowMapper = new CarParkRowMapper();
 			return this.db.query(sql, rowMapper, userID);
