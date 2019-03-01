@@ -193,15 +193,15 @@
 				</h1>
 				<hr>
 				<b style="font-size: 16px;">Username: </b><span
-					style="font-size: 16px;" th:text="${username}"></span><br>
+					style="font-size: 16px;" th:text="${user.getUsername()}"></span><br>
 				<br> <a class="btn btn-primary" href="#resetPassword">Reset
 					Password</a>
 				<hr>
 				<b style="font-size: 16px;">First Name: </b><span
-					style="font-size: 16px;"></span><br> <b
+					style="font-size: 16px;" th:text="${user.getFirstName()}"></span><br> <b
 					style="font-size: 16px;">Last Name: </b><span
-					style="font-size: 16px;">Test</span><br> <b
-					style="font-size: 16px;">Email: </b><span style="font-size: 16px;">Test</span><br>
+					style="font-size: 16px;" th:text="${user.getLastName()}"></span><br> <b
+					style="font-size: 16px;">Email: </b><span style="font-size: 16px;" th:text="${user.getEmail()}"></span><br>
 				<br> <a class="btn btn-primary" href="#editInfor">Edit
 					Information</a><br>
 
@@ -219,17 +219,17 @@
 											style="height: 23px; weight: 23px;"> Add Car</a><br></th>
 									<th scope="col">Index</th>
 									<th scope="col">License</th>
-									<th scope="col">CarType</th>
+									<th scope="col">Car Type</th>
 								</tr>
 							</thead>
 							<tbody class="white">
 								<tr th:each="car : ${carList}">
 									<td><a href="#delCar"><img src="/images/Del.png"
 											style="height: 25px; weight: 25px;"></a></td>
-									<th scope="row">1</th>
+									<th th:text="${carStat.index}+1" scope="row"></th>
 									<td th:text="${car.getLicensePlateNum()}"></td>
-									<td th:if="${car.getCarTypeID() == '1'}">Private Car</td>
-									<td th:unless="${car.getCarTypeID() == '1'}">Motor</td>
+									<td th:if="${car.getCarTypeID() == 1}">Private Car</td>
+									<td th:unless="${car.getCarTypeID() == 1}">Motorcycle</td>
 								</tr>
 							</tbody>
 						</table>
@@ -256,14 +256,14 @@
 				</h1>
 				<hr>
 				<div class="container">
-					<form action="#" method="POST" onsubmit="return checkPassword()">
+					<form action="resetPassword" method="POST" onsubmit="return checkPassword()">
 						<div class="container">
 							<div class="form-group row ">
 								<label for="password"
 									class="col-sm-4 col-form-label textcolor text-right">Password:
 								</label>
 								<div class="col-sm-7">
-									<input type="password" class="form-control" id="password"
+									<input type="password" class="form-control" id="password" name="password"
 										placeholder="Password" required>
 								</div>
 							</div>
@@ -302,15 +302,15 @@
 				</h1>
 				<hr>
 				<div class="container">
-					<form action="#" method="POST">
+					<form action="driverProfile/updateUserProcess" method="POST" th:object="${user}">
 						<div class="container">
 							<div class="form-group row ">
 								<label for="firstName"
 									class="col-sm-4 col-form-label textcolor text-right">First
 									Name: </label>
 								<div class="col-sm-7">
-									<input type="text" class="form-control" id="firstName"
-										value="Test" required>
+									<input type="text" class="form-control" id="firstName" th:field="*{firstName}"
+										th:value="${user.getFirstName()}" required>
 								</div>
 							</div>
 							<div class="form-group row ">
@@ -319,7 +319,15 @@
 									Name: </label>
 								<div class="col-sm-7">
 									<input type="text" class="form-control" id="lastName"
-										value="Test" required>
+										th:value="${user.getLastName()}" th:field="*{lastName}" required>
+								</div>
+							</div>
+							<div class="form-group row ">
+								<label for="confirmPassword"
+									class="col-sm-4 col-form-label textcolor text-right">Email: </label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control" id="lastName"
+										th:value="${user.getEmail()}" th:field="*{email}" required>
 								</div>
 							</div>
 						</div>
@@ -346,7 +354,7 @@
 				</h1>
 				<hr>
 				<div class="container">
-					<form action="#" method="POST">
+					<form action="driverProfile/addCar" method="POST" th:object="${driverCar}">
 						<div class="container">
 							<div class="form-group row ">
 								<label for="license"
@@ -354,7 +362,7 @@
 								</label>
 								<div class="col-sm-7">
 									<input type="text" class="form-control" id="license"
-										placeholder="License" required>
+										placeholder="License" th:field="*{licensePlateNum}" required>
 								</div>
 							</div>
 
@@ -363,9 +371,9 @@
 									class="col-sm-3 col-form-label textcolor text-right">Car
 									Type: </label>
 								<div class="col-sm-7">
-									<select class="form-control">
-										<option>Private Car</option>
-										<option>Motorcycle</option>
+									<select class="form-control" th:field="*{carTypeID}">
+										<option value="1">Private Car</option>
+										<option value="2">Motorcycle</option>
 									</select>
 								</div>
 							</div>
@@ -395,7 +403,7 @@
 				</h1>
 				<hr>
 				<div class="container">
-					<form action="addCredit" method="POST">
+					<form action="addCredit" method="POST" >
 						<div class="container">
 							<div class="form-group row ">
 								<label for="addCredit"
@@ -403,7 +411,7 @@
 									Credit Amount: </label>
 								<div class="col-sm-7">
 									<input type="number" min="0" class="form-control"
-										id="addCredit" placeholder="Amount" th:value="${amount}"
+										name="amount"	id="addCredit" placeholder="Amount" th:value="${amount}"
 										required>
 								</div>
 							</div>
@@ -429,9 +437,9 @@
 				</h1>
 				<hr>
 				<div class="container">
-					<form action="#" method="POST">
+					<form action="" method="POST">
 						<p>Are you confirmed to delete the car</p>
-						<h3 class="carWarning">Test</h3>
+						<h3 class="carWarning" >TEST</h3>
 
 						<br> <a href="#drivePage" class="btn btn-link col-sm-3">Cancel</a>
 						<button type="submit" class="btn btn-primary col-sm-3">Confirm</button>

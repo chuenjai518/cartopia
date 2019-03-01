@@ -40,6 +40,8 @@ public class UserService {
 		if(valid) {
 			user.setRoleID(1);
 			userDAO.registerProcess(user);
+			int userID = userDAO.getUserID(user.getUsername());
+			userDAO.addDriver(userID);
 		}
 		return valid;
 	}
@@ -78,10 +80,18 @@ public class UserService {
 	public void updateCar(DriverCar car) {
 		userDAO.updateCar(car);
 	}
-	public void deleteCar(DriverCar car) {
-		userDAO.deleteCar(car);
+	public void deleteCar(int driverCarID) {
+		userDAO.deleteCar(driverCarID);
 	}
 	public void booking(Booking booking) {
 		userDAO.booking(booking);
+	}
+	
+	public void resetPassword(String password, int userID) {
+		userDAO.resetPassword(password, userID);
+	}
+	
+	public void updateUserProcess(User user) {
+		userDAO.updateUserProcess(user);
 	}
 }
