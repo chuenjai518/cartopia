@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.uow.Model.Booking;
 import com.uow.Model.CarPark;
 import com.uow.Model.DriverCar;
 import com.uow.Model.Login;
@@ -65,11 +66,15 @@ public class WebController {
 
 	@GetMapping("/home")
 	public String Home(Model model) {
+		List<CarPark> list = carParkService.getAllCarPark();
+		model.addAttribute("carParkList", list);
 		return "home";
 	}
 
+
 	@GetMapping("/carparkInfo")
 	public String CarParkInfo(Model model) {
+		model.addAttribute("Booking", new Booking());
 		return "carparkInfo";
 	}
 	
@@ -84,4 +89,5 @@ public class WebController {
 		List<DriverCar> list = userService.getAllCar(driverID);
 		return new ResponseEntity<List<DriverCar>>(list, HttpStatus.OK);
 	}
+
 }

@@ -19,6 +19,7 @@ import com.uow.Model.Driver;
 import com.uow.Model.Login;
 import com.uow.Model.User;
 import com.uow.Service.AdminService;
+import com.uow.Service.CarParkService;
 import com.uow.Service.UserService;
 
 @Controller
@@ -28,6 +29,8 @@ public class AdminController {
 	AdminService adminService;
 	@Autowired
 	UserService userService;
+	@Autowired
+	CarParkService carParkService;
 
 
 	@GetMapping("admin")
@@ -112,6 +115,9 @@ public class AdminController {
 //	if((int)session.getAttribute("userID") != 2) {
 //		return "redirect:/login";
 //	}
+		
+		List<CarPark> list = carParkService.getAllCarPark();
+		model.addAttribute("carParkList", list);
 		return "carparkCRUD";
 	}
 
