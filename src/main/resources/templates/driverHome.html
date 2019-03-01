@@ -226,10 +226,10 @@
 								<tr th:each="car : ${carList}">
 									<td><a href="#delCar"><img src="/images/Del.png"
 											style="height: 25px; weight: 25px;"></a></td>
-									<th scope="row">1</th>
+									<th th:text="${car.getDriverID}" scope="row"></th>
 									<td th:text="${car.getLicensePlateNum()}"></td>
-									<td th:if="${car.getCarTypeID() == '1'}">Private Car</td>
-									<td th:unless="${car.getCarTypeID() == '1'}">Motor</td>
+									<td th:if="${car.getCarTypeID() == '1'}"></td>
+									<td th:unless="${car.getCarTypeID() == '1'}"></td>
 								</tr>
 							</tbody>
 						</table>
@@ -395,7 +395,7 @@
 				</h1>
 				<hr>
 				<div class="container">
-					<form action="addCredit" method="POST">
+					<form action="addCredit" method="POST" >
 						<div class="container">
 							<div class="form-group row ">
 								<label for="addCredit"
@@ -403,7 +403,7 @@
 									Credit Amount: </label>
 								<div class="col-sm-7">
 									<input type="number" min="0" class="form-control"
-										id="addCredit" placeholder="Amount" th:value="${amount}"
+										name="amount"	id="addCredit" placeholder="Amount" th:value="${amount}"
 										required>
 								</div>
 							</div>
@@ -429,7 +429,7 @@
 				</h1>
 				<hr>
 				<div class="container">
-					<form action="#" method="POST">
+					<form action="" method="POST">
 						<p>Are you confirmed to delete the car</p>
 						<h3 class="carWarning">Test</h3>
 
