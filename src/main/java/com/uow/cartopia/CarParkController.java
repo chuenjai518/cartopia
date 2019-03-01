@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.uow.Model.CarPark;
 import com.uow.Service.CarParkService;
@@ -28,11 +30,30 @@ public class CarParkController {
 	}
 	
 
-
 	@GetMapping("carpark")
 	public ResponseEntity<List<CarPark>> getAllCarPark() {
 		List<CarPark> list = carParkService.getAllCarPark();
 		return new ResponseEntity<List<CarPark>>(list, HttpStatus.OK);
 	}
 	
+	
+	
+	@PostMapping("addCarPark")
+	public String addCarPark(@ModelAttribute CarPark carPark,Model model) {
+		carParkService.addCarPark(carPark);
+		return ("redirect:/admin/carpark");
+	}
+	
+	
+	@PostMapping("editCarPark")
+	public String editCarPark(@ModelAttribute CarPark carPark,Model model) {
+		carParkService.editCarPark(carPark);
+		return ("redirect:/admin/carpark");	
+	}
+	
+	@PostMapping("deleteCarPark")
+	public String deleteCarPark(@ModelAttribute CarPark carPark,Model model) {
+		carParkService.deleteCarPark(carPark);
+		return ("redirect:/admin/carpark");
+	}
 }

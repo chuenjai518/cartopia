@@ -7,55 +7,45 @@
 		<!-- This is the content -->
 		<div id="page-content-wrapper">
 			<div class="container-fluid mt-4">
-				<h3>Create New User </h3>
+				<h3>User Edit</h3>
 				<div class="shadow card">
 					<div class="card-body">
-						<form>
+						<form th:action="@{/updateUser}"  th:object="${user}" >
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label for="FirstName">First Name</label> <input type="text"
-										class="form-control" id="FirstName" placeholder="First Name...">
+									<label th:field="*{firstName}" for="FirstName">First Name</label> <input
+										th:value="${user.getFirstName()}" type="text"
+										class="form-control" id="FirstName"
+										placeholder="First Name...">
 								</div>
 								<div class="form-group col-md-6">
-									<label for="LastName">Last Name</label> <input
-										type="text" class="form-control" id="LastName"
-										placeholder="Last Name...">
+									<label for="LastName">Last Name</label> <input type="text"
+										th:field="*{lastName}"  th:value="${user.getLastName()}" class="form-control" id="LastName" placeholder="Last Name...">
 								</div>
 								<div class="form-group col-md-6">
-									<label for="userName">user Name</label> <input type="text"
-										class="form-control" id="userName" placeholder="User Name">
-								</div>
-								<div class="form-group col-md-6">
-									<label for="password">password</label> <input
-										type="password" class="form-control" id="password"
-										placeholder="Password...">
+									<label for="Password">Password</label> <input type="password"
+										 th:field="*{password}"  class="form-control" id="password" placeholder="Password...">
 								</div>
 							</div>
-							<div class="form-group">
-								<label for="inputAddress">Emil Address</label> <input
-									type="email" class="form-control" id="inputAddress"
-									placeholder="Email...">
-							</div>
-							
 							<div class="form-row">
-								<div class="form-group col-md-4">
-									<label for="inputState">User type</label> <select
-										id="userType" class="form-control">
-										<option value="member" selected>Member</option>
-										<option value="CarParkOwner">Car Park Owner</option>
-									</select>
+								<div class="form-group col-md-6">
+								<label for="credit">Credit</label> <input
+										th:value="${driver.getCredit()}" type="number"
+										class="form-control" id="credit"
+										placeholder="Credit...">
 								</div>
 							</div>
 							<span class="errorText"
-							th:text="${message != null} ? ${message} : ''"></span><br> <br />
-							</div>
-							<button type="submit" class="btn btn-primary">Save</button>
-						</form>
+								th:text="${message != null} ? ${message} : ''"></span><br>
+							<br />
 					</div>
+					<button type="submit" class="btn btn-primary">Save</button>
+					</form>
 				</div>
 			</div>
 		</div>
-		<!-- Content End -->
+	</div>
+	<!-- Content End -->
 	</div>
 </body>
 </html>

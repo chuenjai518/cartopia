@@ -43,7 +43,16 @@ public class CarParkDAO{
 		return this.db.query(sql,rowMapper);
 	}
 	
-	
-	
+	public void editCarPark(CarPark carPark) {
+	System.out.println("EXCUTE INSERT CarParkID - "+ carPark.getCarParkID());
+	db.update("UPDATE carpark SET name = ? , address = ? , description = ? , openTime = ? , closeTime = ? WHERE carParkID = ?" ,
+			carPark.getName(), carPark.getAddress(), carPark.getDescription(), carPark.getOpenTime(), carPark.getCloseTime());
+	}
 
+	public void deleteCarPark(CarPark carPark) {
+		System.out.println("EXCUTE INSERT CarParkID to delete CarPark - "+ carPark.getCarParkID());
+		db.update("DELETE FROM carPark WHERE carParkID = ?",
+				carPark.getCarParkID());
+				
+	}
 }

@@ -8,9 +8,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.uow.Model.Booking;
 import com.uow.Model.CarPark;
 import com.uow.Model.CarParkRowMapper;
 import com.uow.Model.Driver;
+import com.uow.Model.DriverCar;
+import com.uow.Model.DriverCarRowMapper;
 import com.uow.Model.DriverRowMapper;
 import com.uow.Model.Login;
 import com.uow.Model.LoginRowMapper;
@@ -121,6 +124,36 @@ public class UserDAO {
 			return null;
 		}
 	
+	}
+	
+	public void addCar(DriverCar car) {
+		String sql = "INSERT INTO DriverCar(driverID, carTypeID, licensePlateNum) " + "Values(?, ?, ?)";
+		db.update(sql, car.getDriverID(), car.getCarTypeID(), car.getLicensePlateNum());
+	}
+	
+	public List<DriverCar> getAllCar(){
+		String sql = "SELECT driverCarID, driverID, carTypeID, licensePlateNum FROM DriverCar";
+		try {
+			RowMapper<DriverCar> rowMapper = new DriverCarRowMapper();
+			return this.db.query(sql, rowMapper);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
+	public List<DriverCar> getAllCar(int driverID){
+		String sql = "SELECT driverCarID, driverID, carTypeID, licensePlateNum FROM DriverCar where driverID = ?";
+		try {
+			RowMapper<DriverCar> rowMapper = new DriverCarRowMapper();
+			return this.db.query(sql, rowMapper, driverID);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
+	public void booking(Booking booking) {
+		String sql = "INSERT INTO DriverCar(carParkID, driverCarID) " + "Values(?, ?)";
+		db.update(sql, booking.getCarParkID(), booking.getDriverCarID());
 	}
 
 }
