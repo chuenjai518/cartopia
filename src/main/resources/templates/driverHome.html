@@ -13,7 +13,28 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 <nav th:include="navDriver :: nav"></nav>
+<script th:src="@{/js/jquery.min.js}" src="@{/js/jquery.min.js}"></script>
 
+<script>
+	function checkPassword() {
+		
+		var password = $('#password').val();
+		var confirmPassword = $('#confirmPassword').val();
+		if (password != confirmPassword) {
+			$('#checkPassword').html("Passwords do not match!");
+			return false;
+		}else{
+			$('#checkPassword').html("");
+			return true;
+		}
+	}
+	$(document).ready(function() {
+
+		$('#confirmPassword').keyup(function() {
+			checkPassword();
+		});
+	});
+</script>
 </head>
 <body class="background">
 		<div class="darkblue p-3 mb-5 ">
@@ -21,14 +42,14 @@
 				<h1 class="brandFont text-gold">Cartopia</h1>
 				<h3 class="text-white">Welcome! <span th:text="${username}"></span></h3>
 				<span class="text-white">Credit: </span><span class="text-white" style="font-size:16px;">  100</span>
-				<a href="#"><img src="/images/add.png" style="height:23px;weight:23px;"></a><br>
+				<a href="#addCredit"><img src="/images/add.png" style="height:23px;weight:23px;"></a><br>
 			</div>
 		</div>
 
 		<div class="centerText container">
 
 
-			<h2 class="leftText">Bookmark</h2>
+			<h2 class="leftText text-darkblue">Bookmark</h2>
 			<div class="row sm-2 ">
 				<div class="col-sm-4">
 					<div class="card flex-sm-row sm-4 shadow p-3 mb-5 rounded h-md-250">
@@ -71,8 +92,8 @@
 			</div>
 
 
-			<h2 class="leftText">Reservation Record</h2>
-			<div class="darkblue shadow p-3 mb-5 rounded">
+			<h2 class="leftText text-darkblue">Reservation Record</h2>
+			<div class="p-3 mb-5 rounded" style="background:#ddd;">
 
 				<div class="col-md-12 ">
 					<br>
@@ -153,8 +174,244 @@
 					</div>
 				</div>
 
+			</div>	
+		</div>
+		
+		
+		<div class="text-center overlay" id="profile">
+		<br> <br>
+		<div class="container">
+				<div class="shadow p-3 mb-5 rounded white">
+					<a href="driverPage"><img src="/images/X.png " class="rounded float-right" id="cross"></a>
+					<h1 ><b>Profile</b></h1>
+					<hr>
+					<b style="font-size:16px;">Username: </b><span style="font-size:16px;">Test</span><br><br>
+					<a class="btn btn-primary" href="#resetPassword">Reset Password</a>
+					<hr>
+					<b style="font-size:16px;">First Name: </b><span style="font-size:16px;">Test</span><br>
+					<b style="font-size:16px;">Last Name: </b><span style="font-size:16px;">Test</span><br>
+					<b style="font-size:16px;">Email: </b><span style="font-size:16px;">Test</span><br><br>
+					<a class="btn btn-primary" href="#editInfor" >Edit Information</a><br>
+
+					<hr>
+								<div class="text-center white">
+								<div class="card-body">
+									<h2 class="card-title"><b>Your Car</b></h2>
+									<table class="table">
+										<thead class="bg-primary">
+											<tr>
+												<th scope="col"><a href="#addCar" style="text-decoration: none;"><img src="/images/add.png" style="height:23px;weight:23px;">  Add Car</a><br></th>
+												<th scope="col">Index</th>
+												<th scope="col">License</th>
+												<th scope="col">CarType</th>
+											</tr>
+										</thead>
+										<tbody class="white">
+											<tr>
+												<td><a href="#delCar"><img src="/images/Del.png" style="height:25px;weight:25px;"></a></td>
+												<th scope="row">1</th>
+												<td>AA 1231</td>
+												<td>Private Car</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								</div>
+			</div>
 			</div>
 		</div>
 
+
+
+
+
+		<div class="text-center overlay" id="resetPassword">
+		<br> <br>
+		<div class="container p-3 rounded col-sm-10 col-md-4 col-lg-4">
+		
+		
+				<div class="shadow p-3 mb-5 rounded white">
+					<a href="driverPage"><img src="/images/X.png " class="rounded float-right" id="cross"></a>
+					<h1 ><b>Reset Password</b></h1>
+					<hr>
+					<div class="container">
+					<form  action="#" method="POST" onsubmit="return checkPassword()">
+						<div class="container">
+							<div class="form-group row ">
+								<label for="password"
+									class="col-sm-4 col-form-label textcolor text-right">Password:
+								</label>
+								<div class="col-sm-7">
+									<input type="password" class="form-control"
+										id="password" placeholder="Password" required>
+								</div>
+							</div>
+							<div class="form-group row ">
+								<label for="confirmPassword"
+									class="col-sm-4 col-form-label textcolor text-right">Confirm
+									Password: </label>
+								<div class="col-sm-7">
+									<input type="password" class="form-control"
+										id="confirmPassword" placeholder="Confirm Password">
+								</div>
+							</div>
+							<div id="checkPassword"></div>
+							</div>
+							<br> 
+							<a href="#profile" class="btn btn-link col-sm-3">Cancel</a>
+							<button type="submit" class="btn btn-primary col-sm-3">Reset</button>
+							</form>
+						</div>
+		</div>
+		</div>
+		
+			</div>
+		
+		
+		
+		<div class="text-center overlay" id="editInfor">
+		<br> <br>
+		<div class="container p-3 rounded col-sm-10 col-md-4 col-lg-4">
+		
+		
+				<div class="shadow p-3 mb-5 rounded white">
+					<a href="driverPage"><img src="/images/X.png " class="rounded float-right" id="cross"></a>
+					<h1 ><b>Edit Profile</b></h1>
+					<hr>
+					<div class="container">
+					<form  action="#" method="POST">
+						<div class="container">
+							<div class="form-group row ">
+								<label for="firstName"
+									class="col-sm-4 col-form-label textcolor text-right">First Name: 
+								</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control"
+										id="firstName" value="Test" required>
+								</div>
+							</div>
+							<div class="form-group row ">
+								<label for="confirmPassword"
+									class="col-sm-4 col-form-label textcolor text-right">Last Name: </label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control"
+										id="lastName" value="Test" required>
+								</div>
+							</div>
+							</div>
+							<br> 
+							<a href="#profile" class="btn btn-link col-sm-3">Cancel</a>
+							<button type="submit" class="btn btn-primary col-sm-3">Finished</button>
+							</form>
+						</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+			<div class="text-center overlay" id="addCar">
+		<br> <br>
+		<div class="container p-3 rounded col-sm-10 col-md-4 col-lg-4">
+		
+		
+				<div class="shadow p-3 mb-5 rounded white">
+					<a href="driverPage"><img src="/images/X.png " class="rounded float-right" id="cross"></a>
+					<h1 ><b>Add Car</b></h1>
+					<hr>
+					<div class="container">
+					<form  action="#" method="POST">
+						<div class="container">
+							<div class="form-group row ">
+								<label for="license"
+									class="col-sm-3 col-form-label textcolor text-right">License:  
+								</label>
+								<div class="col-sm-7">
+									<input type="text" class="form-control"
+										id="license" placeholder="License" required>
+								</div>
+							</div>
+							
+							<div class="form-group row ">
+								<label for="carType"
+									class="col-sm-3 col-form-label textcolor text-right">Car Type:  
+								</label>
+								<div class="col-sm-7">
+									<select class="form-control">
+  									<option>Private Car</option>
+  									<option>Motorcycle</option>
+									</select>
+								</div>
+							</div>
+
+
+
+							</div>
+							<br> 
+							<a href="#profile" class="btn btn-link col-sm-3">Cancel</a>
+							<button type="submit" class="btn btn-primary col-sm-3">Finished</button>
+							</form>
+						</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="text-center overlay" id="addCredit">
+		<br> <br>
+		<div class="container p-3 rounded col-sm-10 col-md-4 col-lg-4">
+		
+		
+				<div class="shadow p-3 mb-5 rounded white">
+					<a href="driverPage"><img src="/images/X.png " class="rounded float-right" id="cross"></a>
+					<h1 ><b>Top-up Credit</b></h1>
+					<hr>
+					<div class="container">
+					<form  action="#" method="POST">
+						<div class="container">
+							<div class="form-group row ">
+								<label for="addCredit"
+									class="col-sm-5 col-form-label textcolor text-right">Top-up Credit Amount:  
+								</label>
+								<div class="col-sm-7">
+									<input type="number" min="0" class="form-control"
+										id="addCredit" placeholder="Amount" required>
+								</div>
+							</div>
+						</div>	
+							
+							<br> 
+							<a href="#drivePage" class="btn btn-link col-sm-3">Cancel</a>
+							<button type="submit" class="btn btn-primary col-sm-3">Confirm</button>
+							</form>
+						</div>
+			</div>
+		</div>
+	</div>
+	
+	
+		<div class="text-center overlay" id="delCar">
+		<br> <br>
+		<div class="container p-3 rounded col-sm-10 col-md-4 col-lg-4">
+		<div class="shadow p-3 mb-5 rounded white">
+					<a href="driverPage"><img src="/images/X.png " class="rounded float-right" id="cross"></a>
+					<h1 ><b>Delete Car</b></h1>
+					<hr>
+					<div class="container">
+					<form  action="#" method="POST">
+						<p>Are you confirmed to delete the car</p>
+						<h3 class="carWarning">Test</h3>
+							
+							<br> 
+							<a href="#drivePage" class="btn btn-link col-sm-3">Cancel</a>
+							<button type="submit" class="btn btn-primary col-sm-3">Confirm</button>
+							</form>
+						</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
 </body>
 </html>

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.uow.Model.Booking;
 import com.uow.Model.CarPark;
+import com.uow.Model.Booking;
 import com.uow.Model.CarParkRowMapper;
 import com.uow.Model.Driver;
 import com.uow.Model.DriverCar;
@@ -31,7 +32,6 @@ public class UserDAO {
 				+ "Values (?,?,?,?,?,?)";
 		db.update(sql, user.getRoleID(), user.getUsername(), user.getPassword(), user.getFirstName(),
 				user.getLastName(), user.getEmail());
-
 	}
 
 	public void registerProcess(User user) {
@@ -152,15 +152,40 @@ public class UserDAO {
 		}
 	}
 
+	public void updateCar(DriverCar car) {
+		String sql = "UPDATE DriverCar SET carTypeID = ?, licensePlateNum = ? WHERE DriverCarID =?";
+
+		db.update(sql, car.getCarTypeID(), car.getLicensePlateNum(), car.getDriverCarID());
+
+
+	}
+
 	public void booking(Booking booking) {
 		String sql = "INSERT INTO DriverCar(carParkID, driverCarID) " + "Values(?, ?)";
 		db.update(sql, booking.getCarParkID(), booking.getDriverCarID());
 	}
-	
+
 	public int countNewDriver() {
 		int result;
-		String sql = "SELECT COUNT(driverID) FROM Driver WHERE createDate = CURDATE() + interval 1 MONTH;";
+		String sql = "SELECT COUNT(driverID) FROM Driver WHERE createDate >= CURDATE() + interval 1 MONTH;";
 		result = db.queryForObject(sql, Integer.class);
 		return result;
 	}
+
+	public void addComment() {
+		String sql = "";
+
+	}
+
+	public String getComment() {
+		String sql = "";
+		String cm = "";
+		return cm;
+	}
+	public void deleteCar(DriverCar car) {
+		String sql = "DELETE FROM DriverCar WHERE licensePlateNum = ?";
+		db.update(sql,car.getLicensePlateNum());
+	}
+
+
 }
