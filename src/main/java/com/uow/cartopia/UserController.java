@@ -139,9 +139,11 @@ public class UserController {
 		}
 		int userID = (int) session.getAttribute("userID");
 		Driver driver = userService.getDriverInfo(userID);
-<<<<<<< HEAD
+		User user = userService.getUserInfo(userID);
+		List<DriverCar> list = userService.getAllCar(driver.getDriverID());
 		model.addAttribute("driver", driver);
-		model.addAttribute("username", session.getAttribute("username"));
+		model.addAttribute("user", user);
+		model.addAttribute("carList", list);
 		return "driverHome";
 	}
 	
@@ -153,18 +155,8 @@ public class UserController {
 		model.addAttribute("username", session.getAttribute("username"));
 		return "driverProfile";
 	}
-=======
-		
-		User user = userService.getUserInfo(userID);
-		List<DriverCar> list = userService.getAllCar(driver.getDriverID());
-		
-		model.addAttribute("user", user);
-		model.addAttribute("carList", list);
-		
-		return "driverHome";
-	}
+
 	
->>>>>>> 262a484515dfd0064313bdbed2cf55dd32008372
 	
 	@GetMapping("driverProfile/addCar")
 	public String addCar(@ModelAttribute DriverCar car, Model model, HttpSession session) {
