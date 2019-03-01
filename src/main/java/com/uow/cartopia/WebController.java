@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.uow.Model.Booking;
 import com.uow.Model.CarPark;
 import com.uow.Model.DriverCar;
 import com.uow.Model.Login;
@@ -70,6 +71,7 @@ public class WebController {
 
 	@GetMapping("/carparkInfo")
 	public String CarParkInfo(Model model) {
+		model.addAttribute("Booking", new Booking());
 		return "carparkInfo";
 	}
 	

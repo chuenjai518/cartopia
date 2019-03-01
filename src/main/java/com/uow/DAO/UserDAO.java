@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.uow.Model.Booking;
 import com.uow.Model.CarPark;
 import com.uow.Model.CarParkRowMapper;
 import com.uow.Model.Driver;
@@ -148,6 +149,11 @@ public class UserDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
+	}
+	
+	public void booking(Booking booking) {
+		String sql = "INSERT INTO DriverCar(carParkID, driverCarID) " + "Values(?, ?)";
+		db.update(sql, booking.getCarParkID(), booking.getDriverCarID());
 	}
 
 }
