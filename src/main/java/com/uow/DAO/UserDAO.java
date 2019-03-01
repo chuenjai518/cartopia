@@ -33,6 +33,15 @@ public class UserDAO {
 		db.update(sql, user.getRoleID(), user.getUsername(), user.getPassword(), user.getFirstName(),
 				user.getLastName(), user.getEmail());
 	}
+	
+	public int getUserID(String username) {
+		
+		String sql = "Select userID from User where username = ?";
+		
+		int userID = (int) db.queryForObject(sql, int.class, username);
+		
+		return userID;
+	}
 
 	public void registerProcess(User user) {
 		System.out.println("EXCUTE INSERT User - " + user.getUsername());
@@ -40,6 +49,11 @@ public class UserDAO {
 				+ "Values (?,?,?,?,?,?)";
 		db.update(sql, user.getRoleID(), user.getUsername(), user.getPassword(), user.getFirstName(),
 				user.getLastName(), user.getEmail());
+	}
+	
+	public void addDriver(int userID) {
+		String sql = "INSERT INTO Driver(userID) " + "VALUES(?)";
+		db.update(sql, userID);
 	}
 
 	public boolean checkUsername(String username) {
@@ -56,9 +70,14 @@ public class UserDAO {
 	}
 	
 	public void updateUserProcess(User user) {
+<<<<<<< HEAD
 		System.out.println("Update user ID -" + user.getUserID() + user.getFirstName());
 		String sql = "Update User set firstname = ?, lastname = ? where userID = ?";
 		db.update(sql, user.getFirstName(), user.getLastName(), user.getUserID());
+=======
+		String sql = "Update User set firstname = ?, lastname = ?, email = ?where userID = ?";
+		db.update(sql, user.getFirstName(), user.getLastName(), user.getEmail(), user.getUserID());
+>>>>>>> 96d257aae0419285385021dc88cdff63f6759219
 	}
 
 	public User checkLogin(Login login) {
@@ -123,7 +142,11 @@ public class UserDAO {
 	}
 
 	public List<CarPark> getCPOCarPark(int userID) {
+<<<<<<< HEAD
 		String sql = "SELECT cpo.carParkID, name, address, Time(openTime), Time(closeTime), description, privateCarSlot, privateCarFee, motorSlot, motorFee, photoLink FROM User u right join CarParkOwnerCarPark cpo on u.userID = cpo.userID right join CarPark cp on cpo.carparkID = cp.carparkID where u.userID = ?";
+=======
+		String sql = "SELECT cpo.carParkID, name, address, Time(openTime), Time(closeTime), description, photoLink, privateCarSlot, privateCarFee, motorSlot, motorFee FROM User u right join CarParkOwnerCarPark cpo on u.userID = cpo.userID right join CarPark cp on cpo.carparkID = cp.carparkID where u.userID = ?";
+>>>>>>> 96d257aae0419285385021dc88cdff63f6759219
 		try {
 			RowMapper<CarPark> rowMapper = new CarParkRowMapper();
 			return this.db.query(sql, rowMapper, userID);
@@ -188,9 +211,14 @@ public class UserDAO {
 		String cm = "";
 		return cm;
 	}
-	public void deleteCar(DriverCar car) {
-		String sql = "DELETE FROM DriverCar WHERE licensePlateNum = ?";
-		db.update(sql,car.getLicensePlateNum());
+	public void deleteCar(int driverCarID) {
+		String sql = "DELETE FROM DriverCar WHERE driverCarID = ?";
+		db.update(sql, driverCarID);
+	}
+	
+	public void resetPassword(String password, int userID) {
+		String sql = "UPDATE User SET password = ? WHERE userID =?";
+		db.update(sql, password, userID);
 	}
 
 

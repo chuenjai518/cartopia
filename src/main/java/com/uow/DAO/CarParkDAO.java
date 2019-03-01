@@ -50,11 +50,26 @@ public class CarParkDAO {
 	public void updateCarPark(CarPark carPark) {
 		System.out.println("EXCUTE INSERT CarParkID - " + carPark.getCarParkID());
 		db.update(
+<<<<<<< HEAD
 				"UPDATE CarPark SET name = ? , description = ? , openTime = ? , closeTime = ?, privateCarSlot = ?, privateCarFee = ?, motorSlot = ?, motorFee = ?, photoLink = ? WHERE carParkID = ?",
+=======
+				"UPDATE CarPark SET name = ? , description = ? , openTime = ? , closeTime = ?, WHERE carParkID = ?",
+				carPark.getName(), carPark.getDescription(), carPark.getOpenTime(), carPark.getCloseTime(),
+				carPark.getPrivateCarSlot(), carPark.getPrivateCarFee(), carPark.getMotorSlot(), carPark.getMotorFee(),
+				carPark.getCarParkID());
+	}
+
+	public void editCarPark(CarPark carPark) {
+		System.out.println("EXCUTE INSERT CarParkID - " + carPark.getCarParkID());
+		db.update("UPDATE CarPark SET name = ? , description = ? , openTime = ? , closeTime = ? WHERE carParkID = ?",
+>>>>>>> 96d257aae0419285385021dc88cdff63f6759219
 				carPark.getName(), carPark.getDescription(), carPark.getOpenTime(), carPark.getCloseTime(),
 				carPark.getPrivateCarSlot(), carPark.getPrivateCarFee(), carPark.getMotorSlot(), carPark.getMotorFee(),carPark.getPhotoLink(),
 				carPark.getCarParkID());
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 96d257aae0419285385021dc88cdff63f6759219
 	}
 
 	public void deleteCarPark(int carParkID) {
