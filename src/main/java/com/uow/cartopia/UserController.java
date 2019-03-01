@@ -119,7 +119,7 @@ public class UserController {
 		}else {
 			System.out.println("Credit Update failed");
 		}
-		return "redirect:/driverHome";
+		return "redirect:/driverPage";
 	}
 	
 
