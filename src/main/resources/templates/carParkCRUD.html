@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head th:include="adminNav :: head">
+<body id="admin">
+	<div class="d-flex" id="wrapper">
+		<nav th:include="adminNav :: nav"></nav>
+		<!-- This is the content -->
+		<div id="page-content-wrapper">
+			<div class="container-fluid mt-4 row">
+				<div class="col-12">
+					<h3>CarPark Overview</h3>
+				</div>
+
+				<div class="col-sm-4">
+					<div class="shadow card">
+						<div class="card-body">
+							<h5 class="card-title">Total Carpark Number</h5>
+							<p class="card-text">50</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="shadow card">
+						<div class="card-body">
+							<h5 class="card-title">New Carpark</h5>
+							<p class="card-text">20</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<a href="/admin/carpark/create" class="shadow card btn btn-primary">
+						<div class="card-body">
+							<h5 class="card-title">Create New CarPark</h5>
+						</div>
+					</a>
+				</div>
+				<div class="col-12 mt-4">
+					<div class="shadow card">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-6">	
+									<h5 class="card-title">Carparks</h5>
+								</div>
+								<div class="col-6">
+									<form>
+										<div class="form-group">
+										 <input
+												type="email" class="form-control" id="exampleInputEmail1"
+												aria-describedby="emailHelp" placeholder="Search By Keywords...">
+										</div>
+									</form>
+								</div>
+							</div>
+							<table class="table">
+								<thead class="bg-primary">
+									<tr >
+										<th  scope="col">CarParkId</th>
+										<th scope="col">Name</th>
+										<th scope="col">Address</th>
+										<th scope="col">Available Slot</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr onclick="location.href='/admin/carpark/read'">
+										<th scope="row">1</th>
+										<td>Wilson</td>
+										<td>111 Chai Wan rd</td>
+										<td>30</td>
+									</tr>
+									<tr>
+										<th scope="row">2</th>
+										<td>Jacob</td>
+										<td>222 North Point rd</td>
+										<td>14</td>
+									</tr> 
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Content End -->
+	</div>
+</body>
+</html>

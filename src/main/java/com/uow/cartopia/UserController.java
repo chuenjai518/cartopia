@@ -36,17 +36,25 @@ public class UserController {
 //		Login login = new Login();
 //		login.setUsername("user");
 //		login.setPassword("user");
-		int userID = userService.loginProcess(login);
-		if(userID == 0) {
+		User user = userService.loginProcess(login);
+		if(user == null) {
 			model.addFlashAttribute("message", "Incorrect username or password!");
 			return new RedirectView("login");
 		}
-		session.setAttribute("userID", userID);
-		return new RedirectView("index");
+		session.setAttribute("userID", user.getUserID());
+		session.setAttribute("username", login.getUsername());
+		session.setAttribute("roleID", user.getRoleID());
+		if(user.getRoleID()==1) {
+			return new RedirectView("driverPage");
+		}else if(user.getRoleID() == 2) {
+			return new RedirectView("admin");
+		}else{
+			return new RedirectView("cpo");
+		}
+			
 	}
 	
-	//Need change to Post
-	@PostMapping("/logout")
+	@GetMapping("/logout")
 	public String logout(Model model, HttpSession session) {
 		
 		if(session.getAttribute("userID") != null) {
@@ -62,9 +70,6 @@ public class UserController {
 	
 	@PostMapping("/registerProcess")
 	public RedirectView registerProcess(@ModelAttribute User user,RedirectAttributes model, HttpSession session) {
-		Login login = new Login();
-		login.setUsername("user");
-		login.setPassword("user");
 		boolean valid = userService.registerProcess(user);
 		if(!valid) {
 			model.addFlashAttribute("message", "username has been used!");
@@ -103,6 +108,12 @@ public class UserController {
 			System.out.println("Credit Update failed");
 		}
 		return "redirect:/driver/"+ driver.getDriverID();
+	}
+	
+	//Need change to Post
+	@GetMapping("/booking/{carParkID}")
+	public void bookingCarPark(Model model, HttpSession session, @PathVariable("carParkID") Integer carParkID) {
+		
 	}
 	
 	

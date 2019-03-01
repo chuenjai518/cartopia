@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head th:fragment="head">
+    <meta charset="utf-8" />
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/javascript.js}"></script>
+    <div th:fragment="nav">
+    		<nav id="sidebar-wrapper" class="bg-light border-right">
+    			<div class="sidebar-heading brandFont">Filter</div>
+    			  <div id="navItem" class="list-group list-group-flush">
+			        <div class="list-group-item list-group-item-action bg-light">No. of remaining parking space</div>
+			        <a href="#" class="list-group-item list-group-item-action bg-light">10</a>
+			        <a href="#" class="list-group-item list-group-item-action bg-light">20</a>
+			        <a href="#" class="list-group-item list-group-item-action bg-light">50</a>
+			        <a href="#" class="list-group-item list-group-item-action bg-light">100</a>
+			        <a href="#" class="list-group-item list-group-item-action bg-light">200</a>
+			      </div>
+    		</nav>
+    </div>
+  </head>
+</html>

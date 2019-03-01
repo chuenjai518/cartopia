@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head th:include="adminNav :: head">
+<body id="admin">
+	<div class="d-flex" id="wrapper">
+		<nav th:include="adminNav :: nav"></nav>
+		<!-- This is the content -->
+		<div id="page-content-wrapper">
+			<div class="container-fluid mt-4 row">
+				<div class="col-12">
+					<h3>User Info</h3>
+				</div>
+				<div class="col-12">
+					<div class="shadow card">
+						<div class="card-body">
+							<h4 class="card-title">wilson</h4>
+							<div class="row">
+								<p class="card-text col">Address: 111</p>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<!-- Member -->
+				<div id="member-wrapper" class="col-12">
+					<div class="row">
+						<div class="col-12 col-sm-12 col-md-12 col-lg-8 mt-4">
+							<div id="parkingRecord" class=" card shadow">
+								<div class="card-body">
+									<h5 class="card-title">Parking History</h5>
+									<table class="table">
+										<thead class="bg-primary">
+											<tr>
+												<th scope="col">Car License</th>
+												<th scope="col">Time</th>
+												<th scope="col">Parking Fee</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>AA 1231</td>
+												<td>17:00 - 20:00</td>
+												<td>$60</td>
+											</tr>
+											<tr>
+												<td>AA 1231</td>
+												<td>11:00 - 21:00</td>
+												<td>$200</td>
+											</tr>
+											<tr>
+												<td>AA 1231</td>
+												<td>17:00 - 20:00</td>
+												<td>$60</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="col-12 col-sm-12 col-md-12 col-lg-4 mt-4">
+							<div class="card shadow">
+								<div class="card-body">
+									<h5 class="card-title">Slot Status</h5>
+									<table class="table">
+										<thead class="bg-primary">
+											<tr>
+												<th scope="col">Private Car</th>
+												<th scope="col">Motor</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<th scope="row">20</th>
+												<td>30</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Member -->
+			</div>
+		</div>
+		<!-- Content End -->
+	</div>
+</body>
+</html>

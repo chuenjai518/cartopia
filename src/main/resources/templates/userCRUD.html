@@ -62,26 +62,13 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr onclick="location.href='/admin/user/read'">
-										<th scope="row">1</th>
-										<td>Mark</td>
-										<td>Otto</td>
-										<td>aaa@aaa.com</td>
-										<td>Member</td>
-									</tr>
-									<tr>
-										<th scope="row">2</th>
-										<td>Jacob</td>
-										<td>Thornton</td>
-										<td>BBB@BBB.com</td>
-										<td>CarPark Owner</td>
-									</tr>
-									<tr>
-										<th scope="row">3</th>
-										<td>Larry</td>
-										<td>the Bird</td>
-										<td>CCC@CCC.COM</td>
-										<td>Member</td>
+									<!-- <tr th:each="user : ${userList}" th:onclick="'location.href=/admin/user/read/\''+${user.getUserID()}+'\'"> -->
+									<tr th:each="user : ${userList}" th:onclick="'location.href=\''+ @{/admin/user/read/{id} (id=${user.getUserID()})}+'\''">  
+										<th th:text="${user.getUserID()}" scope="row"></th>
+										<td th:text="${user.getFirstName()}"></td>
+										<td th:text="${user.getLastName()}"></td>
+										<td th:text="${user.getEmail()}"></td>
+										<td th:text="${user.getRoleID()}"></td>
 									</tr>
 								</tbody>
 							</table>
