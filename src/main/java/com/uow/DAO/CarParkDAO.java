@@ -45,8 +45,8 @@ public class CarParkDAO{
 	
 	public void editCarPark(CarPark carPark) {
 	System.out.println("EXCUTE INSERT CarParkID - "+ carPark.getCarParkID());
-	db.update("UPDATE carpark SET name = ? , address = ? , description = ? , openTime = ? , closeTime = ? WHERE carParkID = ?" ,
-			carPark.getName(), carPark.getAddress(), carPark.getDescription(), carPark.getOpenTime(), carPark.getCloseTime(),carPark.getCarParkID());
+	db.update("UPDATE CarPark SET name = ? , description = ? , openTime = ? , closeTime = ? WHERE carParkID = ?" ,
+			carPark.getName(), carPark.getDescription(), carPark.getOpenTime(), carPark.getCloseTime(),carPark.getCarParkID());
 	}
 
 	public void deleteCarPark(CarPark carPark) {
