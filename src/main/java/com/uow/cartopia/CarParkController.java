@@ -20,13 +20,13 @@ public class CarParkController {
 	@Autowired
 	CarParkService carParkService;
 	
-	@GetMapping("carpark/{carParkID}")
+	@GetMapping("carparkInfo/{carParkID}")
 	public String carpark(Model model, @PathVariable("carParkID") Integer id) {
 		CarPark carPark = carParkService.getCarPark(id);
-		List<CarPark> list = carParkService.getAllCarPark();
-		model.addAttribute("carParkList", list);
-//		model.addAttribute("carPark", carPark);
-		return "index";
+		//List<CarPark> list = carParkService.getAllCarPark();
+		//model.addAttribute("carParkList", list);
+		model.addAttribute("carPark", carPark);
+		return "carparkInfo";
 	}
 	
 
@@ -54,6 +54,12 @@ public class CarParkController {
 	@PostMapping("deleteCarPark")
 	public String deleteCarPark(@ModelAttribute CarPark carPark,Model model) {
 		carParkService.deleteCarPark(carPark);
+		return ("redirect:/admin/carpark");
+	}
+	
+	@PostMapping("getCarparkRealTimeSpace")
+	public String getCarparkSpace(@ModelAttribute CarPark carPark,Model model) {
+		carParkService.getCarparkRealTimeSpace(carPark);
 		return ("redirect:/admin/carpark");
 	}
 }

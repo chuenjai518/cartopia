@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import com.uow.Model.Booking;
 import com.uow.Model.CarPark;
 import com.uow.Model.Driver;
 import com.uow.Model.DriverCar;
@@ -30,6 +31,13 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
+	
+	@PostMapping("/userInfo/{userID}")
+	public String user(Model model, @PathVariable("userID") Integer id) {
+		User user = userService.getUserInfo(id);
+		model.addAttribute("user", user);
+		return "userInfo";
+	}
 	
 	//Need change to Post
 	@PostMapping("/loginProcess")
@@ -115,8 +123,11 @@ public class UserController {
 	
 	//Need change to Post
 	@GetMapping("/booking/{carParkID}")
-	public void bookingCarPark(Model model, HttpSession session, @PathVariable("carParkID") Integer carParkID) {
-		
+	public void bookingCarPark(Model model, HttpSession session, @ModelAttribute Booking booking) {
+//		if(session.getAttribute("userID") == null) {
+//			return "redirect:/login";
+//		}
+		userService.booking(booking);	
 		
 	}
 	
@@ -140,6 +151,9 @@ public class UserController {
 	
 	@GetMapping("driverProfile/addCar")
 	public String addCar(@ModelAttribute DriverCar car, Model model, HttpSession session) {
+//		if(session.getAttribute("userID") == null) {
+//		return "redirect:/login";
+//	}
 		Driver driver = (Driver)session.getAttribute("driver");
 		
 //		DriverCar car = new DriverCar();
@@ -151,10 +165,17 @@ public class UserController {
 		return "redirect:/driverProfile";
 	}
 	
-	
-	
+	@PostMapping ("driverProfile/updateCar")
+	public String updateCar(@ModelAttribute DriverCar car,Model model) {
+		userService.updateCar(car);
+		return "redirect:/driverProfile";
+	}
 
-	
+	@PostMapping ("driverProfile/deleteCar")
+	public String deleteCar(@ModelAttribute DriverCar car,Model model) {
+		userService.deleteCar(car);
+		return "redirect:/driverProfile";
+	}
 	
 	
 }
