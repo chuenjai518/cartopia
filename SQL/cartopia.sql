@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.12, for macos10.13 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.15, for macos10.14 (x86_64)
 --
--- Host: 127.0.0.1    Database: CarPark
+-- Host: localhost    Database: cartopia
 -- ------------------------------------------------------
--- Server version	8.0.12
+-- Server version	8.0.15
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -51,13 +51,13 @@ DROP TABLE IF EXISTS `CarPark`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `CarPark` (
   `carParkID` int(11) NOT NULL AUTO_INCREMENT,
-  `name` longtext,
-  `address` longtext,
+  `name` longtext COLLATE utf8mb4_unicode_ci,
+  `address` longtext COLLATE utf8mb4_unicode_ci,
   `openTime` datetime DEFAULT NULL,
   `closeTime` datetime DEFAULT NULL,
-  `description` longtext,
+  `description` longtext COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`carParkID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -66,7 +66,7 @@ CREATE TABLE `CarPark` (
 
 LOCK TABLES `CarPark` WRITE;
 /*!40000 ALTER TABLE `CarPark` DISABLE KEYS */;
-INSERT INTO `CarPark` VALUES (1,'Hello Car Park',NULL,NULL,NULL,NULL);
+INSERT INTO `CarPark` VALUES (1,'Hello Car Park',NULL,NULL,NULL,NULL),(2,'Carpark',NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `CarPark` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,6 +90,7 @@ CREATE TABLE `CarParkOwnerCarPark` (
 
 LOCK TABLES `CarParkOwnerCarPark` WRITE;
 /*!40000 ALTER TABLE `CarParkOwnerCarPark` DISABLE KEYS */;
+INSERT INTO `CarParkOwnerCarPark` VALUES (3,1),(3,2);
 /*!40000 ALTER TABLE `CarParkOwnerCarPark` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,7 +155,7 @@ DROP TABLE IF EXISTS `CarType`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `CarType` (
   `carTypeID` int(11) NOT NULL AUTO_INCREMENT,
-  `carType` varchar(45) DEFAULT NULL,
+  `carType` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`carTypeID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -204,7 +205,7 @@ CREATE TABLE `DriverCar` (
   `driverCarID` int(11) NOT NULL AUTO_INCREMENT,
   `driverID` int(11) NOT NULL,
   `carTypeID` int(11) NOT NULL,
-  `licensePlateNum` varchar(45) NOT NULL,
+  `licensePlateNum` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`driverCarID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -219,56 +220,6 @@ LOCK TABLES `DriverCar` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Gift`
---
-
-DROP TABLE IF EXISTS `Gift`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `Gift` (
-  `giftID` int(11) NOT NULL AUTO_INCREMENT,
-  `giftName` varchar(45) DEFAULT NULL,
-  `available` tinyint(4) DEFAULT '1',
-  `giftDescription` longtext,
-  PRIMARY KEY (`giftID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Gift`
---
-
-LOCK TABLES `Gift` WRITE;
-/*!40000 ALTER TABLE `Gift` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Gift` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `GiftHistory`
---
-
-DROP TABLE IF EXISTS `GiftHistory`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `GiftHistory` (
-  `giftHistyoryID` int(11) NOT NULL AUTO_INCREMENT,
-  `userID` int(11) NOT NULL,
-  `giftID` int(11) NOT NULL,
-  `exchangeTime` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`giftHistyoryID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `GiftHistory`
---
-
-LOCK TABLES `GiftHistory` WRITE;
-/*!40000 ALTER TABLE `GiftHistory` DISABLE KEYS */;
-/*!40000 ALTER TABLE `GiftHistory` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `Role`
 --
 
@@ -277,9 +228,9 @@ DROP TABLE IF EXISTS `Role`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `Role` (
   `roleID` int(11) NOT NULL AUTO_INCREMENT,
-  `role` varchar(45) DEFAULT NULL,
+  `role` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`roleID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -288,6 +239,7 @@ CREATE TABLE `Role` (
 
 LOCK TABLES `Role` WRITE;
 /*!40000 ALTER TABLE `Role` DISABLE KEYS */;
+INSERT INTO `Role` VALUES (1,'user'),(2,'admin'),(3,'cpo');
 /*!40000 ALTER TABLE `Role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,7 +252,7 @@ DROP TABLE IF EXISTS `Status`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `Status` (
   `statusID` int(11) NOT NULL AUTO_INCREMENT,
-  `status` varchar(45) DEFAULT NULL,
+  `status` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`statusID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -327,7 +279,7 @@ CREATE TABLE `Transaction` (
   `endTime` datetime DEFAULT NULL,
   `slotID` int(11) NOT NULL,
   `totalAmount` double NOT NULL,
-  `licensePlateNum` varchar(45) NOT NULL,
+  `licensePlateNum` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`transactionID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -351,10 +303,10 @@ DROP TABLE IF EXISTS `User`;
 CREATE TABLE `User` (
   `userID` int(11) NOT NULL AUTO_INCREMENT,
   `roleID` int(11) NOT NULL,
-  `username` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `username` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -363,6 +315,7 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
+INSERT INTO `User` VALUES (1,1,'user','user'),(2,2,'admin','admin'),(3,3,'cop','cpo');
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -375,4 +328,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-28 21:17:10
+-- Dump completed on 2019-03-01 13:09:00
