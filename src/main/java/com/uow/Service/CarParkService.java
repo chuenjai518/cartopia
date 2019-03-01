@@ -37,8 +37,8 @@ public class CarParkService {
 		carParkDAO.deleteCarPark(carPark);
 	}
 	
-	public int getCarparkSpace(CarPark carPark) {
-		return carParkDAO.getCarparkSpace(carPark);
+	public int getCarparkRealTimeSpace(CarPark carPark) {
+		return carParkDAO.getCarparkRealTimeSpace(carPark);
 	}
 	
 }

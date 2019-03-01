@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.uow.Model.Booking;
 import com.uow.Model.CarPark;
+import com.uow.Model.Booking;
 import com.uow.Model.CarParkRowMapper;
 import com.uow.Model.Driver;
 import com.uow.Model.DriverCar;
@@ -153,7 +154,10 @@ public class UserDAO {
 
 	public void updateCar(DriverCar car) {
 		String sql = "UPDATE DriverCar SET carTypeID = ?, licensePlateNum = ? WHERE DriverCarID =?";
+
 		db.update(sql, car.getCarTypeID(), car.getLicensePlateNum(), car.getDriverCarID());
+
+
 	}
 
 	public void booking(Booking booking) {

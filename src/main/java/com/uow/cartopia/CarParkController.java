@@ -57,9 +57,9 @@ public class CarParkController {
 		return ("redirect:/admin/carpark");
 	}
 	
-	@PostMapping("getCarparkSpace")
+	@PostMapping("getCarparkRealTimeSpace")
 	public String getCarparkSpace(@ModelAttribute CarPark carPark,Model model) {
-		carParkService.getCarparkSpace(carPark);
+		carParkService.getCarparkRealTimeSpace(carPark);
 		return ("redirect:/admin/carpark");
 	}
 }

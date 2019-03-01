@@ -32,6 +32,13 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	@PostMapping("/userInfo/{userID}")
+	public String user(Model model, @PathVariable("userID") Integer id) {
+		User user = userService.getUserInfo(id);
+		model.addAttribute("user", user);
+		return "userInfo";
+	}
+	
 	//Need change to Post
 	@PostMapping("/loginProcess")
 	public RedirectView loginProcess(@ModelAttribute Login login,RedirectAttributes model, HttpSession session) {
