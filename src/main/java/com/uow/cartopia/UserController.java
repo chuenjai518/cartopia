@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import com.uow.Model.Booking;
 import com.uow.Model.CarPark;
 import com.uow.Model.Driver;
 import com.uow.Model.DriverCar;
@@ -115,8 +116,11 @@ public class UserController {
 	
 	//Need change to Post
 	@GetMapping("/booking/{carParkID}")
-	public void bookingCarPark(Model model, HttpSession session, @PathVariable("carParkID") Integer carParkID) {
-		
+	public void bookingCarPark(Model model, HttpSession session, @ModelAttribute Booking booking) {
+//		if(session.getAttribute("userID") == null) {
+//			return "redirect:/login";
+//		}
+		userService.booking(booking);	
 		
 	}
 	
@@ -140,6 +144,9 @@ public class UserController {
 	
 	@GetMapping("driverProfile/addCar")
 	public String addCar(@ModelAttribute DriverCar car, Model model, HttpSession session) {
+//		if(session.getAttribute("userID") == null) {
+//		return "redirect:/login";
+//	}
 		Driver driver = (Driver)session.getAttribute("driver");
 		
 //		DriverCar car = new DriverCar();
