@@ -205,6 +205,11 @@ public class UserDAO {
 		String sql = "DELETE FROM DriverCar WHERE driverCarID = ?";
 		db.update(sql, driverCarID);
 	}
+	
+	public void resetPassword(String password, int userID) {
+		String sql = "UPDATE User SET password = ? WHERE userID =?";
+		db.update(sql, password, userID);
+	}
 
 
 }
