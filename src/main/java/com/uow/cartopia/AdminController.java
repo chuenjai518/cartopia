@@ -126,8 +126,8 @@ public class AdminController {
 		return "carparkC";
 	}
 
-	@GetMapping("admin/carpark/read")
-	public String carparkRead(Model model, HttpSession session) {
+	@GetMapping("admin/carpark/read/{carparkID}")
+	public String carparkRead(Model model,@PathVariable("userID") Integer id, HttpSession session) {
 //		if(session.getAttribute("userID") == null) {
 //		return "redirect:/login";
 //	}

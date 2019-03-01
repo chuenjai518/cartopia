@@ -7,9 +7,11 @@
 		<!-- This is the content -->
 		<div id="page-content-wrapper">
 			<div class="container-fluid mt-4 row">
-				<div class="col-12">
-					<h3>User Info</h3>
-					<a href="/admin/user/2" style="right:0" class="btn-primary"> Edit </a>
+				<div class="col-11">
+					<h3>Car Park Owner Info</h3>
+				</div>
+				<div class="col-1">
+					<a th:href="@{/admin/user/update/{id} (id=${user.getUserID()})}" class="shadow btn btn-primary">Edit</a>
 				</div>
 				<div class="col-12">
 					<div class="shadow card">
