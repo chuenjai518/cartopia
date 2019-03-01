@@ -79,4 +79,8 @@ public class UserService {
 	public void booking(Booking booking) {
 		userDAO.booking(booking);
 	}
+	
+	public int countNewDriver() {
+		return userDAO.countNewDriver();
+	}
 }
