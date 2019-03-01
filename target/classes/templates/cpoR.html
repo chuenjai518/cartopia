@@ -9,11 +9,12 @@
 			<div class="container-fluid mt-4 row">
 				<div class="col-12">
 					<h3>User Info</h3>
+					<a href="/admin/user/2" style="right:0" class="btn-primary"> Edit </a>
 				</div>
 				<div class="col-12">
 					<div class="shadow card">
 						<div class="card-body">
-							<h4 class="card-title">Allen Leung</h4>
+							<h4 th:text="${username}" class="card-title"></h4>
 							<div class="row">
 								<p class="card-text col">Email: aaa@aaa.com</p>
 								<p class="card-text col">User Type: Carpark Owner</p>

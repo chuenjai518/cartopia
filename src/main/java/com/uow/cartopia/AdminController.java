@@ -87,7 +87,23 @@ public class AdminController {
 			return "redirect:/admin/user";
 		}
 	}
-
+	
+	@GetMapping("admin/user/update/{userID}")
+	public String userUpdate(Model model, @PathVariable("userID") Integer id, HttpSession session) {
+		User user = userService.getUserInfo(id);
+		model.addAttribute("user", user);
+		if (user.getRoleID() == 1) {
+			Driver driver = userService.getDriverInfo(id);
+			model.addAttribute("driver", driver);
+			return "userU";
+		} else if (user.getRoleID() == 3) {
+			List<CarPark> carParkList = userService.getCPOCarPark(id);
+			model.addAttribute("carParkList", carParkList);
+			return "cpoU";
+		} 
+		return "userCRUD";
+	}
+	
 	@GetMapping("admin/carpark")
 	public String carparkOverview(Model model, HttpSession session) {
 //		if(session.getAttribute("userID") == null) {

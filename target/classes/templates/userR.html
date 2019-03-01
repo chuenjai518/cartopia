@@ -7,17 +7,20 @@
 		<!-- This is the content -->
 		<div id="page-content-wrapper">
 			<div class="container-fluid mt-4 row">
-				<div class="col-12">
+				<div class="col-11">
 					<h3>User Info</h3>
+				</div>
+				<div class="col-1">
+					<a th:href="@{/admin/user/update/{id} (id=${user.getUserID()})}" class="shadow btn btn-primary">Edit</a>
 				</div>
 				<div class="col-12">
 					<div class="shadow card">
 						<div class="card-body">
-							<h4 class="card-title">Allen Leung</h4>
+							<h4 th:text="${user.getUsername()}" class="card-title"></h4>
 							<div class="row">
-								<p class="card-text col">Email: aaa@aaa.com</p>
-								<p class="card-text col">User Type: Member</p>
-								<p class="card-text col">Credit: $50</p>
+								<p th:text="'Email: '+${user.getEmail()}" class="card-text col">Email:</p>
+								<p th:text="'User Type: '+${user.getRoleID()}"class="card-text col">User Type: Member</p>
+								<p th:text="'Credit: '+${driver.getCredit()}"class="card-text col">Credit: $50</p>
 							</div>
 
 						</div>
