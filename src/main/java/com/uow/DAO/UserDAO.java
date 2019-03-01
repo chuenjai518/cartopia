@@ -149,8 +149,35 @@ public class UserDAO {
 			return null;
 		}
 	}
+<<<<<<< HEAD
 	public void updateCar(DriverCar car) {
 		String sql = "UPDATE DriverCar SET carTypeID = ?, licensePlateNum = ? WHERE DriverCarID =?";
 			db.update(sql, car.getCarTypeID(), car.getLicensePlateNum(),car.getDriverCarID());
+=======
+
+	public void booking(Booking booking) {
+		String sql = "INSERT INTO DriverCar(carParkID, driverCarID) " + "Values(?, ?)";
+		db.update(sql, booking.getCarParkID(), booking.getDriverCarID());
 	}
+	
+	public int countNewDriver() {
+		int result;
+		String sql = "SELECT COUNT(driverID) FROM Driver WHERE createDate >= CURDATE() + interval 1 MONTH;";
+		result = db.queryForObject(sql, Integer.class);
+		return result;
+>>>>>>> 645dfc38c2db89935a574edc6f411644318539b0
+	}
+	
+	public void addComment() {
+		String sql = "";
+		
+	}
+	
+	public String getComment() {
+		String sql = "";
+		String cm = "";
+		return cm;
+	}
+	
+	
 }
