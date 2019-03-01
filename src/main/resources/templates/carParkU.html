@@ -11,30 +11,37 @@
 
 				<div class="shadow card">
 					<div class="card-body">
-						<form th:action="@{/updateCarPark}" th:object="${carpark}">
+						<form th:action="@{/updateCarPark}" th:object="${carPark}">
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label th:field="*{firstName}" for="FirstName">First
-										Name</label> <input th:value="${user.getFirstName()}" type="text"
+									<label for="Name">Name</label> <input
+										th:field="*{name}"  th:value="${carPark.getName()}" type="text"
 										class="form-control" id="FirstName"
 										placeholder="First Name...">
 								</div>
-								<div class="form-group col-md-6">
-									<label for="LastName">Last Name</label> <input type="text"
-										th:field="*{lastName}" th:value="${user.getLastName()}"
-										class="form-control" id="LastName" placeholder="Last Name...">
-								</div>
 							</div>
-							<div class="form-row">
-								<div class="form-group col-md-12">
-									<label for="credit">Car Park:</label>
-									<div th:each="cp : ${carParkList}"class="form-check form-check-inline">
-										<input th:text="${cp.getName()}" class="form-check-input" type="checkbox"
-											id="inlineCheckbox1" value="option1"> <label
-											class="form-check-label" for="inlineCheckbox1">1</label>
+								<div class="form-row">
+									<div class="form-group col-md-6">
+										<label  for="OpenTime">Open Time</label> <input
+											th:field="*{openTime}" th:value="${carPark.getOpenTime()}" type="text"
+											class="form-control" id="OpenTime"
+											placeholder="OpenTime...">
+									</div>
+									<div class="form-group col-md-6">
+										<label  for="CloseTime">Close Time</label> <input
+											th:field="*{closeTime}" th:value="${carPark.getCloseTime()}" type="text"
+											class="form-control" id="CloseTime"
+											placeholder="Close Time...">
+									</div>
+									<div class="form-group col-md-6">
+										<label  for="Description">Description</label> <textarea
+											th:field="*{description}" th:value="${carPark.getDescription()}" type="text"
+											class="form-control" id="Description"
+											placeholder="Description"></textarea>
 									</div>
 								</div>
-							</div>
+							
+
 							<span class="errorText"
 								th:text="${message != null} ? ${message} : ''"></span><br>
 							<br />

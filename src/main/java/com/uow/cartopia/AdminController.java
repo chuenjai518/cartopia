@@ -146,10 +146,12 @@ public class AdminController {
 	
 	@GetMapping("admin/carpark/update/{carParkID}")
 	public String carparkUpdate(Model model, @PathVariable("carParkID") Integer id, HttpSession session) {
-		
+		CarPark carPark = carParkService.getCarPark(id);
+		model.addAttribute("carPark", carPark);
 		return "carParkU";
 	}
-
+	
+	
 	@PostMapping("/adminCreateUserProcess")
 	public RedirectView createUserProcess(@ModelAttribute User user, RedirectAttributes model, HttpSession session) {
 //		if(session.getAttribute("userID") == null) {
