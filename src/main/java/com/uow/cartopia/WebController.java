@@ -70,8 +70,7 @@ public class WebController {
 		model.addAttribute("carParkList", list);
 		return "home";
 	}
-<<<<<<< HEAD
-=======
+
 
 	@GetMapping("/carparkInfo")
 	public String CarParkInfo(Model model) {
@@ -90,5 +89,5 @@ public class WebController {
 		List<DriverCar> list = userService.getAllCar(driverID);
 		return new ResponseEntity<List<DriverCar>>(list, HttpStatus.OK);
 	}
->>>>>>> 3fd6ff6539de9ea20772ddf072bfafba1313712d
+
 }
