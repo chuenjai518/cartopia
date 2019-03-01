@@ -47,12 +47,16 @@ public class CarParkController {
 	@PostMapping("updateCarPark")
 	public String editCarPark(@ModelAttribute CarPark carPark,Model model) {
 		carParkService.updateCarPark(carPark);
+<<<<<<< HEAD
+=======
+
+>>>>>>> fdfa66064ee6ea6d45da04d8f5e76e823fc993c7
 		return ("redirect:/admin/carpark");	
 	}
 	
-	@PostMapping("deleteCarPark")
-	public String deleteCarPark(@ModelAttribute CarPark carPark,Model model) {
-		carParkService.deleteCarPark(carPark);
+	@PostMapping("deleteCarPark/{carParkID}")
+	public String deleteCarPark(@PathVariable("carParkID") Integer carParkID,Model model) {
+		carParkService.deleteCarPark(carParkID);
 		return ("redirect:/admin/carpark");
 	}
 	
