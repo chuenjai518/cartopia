@@ -74,4 +74,7 @@ public class UserService {
 	public List<DriverCar> getAllCar(){
 		return userDAO.getAllCar();
 	}
+	public void updateCar(DriverCar car) {
+		userDAO.updateCar(car);
+	}
 }

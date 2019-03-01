@@ -149,5 +149,8 @@ public class UserDAO {
 			return null;
 		}
 	}
-
+	public void updateCar(DriverCar car) {
+		String sql = "UPDATE DriverCar SET carTypeID = ?, licensePlateNum = ? WHERE DriverCarID =?";
+			db.update(sql, car.getCarTypeID(), car.getLicensePlateNum(),car.getDriverCarID());
+	}
 }

@@ -151,8 +151,11 @@ public class UserController {
 		return "redirect:/driverProfile";
 	}
 	
-	
-	
+	@PostMapping ("driverProfile/updateCar")
+	public String updateCar(@ModelAttribute DriverCar car,Model model) {
+		userService.updateCar(car);
+		return "redirect:/driverProfile";
+	}
 
 	
 	
