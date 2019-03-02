@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uow.DAO.CarParkDAO;
+import com.uow.Model.Bookmark;
 import com.uow.Model.CarPark;
 
 @Service
@@ -40,5 +41,7 @@ public class CarParkService {
 	public int getCarparkRealTimeSpace(CarPark carPark) {
 		return carParkDAO.getCarparkRealTimeSpace(carPark);
 	}
-	
+	public List<Bookmark> getBookmark(int userID){
+		return getBookmark(userID);
+	}
 }
