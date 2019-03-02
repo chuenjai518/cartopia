@@ -42,12 +42,10 @@ public class UserController {
 		return "userInfo";
 	}
 	
-	@PostMapping("/transaction")
-	public String transcation(Model model, @PathVariable("driverID") Integer id) {
-		Transaction transaction = userService.getTransactionRecord(id);
-		model.addAttribute("transaction", transaction);
-		return "transaction";
-	}
+	
+	
+	
+	
 	
 	//Need change to Post
 	@PostMapping("/loginProcess")
@@ -148,6 +146,9 @@ public class UserController {
 		 return "redirect:/carparkInfo/"+carParkID;
 	}
 	
+
+	
+	
 	@GetMapping("driverPage")
 	public String driverPage(Model model, HttpSession session) {
 		if(session.getAttribute("userID") == null) {
@@ -165,7 +166,7 @@ public class UserController {
 		return "driverHome";
 	}
 	
-
+	
 
 	
 	
@@ -231,5 +232,6 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "cpoR";
 	}
+	
 	
 }
