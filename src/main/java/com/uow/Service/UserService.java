@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.uow.Model.Booking;
+import com.uow.Model.Bookmark;
 import com.uow.DAO.UserDAO;
 import com.uow.Model.CarPark;
 import com.uow.Model.Driver;
@@ -83,8 +83,8 @@ public class UserService {
 	public void deleteCar(int driverCarID) {
 		userDAO.deleteCar(driverCarID);
 	}
-	public void booking(Booking booking) {
-		userDAO.booking(booking);
+	public void bookmark(Bookmark bookmark) {
+		userDAO.bookmark(bookmark);
 	}
 	
 	public void resetPassword(String password, int userID) {
@@ -94,4 +94,5 @@ public class UserService {
 	public void updateUserProcess(User user) {
 		userDAO.updateUserProcess(user);
 	}
+	
 }

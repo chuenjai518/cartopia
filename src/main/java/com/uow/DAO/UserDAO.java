@@ -8,9 +8,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.uow.Model.Booking;
+import com.uow.Model.Bookmark;
 import com.uow.Model.CarPark;
-import com.uow.Model.Booking;
 import com.uow.Model.CarParkRowMapper;
 import com.uow.Model.Driver;
 import com.uow.Model.DriverCar;
@@ -183,9 +182,9 @@ public class UserDAO {
 
 	}
 
-	public void booking(Booking booking) {
-		String sql = "INSERT INTO DriverCar(carParkID, driverCarID) " + "Values(?, ?)";
-		db.update(sql, booking.getCarParkID(), booking.getDriverCarID());
+	public void bookmark(Bookmark bookmark) {
+		String sql = "INSERT INTO userbookmark(carParkID, userID) " + "Values(?, ?)";
+		db.update(sql, bookmark.getCarParkID(), bookmark.getUserID());
 	}
 
 	public int countNewDriver() {
