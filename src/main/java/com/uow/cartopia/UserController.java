@@ -232,5 +232,11 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "cpoR";
 	}
+	@PostMapping("/driverPage/{ID}")
+	public String getBookamrk(@PathVariable("id") Integer id, Model model, HttpSession session) {
+		List<Bookmark> Bookmark = userService.getBookmark(id);
+		model.addAttribute("Bookmark", Bookmark);
+		return "Bookmark";
+	}
 	
 }
