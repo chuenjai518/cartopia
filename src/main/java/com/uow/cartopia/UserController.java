@@ -41,6 +41,7 @@ public class UserController {
 		model.addAttribute("user", user);
 		List<Bookmark> Bookmark = userService.getBookmark(id);
 		model.addAttribute("Bookmark", Bookmark);
+		
 		return "userInfo";
 	}
 	
@@ -127,7 +128,16 @@ public class UserController {
 		return "redirect:/driverPage";
 	}
 	
-
+	@PostMapping("/booking/{carParkID}")
+	public String bookingCarPark(Model model, HttpSession session,@PathVariable("carParkID") Integer carParkID) {
+		if(session.getAttribute("userID") == null) {
+			return "redirect:/login";
+		}
+		int userID = (int)session.getAttribute("userID");
+		userService.bookCarPark(driverCarID, carParkID);
+		
+		 return "redirect:/carparkInfo/"+carParkID;
+	}
 	
 	//Need change to Post
 	@GetMapping("/bookmark/{carParkID}")
@@ -144,8 +154,8 @@ public class UserController {
 		 return "redirect:/carparkInfo/"+carParkID;
 	}
 	
-
-	
+	@GetMapping ("/reserveRecord")
+	public string 
 	
 	@GetMapping("driverPage")
 	public String driverPage(Model model, HttpSession session) {

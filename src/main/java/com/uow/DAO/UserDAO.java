@@ -237,6 +237,9 @@ public class UserDAO {
 		}
 	}
 	
-
+	public void bookCarPark(int driverCarID,int carParkID ) {
+		String sql ="INSERT INTO Booking (carParkID,driverCarID)"+"Values(?, ?)";
+		db.update(sql, carParkID, driverCarID);
+	}
 
 }
