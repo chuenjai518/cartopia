@@ -50,8 +50,9 @@
 						<p></p>
 						<h4>Comment</h4>
 						<hr />
-						<textarea class="textarea ml-4 mr-4 font-control"
-							placeholder="Give a comment..."></textarea>
+						<div  th:if="${user.getUserID()}">
+						<textarea class="textarea ml-4 mr-4 font-control" placeholder="Give a comment..."></textarea></div>
+						<div th:unless="${user.getUserID()}">Please Login</div>
 						<p></p>
 						<div class="card-img-center">
 							<a href="#" class="btn btn-primary ">Comment</a>
