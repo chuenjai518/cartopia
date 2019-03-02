@@ -191,7 +191,7 @@ public class UserDAO {
 	}
 	
 	public List<Bookmark> getBookmark(int userID) {
-		String sql = "SELECT userID, carParkID FROM userbookmark";
+		String sql = "SELECT userID, carParkID FROM userbookmark WHERE userID = " + userID;
 		try {
 			RowMapper<Bookmark> rowMapper = new BookmarkRowMapper();
 			return this.db.query(sql, rowMapper, userID);
