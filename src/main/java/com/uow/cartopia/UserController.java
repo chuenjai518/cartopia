@@ -39,14 +39,9 @@ public class UserController {
 	public String user(Model model, @PathVariable("userID") Integer id) {
 		User user = userService.getUserInfo(id);
 		model.addAttribute("user", user);
+		List<Bookmark> Bookmark = userService.getBookmark(id);
+		model.addAttribute("Bookmark", Bookmark);
 		return "userInfo";
-	}
-	
-	@PostMapping("/transaction")
-	public String transcation(Model model, @PathVariable("driverID") Integer id) {
-		Transaction transaction = userService.getTransactionRecord(id);
-		model.addAttribute("transaction", transaction);
-		return "transaction";
 	}
 	
 	//Need change to Post
