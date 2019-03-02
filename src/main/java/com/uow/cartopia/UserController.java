@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.uow.Model.Bookmark;
+import com.uow.Model.Booking;
 import com.uow.Model.CarPark;
 import com.uow.Model.Driver;
 import com.uow.Model.DriverCar;
@@ -155,7 +156,8 @@ public class UserController {
 		Driver driver = userService.getDriverInfo(userID);
 		User user = userService.getUserInfo(userID);
 		List<DriverCar> list = userService.getAllCar(driver.getDriverID());
-		
+		List<Booking> bookingList = userService.getBookingRecord(userID);
+		model.addAttribute("bookingList", bookingList);
 		model.addAttribute("driver", driver);
 		model.addAttribute("user", user);
 		model.addAttribute("carList", list);
