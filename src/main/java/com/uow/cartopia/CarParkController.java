@@ -41,7 +41,6 @@ public class CarParkController {
 			user = userService.getUserInfo(userID);
 		}
 		CarPark carPark = carParkService.getCarPark(carParkID);
-
 		model.addAttribute("user", user);
 		model.addAttribute("carPark", carPark);
 		List<Bookmark> Bookmark = carParkService.getBookmark(userID);
@@ -82,9 +81,10 @@ public class CarParkController {
 		carParkService.getCarparkRealTimeSpace(carPark);
 		return ("redirect:/admin/carpark");
 	}
-
-	@GetMapping("carParkInfo/{id}")
-	public String getBookamrk(@PathVariable("id") Integer id, Model model, HttpSession session) {
-		return "Bookmark";
+	
+	@PostMapping("addComment")
+	public String addComment(@ModelAttribute Comment comment, @PathVariable("carParkID") Integer carParkID, Model model) {
+		carParkService.addComment(comment);
+		return ("redirect:/carparkinfo/" +carParkID);
 	}
 }
