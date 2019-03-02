@@ -96,9 +96,9 @@
 		<h2 class="leftText text-darkblue">Bookmark</h2>
 		<div class="row sm-2 ">
 
-			<div class="col-sm-3">
+			<div th:each="car : ${carList}" class="col-sm-3">
 				<div class="bookmarkCard card mb-4 shadow-sm">
-            		<a href="#"  class="card-header my-0 bookmarkTitle">TEST</a>
+            		<a href="#"  class="card-header my-0 bookmarkTitle" th:text="${car.getName()}">TEST</a>
             		<a href="#" class="d-flex flex-column"><img src="/cartopia/images/carparkPict.jpg" class="bookmarkPhoto card-body "></a>
 				</div>
 			</div>
