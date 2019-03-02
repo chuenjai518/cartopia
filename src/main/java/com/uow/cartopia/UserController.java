@@ -126,7 +126,7 @@ public class UserController {
 			return "redirect:/login";
 		}
 		
-		userService.bookCarPark(driverCarID, carParkID);
+		//userService.bookCarPark(driverCarID, carParkID);
 		
 		 return "redirect:/carparkInfo/"+carParkID;
 	}

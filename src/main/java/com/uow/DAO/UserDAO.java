@@ -231,13 +231,17 @@ public class UserDAO {
 		}
 	}
 	
-	public void bookCarPark(int driverCarID,int carParkID ) {
+	public void bookCarPark(int driverCarID,int carParkID, int carTypeID ) {
 		String sql ="INSERT INTO Booking (carParkID,driverCarID)"+"Values(?, ?)";
 		db.update(sql, carParkID, driverCarID);
+		if(carTypeID == 1) {
+			String sql1 ="UPDATE CarParkSlot SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1;";
+		}
+		
 	}
 	
 	public List<Booking> getBookingRecord(int userID){
-		String sql = "SELECT bookingID, carParkID,driverCarID, bookingTime FROM Booking WHERE userID = ?";
+		String sql = "SELECT b.bookingID, b.carParkID, b.driverCarID, b.bookingTime , c.name, c.address, c.photoLink FROM Booking b, CarPark c, DriverCar dc, Driver d, User u WHERE u.userID = ? and b.carParkID = c.carParkID and dc.driverCarID = b.driverCarID and d.driverID = dc.driverID and d.userID = u.userID;";
 		try {
 			RowMapper<Booking> rowMapper = new BookingRowMapper();
 			return this.db.query(sql, rowMapper, userID);
