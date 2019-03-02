@@ -2,6 +2,7 @@ package com.uow.cartopia;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -126,16 +127,18 @@ public class UserController {
 	
 	//Need change to Post
 	@GetMapping("/bookmark/{carParkID}")
-	public void bookingCarPark(Model model, HttpSession session,@PathVariable("carParkID") Integer carParkID) {
-//		if(session.getAttribute("userID") == null) {
-//			return "redirect:/login";
-//		}
+	public String bookmarkCarPark(Model model, HttpSession session,@PathVariable("carParkID") Integer carParkID,HttpServletRequest request) {
+		if(session.getAttribute("userID") == null) {
+			return "redirect:/login";
+		}
 		int userID = (int)session.getAttribute("userID");
 		Bookmark bookmark = new Bookmark();
 		bookmark.setUserID(userID);
 		bookmark.setCarParkID(carParkID);
 		userService.bookmark(bookmark);	
+		String referer = request.getHeader("Referer");
 		
+		 return "redirect:/carparkInfo/"+carParkID;
 	}
 	
 	@GetMapping("driverPage")
