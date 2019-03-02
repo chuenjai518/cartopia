@@ -160,7 +160,7 @@ public class UserController {
 		User user = userService.getUserInfo(userID);
 		List<DriverCar> list = userService.getAllCar(driver.getDriverID());
 		List<DriverBookmark> bookmark = userService.getBookmark(userID);
-		model.addAttribute("bookmark", bookmark);
+		model.addAttribute("bookmarkList", bookmark);
 		model.addAttribute("driver", driver);
 		model.addAttribute("user", user);
 		model.addAttribute("carList", list);

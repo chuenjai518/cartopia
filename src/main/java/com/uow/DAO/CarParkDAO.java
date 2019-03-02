@@ -76,7 +76,7 @@ public class CarParkDAO {
 	
 	
 	public List<Bookmark> getBookmark(int userID) {
-		String sql = "SELECT userID, carParkID FROM userbookmark WHERE userID = " + userID;
+		String sql = "SELECT userID, carParkID FROM userbookmark WHERE userID = ?";
 		try {
 			RowMapper<Bookmark> rowMapper = new BookmarkRowMapper();
 			return this.db.query(sql, rowMapper, userID);
@@ -86,12 +86,17 @@ public class CarParkDAO {
 	}
 	
 	public List<Comment> getComment(int carParkID) {
-		String sql = "SELECT userID, carParkID, commentID, comment FROM Comment WHERE carParkID = " + carParkID;
+		String sql = "SELECT userID, carParkID, commentID, comment FROM Comment WHERE carParkID = ?";
 		try {
 			RowMapper<Comment> rowMapper = new CommentRowMapper();
 			return this.db.query(sql, rowMapper, carParkID);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
+	}
+	
+	public void addComment(Comment comment) {
+		String sql = "INSERT INTO Comment (commentID, comment, userID, carParkID) values (?,?,?,?)";
+		db.update(sql, comment.getCommentID(), comment.getComment(), comment.getUserID(), comment.getCarParkID());
 	}
 }
