@@ -77,15 +77,10 @@ public class WebController {
 		model.addAttribute("userID",userID);
 		List<CarPark> list = carParkService.getExceptCarPark(userID);
 		model.addAttribute("carParkList", list);
-<<<<<<< HEAD
+
 		bookmark = carParkService.getBookMarkCarPark(userID);
 		model.addAttribute("bookmark", bookmark);
-		
-=======
-		bookmark = carParkService.getBookmark(userID);
-		
-		model.addAttribute("bookmark", bookmark);
->>>>>>> c4d8442326e14e363b6e7749858ebd393d2ff21f
+
 		return "home";
 	}
 	
