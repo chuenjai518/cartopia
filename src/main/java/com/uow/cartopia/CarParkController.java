@@ -40,8 +40,9 @@ public class CarParkController {
 			bookmark = carParkService.getBookmark(userID);
 			user = userService.getUserInfo(userID);
 		}
+		int realTimeSpace = carParkService.getCarparkRealTimeSpace(carParkID);
+		model.addAttribute("realTimeSpace", realTimeSpace);
 		CarPark carPark = carParkService.getCarPark(carParkID);
-
 		model.addAttribute("user", user);
 		model.addAttribute("carPark", carPark);
 		List<Bookmark> Bookmark = carParkService.getBookmark(userID);
@@ -76,15 +77,10 @@ public class CarParkController {
 		carParkService.deleteCarPark(carParkID);
 		return ("redirect:/admin/carpark");
 	}
-
-	@PostMapping("getCarparkRealTimeSpace")
-	public String getCarparkSpace(@ModelAttribute CarPark carPark, Model model) {
-		carParkService.getCarparkRealTimeSpace(carPark);
-		return ("redirect:/admin/carpark");
-	}
-
-	@GetMapping("carParkInfo/{id}")
-	public String getBookamrk(@PathVariable("id") Integer id, Model model, HttpSession session) {
-		return "Bookmark";
+	
+	@PostMapping("addComment")
+	public String addComment(@ModelAttribute Comment comment, @PathVariable("carParkID") Integer carParkID, Model model) {
+		carParkService.addComment(comment);
+		return ("redirect:/carparkinfo/" +carParkID);
 	}
 }
