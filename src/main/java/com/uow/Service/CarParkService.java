@@ -43,7 +43,7 @@ public class CarParkService {
 		return carParkDAO.getCarparkRealTimeSpace(carPark);
 	}
 	public List<Bookmark> getBookmark(int userID){
-		return getBookmark(userID);
+		return carParkDAO.getBookmark(userID);
 	}
 	public List<Comment> getComment(int carParkID){
 		return getComment(carParkID);
