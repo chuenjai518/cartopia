@@ -48,7 +48,6 @@ public class CarParkController {
 		model.addAttribute("Bookmark", Bookmark);
 		List<Comment> Comment = carParkService.getComment(carParkID);
 		model.addAttribute("Comment", Comment);
-		model.addAttribute("Bookmark", bookmark);
 		return "carparkInfo";
 	}
 
