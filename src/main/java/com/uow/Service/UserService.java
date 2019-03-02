@@ -9,6 +9,7 @@ import com.uow.Model.Bookmark;
 import com.uow.DAO.UserDAO;
 import com.uow.Model.CarPark;
 import com.uow.Model.Driver;
+import com.uow.Model.DriverBookmark;
 import com.uow.Model.DriverCar;
 import com.uow.Model.User;
 import com.uow.Model.Login;
@@ -99,7 +100,7 @@ public class UserService {
 		return userDAO.getTransactionRecord(driverID);
 	}
 
-	public List<Bookmark> getBookmark(int userID) {
+	public List<DriverBookmark> getBookmark(int userID) {
 		return userDAO.getBookmark(userID);
 	}
 
