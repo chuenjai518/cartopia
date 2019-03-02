@@ -2,6 +2,8 @@ package com.uow.cartopia;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
+import com.uow.Model.Bookmark;
 import com.uow.Model.CarPark;
 import com.uow.Service.CarParkService;
 
@@ -29,14 +32,11 @@ public class CarParkController {
 		return "carparkInfo";
 	}
 	
-
 	@GetMapping("carpark")
 	public ResponseEntity<List<CarPark>> getAllCarPark() {
 		List<CarPark> list = carParkService.getAllCarPark();
 		return new ResponseEntity<List<CarPark>>(list, HttpStatus.OK);
 	}
-	
-	
 	
 	@PostMapping("addCarPark")
 	public String addCarPark(@ModelAttribute CarPark carPark,Model model) {
@@ -61,5 +61,12 @@ public class CarParkController {
 	public String getCarparkSpace(@ModelAttribute CarPark carPark,Model model) {
 		carParkService.getCarparkRealTimeSpace(carPark);
 		return ("redirect:/admin/carpark");
+	}
+	
+	@GetMapping("carParkInfo/{id}")
+	public String getBookamrk(@PathVariable("id") Integer id, Model model, HttpSession session) {
+		List<Bookmark> Bookmark = carParkService.getBookmark(id);
+		model.addAttribute("Bookmark", Bookmark);
+		return "Bookmark";
 	}
 }
