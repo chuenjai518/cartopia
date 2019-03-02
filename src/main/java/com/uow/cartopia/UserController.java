@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.uow.Model.Bookmark;
 import com.uow.Model.CarPark;
 import com.uow.Model.Driver;
-import com.uow.Model.DriverBookmark;
 import com.uow.Model.DriverCar;
 import com.uow.Model.Login;
 import com.uow.Model.User;
@@ -36,28 +35,7 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-
-	@PostMapping("/userInfo/{userID}")
-	public String user(Model model, @PathVariable("userID") Integer id) {
-		User user = userService.getUserInfo(id);
-		model.addAttribute("user", user);
-		List<Bookmark> Bookmark = userService.getBookmark(id);
-		model.addAttribute("Bookmark", Bookmark);
-		
-		return "userInfo";
-	}
 	
-
-//	@PostMapping("/userInfo/{userID}")
-//	public String user(Model model, @PathVariable("userID") Integer id) {
-//		User user = userService.getUserInfo(id);
-//		model.addAttribute("user", user);
-////		List<Bookmark> Bookmark = carParkService.getBookmark(id);
-////		model.addAttribute("Bookmark", Bookmark);
-//		return "userInfo";
-//	}
-//	
-
 
 	//Need change to Post
 	@PostMapping("/loginProcess")
@@ -142,11 +120,11 @@ public class UserController {
 	}
 	
 	@PostMapping("/booking/{carParkID}")
-	public String bookingCarPark(Model model, HttpSession session,@PathVariable("carParkID") Integer carParkID) {
+	public String bookingCarPark(Model model, HttpSession session,@PathVariable("carParkID") Integer carParkID,@RequestParam Integer driverCarID) {
 		if(session.getAttribute("userID") == null) {
 			return "redirect:/login";
 		}
-		int userID = (int)session.getAttribute("userID");
+		
 		userService.bookCarPark(driverCarID, carParkID);
 		
 		 return "redirect:/carparkInfo/"+carParkID;
@@ -168,20 +146,16 @@ public class UserController {
 	}
 	
 	
-	
 	@GetMapping("driverPage")
 	public String driverPage(Model model, HttpSession session) {
 		if(session.getAttribute("userID") == null) {
 			return "redirect:/login";
-			
 		}
-		
 		int userID = (int) session.getAttribute("userID");
 		Driver driver = userService.getDriverInfo(userID);
 		User user = userService.getUserInfo(userID);
 		List<DriverCar> list = userService.getAllCar(driver.getDriverID());
-		List<DriverBookmark> bookmark = userService.getBookmark(userID);
-		model.addAttribute("bookmarkList", bookmark);
+		
 		model.addAttribute("driver", driver);
 		model.addAttribute("user", user);
 		model.addAttribute("carList", list);
