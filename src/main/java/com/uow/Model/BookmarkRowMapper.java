@@ -10,7 +10,7 @@ public class BookmarkRowMapper implements RowMapper<Bookmark> {
 	@Override
 	public Bookmark mapRow(ResultSet row, int rowNum) throws SQLException {
 		Bookmark bookmark = new Bookmark();
-		bookmark.setCarParkID(row.getInt("carParID"));
+		bookmark.setCarParkID(row.getInt("carParkID"));
 		bookmark.setUserID(row.getInt("userID"));
 		return bookmark;
 	}
