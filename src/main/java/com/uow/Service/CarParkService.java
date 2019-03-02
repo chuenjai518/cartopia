@@ -48,4 +48,7 @@ public class CarParkService {
 	public List<Comment> getComment(int carParkID){
 		return carParkDAO.getComment(carParkID);
 	}
+	public void addComment(Comment comment){
+		carParkDAO.addComment(comment);
+	}
 }
