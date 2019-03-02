@@ -144,7 +144,6 @@ public class UserController {
 		bookmark.setUserID(userID);
 		bookmark.setCarParkID(carParkID);
 		userService.bookmark(bookmark);	
-		String referer = request.getHeader("Referer");
 		
 		 return "redirect:/carparkInfo/"+carParkID;
 	}
