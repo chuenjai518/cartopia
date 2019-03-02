@@ -12,6 +12,8 @@ import com.uow.Model.Bookmark;
 import com.uow.Model.CarPark;
 import com.uow.Model.CarParkRowMapper;
 import com.uow.Model.Driver;
+import com.uow.Model.DriverBookmark;
+import com.uow.Model.DriverBookmarkRowMapper;
 import com.uow.Model.DriverCar;
 import com.uow.Model.DriverCarRowMapper;
 import com.uow.Model.DriverRowMapper;
@@ -190,10 +192,10 @@ public class UserDAO {
 		db.update(sql, bookmark.getCarParkID(), bookmark.getUserID());
 	}
 	
-	public List<Bookmark> getBookmark(int userID) {
-		String sql = "SELECT u.userID, u.carParkID, c.name, c.photoLink FROM userbookmark u, carPark c WHERE UserID = " + userID + "and c.carParkID = u.carParkID";
+	public List<DriverBookmark> getBookmark(int userID) {
+		String sql = "SELECT u.userID, u.carParkID, c.name, c.photoLink FROM userbookmark u, CarPark c WHERE userID = ? and c.carParkID = u.carParkID";
 		try {
-			RowMapper<Bookmark> rowMapper = new BookmarkRowMapper();
+			RowMapper<DriverBookmark> rowMapper = new DriverBookmarkRowMapper();
 			return this.db.query(sql, rowMapper, userID);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
@@ -207,16 +209,6 @@ public class UserDAO {
 		return result;
 	}
 
-	public void addComment() {
-		String sql = "";
-
-	}
-
-	public String getComment() {
-		String sql = "";
-		String cm = "";
-		return cm;
-	}
 	public void deleteCar(int driverCarID) {
 		String sql = "DELETE FROM DriverCar WHERE driverCarID = ?";
 		db.update(sql, driverCarID);

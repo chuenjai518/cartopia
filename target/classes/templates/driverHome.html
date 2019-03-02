@@ -61,7 +61,7 @@
 			</h3>
 			<span class="text-white">Credit: </span><span class="text-white"
 				style="font-size: 16px;" th:text="${driver.getCredit()}"></span> <a
-				href="#addCredit"><img src="/images/add.png"
+				href="#addCredit"><img src="/cartopia/images/add.png"
 				style="height: 23px; weight: 23px;"></a><br>
 		</div>
 	</div>
@@ -73,21 +73,21 @@
 
 
 		<h2 class="leftText text-darkblue">Reservation Record</h2>
-		<div class="p-3 mb-5 rounded" style="background: #ddd;">
+		<div class="p-3 rounded" style="background: #ddd;">
 			
 				<div class="card flex-md-row mb-4 shadow-sm h-md-250 white row">
 					<div class="card-body d-flex flex-column align-items-start">
 						<h3 class="mb-0">
-							<a class="text-gold" href="#">Car Park 1</a>
+							<a class="bookmarkTitle" href="#">Car Park 1</a>
 						</h3>
-
+						<hr>
 						<span class="text-darkblue">Reservation time: </span> <span
 							class="text-darkblue">Address: </span>
 					</div>
 
 					<img
 						class="col-sm-3 card-img-right flex-auto d-none d-lg-block reservationPhoto"
-						src="/images/carparkPict.jpg" />
+						src="/cartopia/images/carparkPict.jpg" />
 				</div>
 			
 		</div>
@@ -96,10 +96,10 @@
 		<h2 class="leftText text-darkblue">Bookmark</h2>
 		<div class="row sm-2 ">
 
-			<div class="col-sm-3">
+			<div th:each="bookmark : ${bookmarkList}" class="col-sm-3">
 				<div class="bookmarkCard card mb-4 shadow-sm">
-            		<a href="#"  class="card-header my-0 bookmarkTitle">TEST</a>
-            		<a href="#" class="d-flex flex-column"><img src="/images/carparkPict.jpg" class="bookmarkPhoto card-body "></a>
+            		<a th:href="@{/carparkInfo/{id} (id=${bookmark.getCarParkID()})}"  class="card-header my-0 bookmarkTitle" th:text="${bookmark.getName()}"></a>
+            		<a th:href="@{/carparkInfo/{id} (id=${bookmark.getCarParkID()})}" class="d-flex flex-column"><img th:src="${bookmark.getPhotoLink()}" class="bookmarkPhoto card-body "></a>
 				</div>
 			</div>
 		</div>
@@ -111,7 +111,7 @@
 		<br> <br>
 		<div class="container">
 			<div class="shadow p-3 mb-5 rounded white">
-				<a href="driverPage"><img src="/images/X.png "
+				<a href="driverPage"><img src="/cartopia/images/X.png "
 					class="rounded float-right" id="cross"></a>
 				<h1>
 					<b>Profile</b>
@@ -141,7 +141,7 @@
 							<thead class="bg-primary">
 								<tr>
 									<th scope="col"><a href="#addCar"
-										style="text-decoration: none;"><img src="/images/add.png"
+										style="text-decoration: none;"><img src="/cartopia/images/add.png"
 											style="height: 23px; weight: 23px;"> Add Car</a><br></th>
 									<th scope="col">Index</th>
 									<th scope="col">License</th>
@@ -152,7 +152,7 @@
 								<tr th:each="car : ${carList}">
 									<td><a href="#delCar"
 										th:id="'delCarNum' + ${car.driverCarID}"
-										onClick="checkID(this.id)"><img src="/images/Del.png"
+										onClick="checkID(this.id)"><img src="/cartopia/images/Del.png"
 											style="height: 25px; weight: 25px;"></a></td>
 									<th th:text="${carStat.index}+1" scope="row"></th>
 									<td th:text="${car.getLicensePlateNum()}"></td>
@@ -177,7 +177,7 @@
 
 
 			<div class="shadow p-3 mb-5 rounded white">
-				<a href="driverPage"><img src="/images/X.png "
+				<a href="driverPage"><img src="/cartopia/images/X.png "
 					class="rounded float-right" id="cross"></a>
 				<h1>
 					<b>Reset Password</b>
@@ -224,7 +224,7 @@
 
 
 			<div class="shadow p-3 mb-5 rounded white">
-				<a href="driverPage"><img src="/images/X.png "
+				<a href="driverPage"><img src="/cartopia/images/X.png "
 					class="rounded float-right" id="cross"></a>
 				<h1>
 					<b>Edit Profile</b>
@@ -280,7 +280,7 @@
 
 
 			<div class="shadow p-3 mb-5 rounded white">
-				<a href="driverPage"><img src="/images/X.png "
+				<a href="driverPage"><img src="/cartopia/images/X.png "
 					class="rounded float-right" id="cross"></a>
 				<h1>
 					<b>Add Car</b>
@@ -330,7 +330,7 @@
 
 
 			<div class="shadow p-3 mb-5 rounded white">
-				<a href="driverPage"><img src="/images/X.png "
+				<a href="driverPage"><img src="/cartopia/images/X.png "
 					class="rounded float-right" id="cross"></a>
 				<h1>
 					<b>Top-up Credit</b>
@@ -364,7 +364,7 @@
 		<br> <br>
 		<div class="container p-3 rounded col-sm-10 col-md-4 col-lg-4">
 			<div class="shadow p-3 mb-5 rounded white">
-				<a href="driverPage"><img src="/images/X.png "
+				<a href="driverPage"><img src="/cartopia/images/X.png "
 					class="rounded float-right" id="cross"></a>
 				<h1>
 					<b>Delete Car</b>

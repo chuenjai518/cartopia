@@ -13,6 +13,8 @@ import com.uow.Model.Bookmark;
 import com.uow.Model.BookmarkRowMapper;
 import com.uow.Model.CarPark;
 import com.uow.Model.CarParkRowMapper;
+import com.uow.Model.Comment;
+import com.uow.Model.CommentRowMapper;
 
 @Repository
 public class CarParkDAO {
@@ -63,23 +65,37 @@ public class CarParkDAO {
 
 	}
 
-	public int getCarparkRealTimeSpace(CarPark carpark) {
+	public int getCarparkRealTimeSpace(int carParkID) {
 		int result;
-		String sql = "SELECT COUNT(CarParkSlotID) FROM CarParkSlotInfo WHERE carParkID = " + carpark.getCarParkID()
-				+ "and status = 'free';";
-		String sql2 = "SELECT NumOfSlot FROM CarParkSlotInfo WHERE carParkID = " + carpark.getCarParkID();
-		result = db.queryForObject(sql2, Integer.class) - db.queryForObject(sql, Integer.class);
+		String sql = "SELECT numOfSlot FROM CarParkSlotInfo WHERE carParkID = " + carParkID;
+		String sql2 = "SELECT COUNT(i.carParkID) FROM CarParkSlotInfo i, CarParkSlot s WHERE i.carParkID = " + carParkID + "and s.statusID = 1 and i.carParkID = s.carParkID;";
+		result = db.queryForObject(sql, Integer.class) - db.queryForObject(sql2, Integer.class);
 		return result;
 	}
 	
 	
 	public List<Bookmark> getBookmark(int userID) {
-		String sql = "SELECT userID, carParkID FROM userbookmark WHERE userID = " + userID;
+		String sql = "SELECT userID, carParkID FROM userbookmark WHERE userID = ?";
 		try {
 			RowMapper<Bookmark> rowMapper = new BookmarkRowMapper();
 			return this.db.query(sql, rowMapper, userID);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
+	}
+	
+	public List<Comment> getComment(int carParkID) {
+		String sql = "SELECT userID, carParkID, commentID, comment FROM Comment WHERE carParkID = ?";
+		try {
+			RowMapper<Comment> rowMapper = new CommentRowMapper();
+			return this.db.query(sql, rowMapper, carParkID);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
+	public void addComment(Comment comment) {
+		String sql = "INSERT INTO Comment (commentID, comment, userID, carParkID) values (?,?,?,?)";
+		db.update(sql, comment.getCommentID(), comment.getComment(), comment.getUserID(), comment.getCarParkID());
 	}
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.uow.DAO.CarParkDAO;
 import com.uow.Model.Bookmark;
 import com.uow.Model.CarPark;
+import com.uow.Model.Comment;
 
 @Service
 public class CarParkService {
@@ -38,10 +39,16 @@ public class CarParkService {
 		carParkDAO.deleteCarPark(carParkID);
 	}
 	
-	public int getCarparkRealTimeSpace(CarPark carPark) {
-		return carParkDAO.getCarparkRealTimeSpace(carPark);
+	public int getCarparkRealTimeSpace(int carParkID) {
+		return carParkDAO.getCarparkRealTimeSpace(carParkID);
 	}
 	public List<Bookmark> getBookmark(int userID){
-		return getBookmark(userID);
+		return carParkDAO.getBookmark(userID);
+	}
+	public List<Comment> getComment(int carParkID){
+		return carParkDAO.getComment(carParkID);
+	}
+	public void addComment(Comment comment){
+		carParkDAO.addComment(comment);
 	}
 }
