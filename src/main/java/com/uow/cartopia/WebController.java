@@ -78,7 +78,8 @@ public class WebController {
 		List<CarPark> list = carParkService.getAllCarPark();
 		model.addAttribute("carParkList", list);
 		bookmark = carParkService.getBookmark(userID);
-		model.addAttribute("Bookmark", bookmark);
+		
+		model.addAttribute("bookmark", bookmark);
 		return "home";
 	}
 	

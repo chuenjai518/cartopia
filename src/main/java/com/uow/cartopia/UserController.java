@@ -35,15 +35,6 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@PostMapping("/userInfo/{userID}")
-	public String user(Model model, @PathVariable("userID") Integer id) {
-		User user = userService.getUserInfo(id);
-		model.addAttribute("user", user);
-		List<Bookmark> Bookmark = userService.getBookmark(id);
-		model.addAttribute("Bookmark", Bookmark);
-		
-		return "userInfo";
-	}
 	
 
 	//Need change to Post
@@ -129,11 +120,11 @@ public class UserController {
 	}
 	
 	@PostMapping("/booking/{carParkID}")
-	public String bookingCarPark(Model model, HttpSession session,@PathVariable("carParkID") Integer carParkID) {
+	public String bookingCarPark(Model model, HttpSession session,@PathVariable("carParkID") Integer carParkID,@RequestParam Integer driverCarID) {
 		if(session.getAttribute("userID") == null) {
 			return "redirect:/login";
 		}
-		int userID = (int)session.getAttribute("userID");
+		
 		userService.bookCarPark(driverCarID, carParkID);
 		
 		 return "redirect:/carparkInfo/"+carParkID;
@@ -154,8 +145,6 @@ public class UserController {
 		 return "redirect:/carparkInfo/"+carParkID;
 	}
 	
-	@GetMapping ("/reserveRecord")
-	public string 
 	
 	@GetMapping("driverPage")
 	public String driverPage(Model model, HttpSession session) {
