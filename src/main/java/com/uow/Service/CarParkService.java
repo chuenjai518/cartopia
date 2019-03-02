@@ -46,6 +46,6 @@ public class CarParkService {
 		return carParkDAO.getBookmark(userID);
 	}
 	public List<Comment> getComment(int carParkID){
-		return getComment(carParkID);
+		return carParkDAO.getComment(carParkID);
 	}
 }

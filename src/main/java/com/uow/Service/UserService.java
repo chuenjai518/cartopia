@@ -95,12 +95,12 @@ public class UserService {
 	public void updateUserProcess(User user) {
 		userDAO.updateUserProcess(user);
 	}
-	public Transaction getTransactionRecord(int driverID) {
-		return getTransactionRecord(driverID);
+	public List<Transaction> getTransactionRecord(int driverID) {
+		return userDAO.getTransactionRecord(driverID);
 	}
 
 	public List<Bookmark> getBookmark(int userID) {
-		return getBookmark(userID);
+		return userDAO.getBookmark(userID);
 	}
 
 }
