@@ -1,5 +1,6 @@
 package com.uow.cartopia;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -66,11 +67,18 @@ public class WebController {
 
 	@GetMapping("/home")
 	public String Home(Model model, HttpSession session) {
+		int userID = 0;
+		List<Bookmark> bookmark = new ArrayList<Bookmark>();
+		User user = new User();
+		if (session.getAttribute("userID") != null) {
+			userID = (int) session.getAttribute("userID");
+			bookmark = carParkService.getBookmark(userID);
+			user = userService.getUserInfo(userID);
+		}
 		List<CarPark> list = carParkService.getAllCarPark();
 		model.addAttribute("carParkList", list);
-		int userID = (int)session.getAttribute("userID");
-		List<Bookmark> Bookmark = carParkService.getBookmark(userID);
-		model.addAttribute("Bookmark", Bookmark);
+		bookmark = carParkService.getBookmark(userID);
+		model.addAttribute("Bookmark", bookmark);
 		return "home";
 	}
 	
