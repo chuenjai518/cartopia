@@ -98,7 +98,4 @@ public class UserService {
 	public Transaction getTransactionRecord(int driverID) {
 		return getTransactionRecord(driverID);
 	}
-	public List<Bookmark> getBookmark(int userID){
-		return getBookmark(userID);
-	}
 }

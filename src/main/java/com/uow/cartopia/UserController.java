@@ -233,11 +233,4 @@ public class UserController {
 		return "cpoR";
 	}
 	
-	@GetMapping("bookmark/{id}")
-	public String getBookamrk(@PathVariable("id") Integer id, Model model) {
-		List<Bookmark> Bookmark = userService.getBookmark(id);
-		model.addAttribute("Bookmark", Bookmark);
-		return "Bookmark";
-	}
-	
 }
