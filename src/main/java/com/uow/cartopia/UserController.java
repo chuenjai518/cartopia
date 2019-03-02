@@ -44,6 +44,7 @@ public class UserController {
 		return "userInfo";
 	}
 	
+
 	//Need change to Post
 	@PostMapping("/loginProcess")
 	public RedirectView loginProcess(@ModelAttribute Login login,RedirectAttributes model, HttpSession session) {
@@ -143,6 +144,9 @@ public class UserController {
 		 return "redirect:/carparkInfo/"+carParkID;
 	}
 	
+
+	
+	
 	@GetMapping("driverPage")
 	public String driverPage(Model model, HttpSession session) {
 		if(session.getAttribute("userID") == null) {
@@ -160,7 +164,7 @@ public class UserController {
 		return "driverHome";
 	}
 	
-
+	
 
 	
 	
@@ -226,5 +230,6 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "cpoR";
 	}
+	
 	
 }
