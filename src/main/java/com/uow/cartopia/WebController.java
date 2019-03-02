@@ -35,7 +35,7 @@ public class WebController {
 	
 	@GetMapping("/")
 	public String index(Model model) {
-		return "redirect:/index";
+		return "redirect:/home";
 	}
 
 	@GetMapping("/index")

@@ -1,5 +1,6 @@
 package com.uow.cartopia;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -24,53 +25,60 @@ import com.uow.Service.UserService;
 public class CarParkController {
 	@Autowired
 	CarParkService carParkService;
-	
+
 	@Autowired
 	UserService userService;
-	
+
 	@GetMapping("carparkInfo/{carParkID}")
 	public String carpark(Model model, @PathVariable("carParkID") Integer carParkID, HttpSession session) {
+		int userID = 0;
+		List<Bookmark> bookmark = new ArrayList<Bookmark>();
+		User user = new User();
+		if (session.getAttribute("userID") != null) {
+			userID = (int) session.getAttribute("userID");
+			bookmark = carParkService.getBookmark(userID);
+			user = userService.getUserInfo(userID);
+		}
 		CarPark carPark = carParkService.getCarPark(carParkID);
-		int userID = (int)session.getAttribute("userID");
-		User user = userService.getUserInfo(userID);
+
 		model.addAttribute("user", user);
 		model.addAttribute("carPark", carPark);
-		List<Bookmark> Bookmark = carParkService.getBookmark(userID);
-		model.addAttribute("Bookmark", Bookmark);
+		model.addAttribute("Bookmark", bookmark);
 		return "carparkInfo";
 	}
-	
+
 	@GetMapping("carpark")
 	public ResponseEntity<List<CarPark>> getAllCarPark() {
 		List<CarPark> list = carParkService.getAllCarPark();
 		return new ResponseEntity<List<CarPark>>(list, HttpStatus.OK);
 	}
-	
+
 	@PostMapping("addCarPark")
-	public String addCarPark(@ModelAttribute CarPark carPark,Model model) {
+	public String addCarPark(@ModelAttribute CarPark carPark, Model model) {
 		carParkService.addCarPark(carPark);
 		return ("redirect:/admin/carpark");
 	}
+
 	@PostMapping("updateCarPark/{id}")
-	public String editCarPark(@ModelAttribute CarPark carPark, @PathVariable("id")Integer id, Model model) {
+	public String editCarPark(@ModelAttribute CarPark carPark, @PathVariable("id") Integer id, Model model) {
 		carPark.setCarParkID(id);
 		System.out.println(carPark.getDescription());
 		carParkService.updateCarPark(carPark);
-		return ("redirect:/admin/carpark");	
+		return ("redirect:/admin/carpark");
 	}
-	
+
 	@PostMapping("deleteCarPark/{carParkID}")
-	public String deleteCarPark(@PathVariable("carParkID") Integer carParkID,Model model) {
+	public String deleteCarPark(@PathVariable("carParkID") Integer carParkID, Model model) {
 		carParkService.deleteCarPark(carParkID);
 		return ("redirect:/admin/carpark");
 	}
-	
+
 	@PostMapping("getCarparkRealTimeSpace")
-	public String getCarparkSpace(@ModelAttribute CarPark carPark,Model model) {
+	public String getCarparkSpace(@ModelAttribute CarPark carPark, Model model) {
 		carParkService.getCarparkRealTimeSpace(carPark);
 		return ("redirect:/admin/carpark");
 	}
-	
+
 	@GetMapping("carParkInfo/{id}")
 	public String getBookamrk(@PathVariable("id") Integer id, Model model, HttpSession session) {
 		return "Bookmark";
