@@ -198,5 +198,24 @@ public class UserController {
 		return "redirect:/driverPage";
 	}
 	
+	@GetMapping("carparkOwner")
+	public String carparkOwner(Model model, HttpSession session) {
+		// Get Login session
+		int userID = 3;
+		//
+		User user = userService.getUserInfo(userID);
+		model.addAttribute("user", user);
+		return "cpoR";
+	}
+	@GetMapping("carparkOwner/update/{id}")
+	public String carparkOwnerUpdate(@PathVariable("id") Integer id, Model model, HttpSession session) {
+		// Get Login session
+		int userID = 3;
+		//
+		User user = userService.getUserInfo(userID);
+		model.addAttribute("user", user);
+		return "cpoR";
+	}
+	
 	
 }

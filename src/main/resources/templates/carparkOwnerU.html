@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head th:include="adminNav :: head">
+<body id="admin">
+	<div class="d-flex" id="wrapper">
+		<nav th:include="adminNav :: nav"></nav>
+		<!-- This is the content -->
+		<div id="page-content-wrapper">
+			<div class="container-fluid mt-4">
+				<h3>Car Park Owner Edit</h3>
+
+				<div class="shadow card">
+					<div class="card-body">
+						<form method="POST" th:action="@{/adminUpdateUserProcess/} + ${user.getUserID()}" th:object="${user}">
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label th:field="*{firstName}" for="FirstName">First
+										Name</label> <input th:field="*{firstName}" th:value="${user.getFirstName()}" type="text"
+										class="form-control" id="FirstName"
+										placeholder="First Name...">
+								</div>
+								<div class="form-group col-md-6">
+									<label for="LastName">Last Name</label> <input type="text"
+										th:field="*{lastName}" th:value="${user.getLastName()}"
+										class="form-control" id="LastName" placeholder="Last Name...">
+								</div>
+							</div>
+							
+							<span class="errorText"
+								th:text="${message != null} ? ${message} : ''"></span><br>
+							<br />
+					</div>
+					<button type="submit" class="btn btn-primary">Save</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Content End -->
+	</div>
+</body>
+</html>
