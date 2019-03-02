@@ -54,12 +54,12 @@ a:hover{
 .bookmarkPhoto{
 	background-repeat: no-repeat;
 	background-size: auto;
-	height: 200px; 
-	object-fit: contain;
+	
+	object-fit: full;
 }
 
 .bookmarkCard{
-	
+	height: 200px; 
 	border: none;
 }
 .bookmarkTitle{
