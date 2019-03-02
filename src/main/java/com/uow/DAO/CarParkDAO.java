@@ -86,7 +86,7 @@ public class CarParkDAO {
 	}
 	
 	public List<Comment> getComment(int carParkID) {
-		String sql = "SELECT userID, carParkID, commentID, comment FROM userbookmark WHERE userID = " + carParkID;
+		String sql = "SELECT userID, carParkID, commentID, comment FROM Comment WHERE carParkID = " + carParkID;
 		try {
 			RowMapper<Comment> rowMapper = new CommentRowMapper();
 			return this.db.query(sql, rowMapper, carParkID);
