@@ -60,6 +60,7 @@ CREATE TABLE `CarPark` (
   `privateCarFee` double DEFAULT NULL,
   `motorSlot` int(11) DEFAULT NULL,
   `motorFee` double DEFAULT NULL,
+  `photoLink` longtext COLLATE utf8mb4_unicode_ci,
   PRIMARY KEY (`carParkID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -70,7 +71,7 @@ CREATE TABLE `CarPark` (
 
 LOCK TABLES `CarPark` WRITE;
 /*!40000 ALTER TABLE `CarPark` DISABLE KEYS */;
-INSERT INTO `CarPark` VALUES (1,'Hello Car Park',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'Furture Carpark','HMT','2019-02-02 04:00:00','2019-02-02 00:00:00','This is a descripition',NULL,NULL,NULL,NULL);
+INSERT INTO `CarPark` VALUES (1,'Hello Car Park',NULL,'0000-00-00 00:00:00','0000-00-00 00:00:00','12211',233,0,3,222,''),(2,'Furture Carpark','HMT','2004-00-00 00:00:00','0000-00-00 00:00:00','This is a descripition',30,0,30,20,'');
 /*!40000 ALTER TABLE `CarPark` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,6 +150,31 @@ INSERT INTO `CarType` VALUES (1,'Private Car'),(2,'Motor');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `Comment`
+--
+
+DROP TABLE IF EXISTS `Comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Comment` (
+  `commentID` int(11) NOT NULL AUTO_INCREMENT,
+  `comment` longtext NOT NULL,
+  `userID` int(11) NOT NULL,
+  `carParkID` int(11) NOT NULL,
+  PRIMARY KEY (`commentID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Comment`
+--
+
+LOCK TABLES `Comment` WRITE;
+/*!40000 ALTER TABLE `Comment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Comment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Driver`
 --
 
@@ -161,7 +187,7 @@ CREATE TABLE `Driver` (
   `createDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `credit` int(11) DEFAULT '0',
   PRIMARY KEY (`driverID`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -170,7 +196,7 @@ CREATE TABLE `Driver` (
 
 LOCK TABLES `Driver` WRITE;
 /*!40000 ALTER TABLE `Driver` DISABLE KEYS */;
-INSERT INTO `Driver` VALUES (1,1,'2019-02-18 15:52:47',100);
+INSERT INTO `Driver` VALUES (1,1,'2019-02-18 15:52:47',346),(2,7,'2019-03-02 02:20:35',0),(3,4,'2019-03-02 02:38:27',1234567968),(4,5,'2019-03-02 02:38:40',0),(5,6,'2019-03-02 02:38:41',0);
 /*!40000 ALTER TABLE `Driver` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,7 +213,7 @@ CREATE TABLE `DriverCar` (
   `carTypeID` int(11) NOT NULL,
   `licensePlateNum` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`driverCarID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,7 +222,7 @@ CREATE TABLE `DriverCar` (
 
 LOCK TABLES `DriverCar` WRITE;
 /*!40000 ALTER TABLE `DriverCar` DISABLE KEYS */;
-INSERT INTO `DriverCar` VALUES (1,0,1,'QQ1234'),(2,1,1,'UX1234');
+INSERT INTO `DriverCar` VALUES (1,0,1,'QQ1234'),(2,1,1,'UX1234'),(3,3,1,'Carmen'),(4,3,1,'test1'),(5,3,2,'Carmentest1');
 /*!40000 ALTER TABLE `DriverCar` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -290,7 +316,7 @@ CREATE TABLE `User` (
   `lastName` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`userID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -299,7 +325,7 @@ CREATE TABLE `User` (
 
 LOCK TABLES `User` WRITE;
 /*!40000 ALTER TABLE `User` DISABLE KEYS */;
-INSERT INTO `User` VALUES (1,1,'user','user','User','First','user@chuen.com'),(2,2,'admin','admin','Admin','First','admin@chuen.com'),(3,3,'cpo','cpo','Owner','CarPark','carParkOwner@chuen.com'),(4,1,'test1','test1','Kaman','Lam','kaman_0916@yahoo.com.hk'),(5,1,'felix','1234','felix','Tsang','felix@sorjai.com'),(6,1,'unhappy','1','carmen','lam','carmenunhappy@happy.com');
+INSERT INTO `User` VALUES (1,1,'user','user','Felix','First','user@chuen.com'),(2,2,'admin','admin','Admin','First','admin@chuen.com'),(3,3,'cpo','cpo','1111','CarParkfdasfda',NULL),(4,1,'test1','test1','Carmen','Lam','kaman_0916@yahoo.com.hk'),(5,1,'felix','1234','felix','Tsang','felix@sorjai.com'),(6,1,'unhappy','1','carmen','lam','carmenunhappy@happy.com'),(7,1,'bigUser','user','BIGBIG','User','bigUser@felix.com');
 /*!40000 ALTER TABLE `User` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -335,4 +361,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-01 19:09:40
+-- Dump completed on 2019-03-02 16:30:30
