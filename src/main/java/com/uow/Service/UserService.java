@@ -109,6 +109,6 @@ public class UserService {
 		userDAO.bookCarPark(driverCarID, carParkID);
 	}
 	public List<Booking> getBookingRecord(int userID){
-		return getBookingRecord(userID);
+		return userDAO.getBookingRecord(userID);
 	}
 }
