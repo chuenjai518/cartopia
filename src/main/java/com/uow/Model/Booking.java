@@ -69,8 +69,5 @@ public class Booking{
 	public void setPhotoLink(String photoLink) {
 		this.photoLink = photoLink;
 	}
-	
-	
-	
 
 }
