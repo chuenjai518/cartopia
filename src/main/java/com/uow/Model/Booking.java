@@ -11,8 +11,9 @@ public class Booking{
 	private int carParkID;
 	private int driverCarID;
 	private Time bookingTime;
-	private boolean valid;
-	private boolean cancel;
+	private String name;
+	private String address;
+	private String photoLink;
 
 	public int getBookingID() {
 		return bookingID;
@@ -45,19 +46,31 @@ public class Booking{
 		this.bookingTime = bookingTime;
 	}
 
-	public boolean getValid() {
-		return valid;
+	public String getName() {
+		return name;
 	}
 
-	public void setValid(boolean valid) {
-		this.valid = valid;
-	}
-	public boolean getCancel() {
-		return cancel;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setCancel(boolean cancel) {
-		this.cancel = cancel;
+	public String getAddress() {
+		return address;
 	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhotoLink() {
+		return photoLink;
+	}
+
+	public void setPhotoLink(String photoLink) {
+		this.photoLink = photoLink;
+	}
+	
+	
+	
 
 }
