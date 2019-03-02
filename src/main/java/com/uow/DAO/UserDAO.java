@@ -24,6 +24,8 @@ import com.uow.Model.UserRowMapper;
 import com.uow.Model.Transaction;
 import com.uow.Model.TransactionRowMapper;
 import com.uow.Model.BookmarkRowMapper;
+import com.uow.Model.BookingRowMapper;
+import com.uow.Model.Booking;
 
 @Repository
 public class UserDAO {
@@ -232,6 +234,16 @@ public class UserDAO {
 	public void bookCarPark(int driverCarID,int carParkID ) {
 		String sql ="INSERT INTO Booking (carParkID,driverCarID)"+"Values(?, ?)";
 		db.update(sql, carParkID, driverCarID);
+	}
+	
+	public List<Booking> getBookingRecord(int userID){
+		String sql = "SELECT bookingID, carParkID,driverCarID, bookingTime FROM Booking WHERE userID = ?";
+		try {
+			RowMapper<Booking> rowMapper = new BookingRowMapper();
+			return this.db.query(sql, rowMapper, userID);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 
 }
