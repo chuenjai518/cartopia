@@ -70,7 +70,7 @@ public class WebController {
 		model.addAttribute("carParkList", list);
 		return "home";
 	}
-
+	
 	@GetMapping("/carparkInfo")
 	public String CarParkInfo(Model model) {
 		model.addAttribute("Booking", new Booking());
