@@ -21,6 +21,7 @@ import com.uow.Model.User;
 import com.uow.Model.UserRowMapper;
 import com.uow.Model.Transaction;
 import com.uow.Model.TransactionRowMapper;
+import com.uow.Model.BookmarkRowMapper;
 
 @Repository
 public class UserDAO {
@@ -187,6 +188,17 @@ public class UserDAO {
 	public void bookmark(Bookmark bookmark) {
 		String sql = "INSERT INTO userbookmark(carParkID, userID) " + "Values(?, ?)";
 		db.update(sql, bookmark.getCarParkID(), bookmark.getUserID());
+	}
+	
+	public List<Bookmark> getBookmark(int userID) {
+		String sql = "SELECT userID, carParkID FROM userbookmark";
+		try {
+			RowMapper<Bookmark> rowMapper = new BookmarkRowMapper();
+			return this.db.query(sql, rowMapper, userID);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+		
 	}
 
 	public int countNewDriver() {
