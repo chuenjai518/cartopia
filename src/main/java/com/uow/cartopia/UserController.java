@@ -2,6 +2,7 @@ package com.uow.cartopia;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ import com.uow.Model.DriverCar;
 import com.uow.Model.Login;
 import com.uow.Model.User;
 import com.uow.Service.UserService;
+import com.uow.Model.Transaction;
 
 @Controller
 public class UserController {
@@ -38,6 +40,13 @@ public class UserController {
 		User user = userService.getUserInfo(id);
 		model.addAttribute("user", user);
 		return "userInfo";
+	}
+	
+	@PostMapping("/transaction")
+	public String transcation(Model model, @PathVariable("driverID") Integer id) {
+		Transaction transaction = userService.getTransactionRecord(id);
+		model.addAttribute("transaction", transaction);
+		return "transaction";
 	}
 	
 	//Need change to Post
@@ -126,16 +135,18 @@ public class UserController {
 	
 	//Need change to Post
 	@GetMapping("/bookmark/{carParkID}")
-	public void bookingCarPark(Model model, HttpSession session,@PathVariable("carParkID") Integer carParkID) {
-//		if(session.getAttribute("userID") == null) {
-//			return "redirect:/login";
-//		}
+	public String bookmarkCarPark(Model model, HttpSession session,@PathVariable("carParkID") Integer carParkID,HttpServletRequest request) {
+		if(session.getAttribute("userID") == null) {
+			return "redirect:/login";
+		}
 		int userID = (int)session.getAttribute("userID");
 		Bookmark bookmark = new Bookmark();
 		bookmark.setUserID(userID);
 		bookmark.setCarParkID(carParkID);
 		userService.bookmark(bookmark);	
+		String referer = request.getHeader("Referer");
 		
+		 return "redirect:/carparkInfo/"+carParkID;
 	}
 	
 	@GetMapping("driverPage")
@@ -221,6 +232,7 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "cpoR";
 	}
+	
 	
 	
 }

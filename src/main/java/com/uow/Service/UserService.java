@@ -12,6 +12,7 @@ import com.uow.Model.Driver;
 import com.uow.Model.DriverCar;
 import com.uow.Model.User;
 import com.uow.Model.Login;
+import com.uow.Model.Transaction;
 
 @Service
 public class UserService {
@@ -93,6 +94,9 @@ public class UserService {
 	
 	public void updateUserProcess(User user) {
 		userDAO.updateUserProcess(user);
+	}
+	public Transaction getTransactionRecord(int driverID) {
+		return getTransactionRecord(driverID);
 	}
 	
 }
