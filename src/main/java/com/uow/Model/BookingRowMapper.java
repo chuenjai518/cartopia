@@ -18,8 +18,6 @@ public class BookingRowMapper implements RowMapper<Booking> {
 		booking.setCarParkID(row.getInt("carParkID"));
 		booking.setDriverCarID(row.getInt("driverCarID"));
 		booking.setBookingTime(row.getTime("Time(bookingTime)"));
-		booking.setValid(row.getBoolean("valid"));
-		booking.setCancel(row.getBoolean("cancel"));
 		return booking;
 	}
 	
