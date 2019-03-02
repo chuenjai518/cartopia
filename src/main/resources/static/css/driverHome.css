@@ -86,8 +86,8 @@ a:hover{
 	padding-bottom: 10px;
 }
 
-.noUnderline:hover{
-	text-decoration: none;
+.reservationText{
+	color:red;
 }
 
 
