@@ -26,6 +26,7 @@ import com.uow.Model.DriverCar;
 import com.uow.Model.Login;
 import com.uow.Model.User;
 import com.uow.Service.UserService;
+import com.uow.Model.Transaction;
 
 @Controller
 public class UserController {
@@ -37,6 +38,12 @@ public class UserController {
 	public String user(Model model, @PathVariable("userID") Integer id) {
 		User user = userService.getUserInfo(id);
 		model.addAttribute("user", user);
+		return "userInfo";
+	}
+	
+	public String transcation(Model model, @PathVariable("driverID") Integer id) {
+		Transaction transaction = userService.getTransactionRecord(id);
+		model.addAttribute("transaction", transaction);
 		return "userInfo";
 	}
 	
@@ -220,6 +227,7 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "cpoR";
 	}
+	
 	
 	
 }
