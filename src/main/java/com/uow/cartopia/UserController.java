@@ -154,6 +154,7 @@ public class UserController {
 		Driver driver = userService.getDriverInfo(userID);
 		User user = userService.getUserInfo(userID);
 		List<DriverCar> list = userService.getAllCar(driver.getDriverID());
+		
 		model.addAttribute("driver", driver);
 		model.addAttribute("user", user);
 		model.addAttribute("carList", list);
@@ -194,10 +195,10 @@ public class UserController {
 		return "redirect:/driverPage";
 	}
 
-	@PostMapping ("driverProfile/deleteCar/{driverCarID}")
+	@GetMapping ("driverProfile/deleteCar/{driverCarID}")
 	public String deleteCar(@PathVariable("driverCarID") Integer driverCarID, Model model) {
 		userService.deleteCar(driverCarID);
-		return "redirect:/driverPage";
+		return "redirect:/driverPage#profile";
 	}
 	
 	
