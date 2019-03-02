@@ -38,13 +38,6 @@ public class CarParkController {
 		return new ResponseEntity<List<CarPark>>(list, HttpStatus.OK);
 	}
 	
-	@GetMapping("carParkInfo/{id}")
-	public String getBookamrk(@PathVariable("id") Integer id, Model model, HttpSession session) {
-		List<Bookmark> Bookmark = carParkService.getBookmark(id);
-		model.addAttribute("Bookmark", Bookmark);
-		return "Bookmark";
-	}
-	
 	@PostMapping("addCarPark")
 	public String addCarPark(@ModelAttribute CarPark carPark,Model model) {
 		carParkService.addCarPark(carPark);
@@ -68,5 +61,12 @@ public class CarParkController {
 	public String getCarparkSpace(@ModelAttribute CarPark carPark,Model model) {
 		carParkService.getCarparkRealTimeSpace(carPark);
 		return ("redirect:/admin/carpark");
+	}
+	
+	@GetMapping("carParkInfo/{id}")
+	public String getBookamrk(@PathVariable("id") Integer id, Model model, HttpSession session) {
+		List<Bookmark> Bookmark = carParkService.getBookmark(id);
+		model.addAttribute("Bookmark", Bookmark);
+		return "Bookmark";
 	}
 }
