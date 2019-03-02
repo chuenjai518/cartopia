@@ -21,6 +21,8 @@ import com.uow.Model.User;
 import com.uow.Service.CarParkService;
 import com.uow.Service.UserService;
 import com.uow.Model.Comment;
+import com.uow.Model.Driver;
+import com.uow.Model.DriverCar;
 
 @Controller
 public class CarParkController {
@@ -34,21 +36,24 @@ public class CarParkController {
 	public String carpark(Model model, @PathVariable("carParkID") Integer carParkID, HttpSession session) {
 		int userID = 0;
 		List<Bookmark> bookmark = new ArrayList<Bookmark>();
+		List<DriverCar> driverCarList = new ArrayList<DriverCar>();
 		User user = new User();
 		if (session.getAttribute("userID") != null) {
 			userID = (int) session.getAttribute("userID");
 			bookmark = carParkService.getBookmark(userID);
 			user = userService.getUserInfo(userID);
+			Driver driver = userService.getDriverInfo(userID);
+			driverCarList = userService.getAllCar(driver.getDriverID());
+			model.addAttribute("driverCarList", driverCarList);
 		}
 		int realTimeSpace = carParkService.getCarparkRealTimeSpace(carParkID);
 		model.addAttribute("realTimeSpace", realTimeSpace);
 		CarPark carPark = carParkService.getCarPark(carParkID);
 		model.addAttribute("user", user);
 		model.addAttribute("carPark", carPark);
-		List<Bookmark> Bookmark = carParkService.getBookmark(userID);
-		model.addAttribute("Bookmark", Bookmark);
-		List<Comment> Comment = carParkService.getComment(carParkID);
-		model.addAttribute("Comment", Comment);
+		model.addAttribute("bookmark", bookmark);
+		List<Comment> comment = carParkService.getComment(carParkID);
+		model.addAttribute("comment", comment);
 		return "carparkInfo";
 	}
 

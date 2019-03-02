@@ -104,4 +104,7 @@ public class UserService {
 		return userDAO.getBookmark(userID);
 	}
 
+	public void bookCarPark(int driverCarID, int carParkID) {
+		userDAO.bookCarPark(driverCarID, carParkID);
+	}
 }
