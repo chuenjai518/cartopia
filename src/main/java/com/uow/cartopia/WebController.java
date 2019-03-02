@@ -51,7 +51,7 @@ public class WebController {
 		model.addAttribute("login", new Login());
 		model.addAttribute("user", new User());
 		if(session.getAttribute("userID") != null) {
-			return "redirect:/index";
+			return "redirect:/home";
 		}
 		return "login";
 	}
