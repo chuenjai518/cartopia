@@ -65,9 +65,12 @@ public class WebController {
 	
 
 	@GetMapping("/home")
-	public String Home(Model model) {
+	public String Home(Model model, HttpSession session) {
 		List<CarPark> list = carParkService.getAllCarPark();
 		model.addAttribute("carParkList", list);
+		int userID = (int)session.getAttribute("userID");
+		List<Bookmark> Bookmark = carParkService.getBookmark(userID);
+		model.addAttribute("Bookmark", Bookmark);
 		return "home";
 	}
 	
