@@ -44,6 +44,7 @@ public class UserController {
 		return "userInfo";
 	}
 	
+
 	//Need change to Post
 	@PostMapping("/loginProcess")
 	public RedirectView loginProcess(@ModelAttribute Login login,RedirectAttributes model, HttpSession session) {
@@ -143,16 +144,22 @@ public class UserController {
 		 return "redirect:/carparkInfo/"+carParkID;
 	}
 	
+
+	
+	
 	@GetMapping("driverPage")
 	public String driverPage(Model model, HttpSession session) {
 		if(session.getAttribute("userID") == null) {
 			return "redirect:/login";
+			
 		}
+		
 		int userID = (int) session.getAttribute("userID");
 		Driver driver = userService.getDriverInfo(userID);
 		User user = userService.getUserInfo(userID);
 		List<DriverCar> list = userService.getAllCar(driver.getDriverID());
-		
+		List<Bookmark> bookmark = userService.getBookmark(userID);
+		model.addAttribute("bookmark", bookmark);
 		model.addAttribute("driver", driver);
 		model.addAttribute("user", user);
 		model.addAttribute("carList", list);
@@ -160,7 +167,7 @@ public class UserController {
 		return "driverHome";
 	}
 	
-
+	
 
 	
 	
@@ -226,5 +233,6 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "cpoR";
 	}
+	
 	
 }
