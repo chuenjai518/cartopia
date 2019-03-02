@@ -23,8 +23,8 @@ public class CarParkController {
 	@GetMapping("carparkInfo/{carParkID}")
 	public String carpark(Model model, @PathVariable("carParkID") Integer id) {
 		CarPark carPark = carParkService.getCarPark(id);
-//		List<CarPark> list = carParkService.getAllCarPark();
-//		model.addAttribute("carParkList", list);
+		//List<CarPark> list = carParkService.getAllCarPark();
+		//model.addAttribute("carParkList", list);
 		model.addAttribute("carPark", carPark);
 		return "carparkInfo";
 	}
@@ -43,17 +43,23 @@ public class CarParkController {
 		carParkService.addCarPark(carPark);
 		return ("redirect:/admin/carpark");
 	}
-	
-	
-	@PostMapping("editCarPark")
-	public String editCarPark(@ModelAttribute CarPark carPark,Model model) {
-		carParkService.editCarPark(carPark);
+	@PostMapping("updateCarPark/{id}")
+	public String editCarPark(@ModelAttribute CarPark carPark, @PathVariable("id")Integer id, Model model) {
+		carPark.setCarParkID(id);
+		System.out.println(carPark.getDescription());
+		carParkService.updateCarPark(carPark);
 		return ("redirect:/admin/carpark");	
 	}
 	
-	@PostMapping("deleteCarPark")
-	public String deleteCarPark(@ModelAttribute CarPark carPark,Model model) {
-		carParkService.deleteCarPark(carPark);
+	@PostMapping("deleteCarPark/{carParkID}")
+	public String deleteCarPark(@PathVariable("carParkID") Integer carParkID,Model model) {
+		carParkService.deleteCarPark(carParkID);
+		return ("redirect:/admin/carpark");
+	}
+	
+	@PostMapping("getCarparkRealTimeSpace")
+	public String getCarparkSpace(@ModelAttribute CarPark carPark,Model model) {
+		carParkService.getCarparkRealTimeSpace(carPark);
 		return ("redirect:/admin/carpark");
 	}
 }

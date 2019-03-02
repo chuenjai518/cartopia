@@ -42,6 +42,52 @@ a:hover{
 	background-color: #0f1834;
 }
 
+#cross{
+	height:30px;
+	weight:30px;
+}
+
+.carWarning{
+	color: red;
+}
+
+.bookmarkPhoto{
+	background-repeat: no-repeat;
+	background-size: auto;
+	height: 200px; 
+	object-fit: contain;
+}
+
+.bookmarkCard{
+	background-color: #0f1834;
+	border: none;
+}
+.bookmarkTitle{
+	color:#b89b6d;
+	font-size:23px;
+	text-decoration: none;
+	font-weight:bold;
+}
+
+.bookmarkTitle:hover{
+	text-decoration: none;
+	
+}
+
+
+
+.reservationPhoto{
+	height: 100%; 
+	width: 100%; 
+	object-fit: contain; 
+	padding-top: 10px; 
+	padding-bottom: 10px;
+}
+
+
+
+
+
 
 
 /****** Style Star Rating Widget *****/

@@ -11,14 +11,14 @@
 					<h3>Car Park Owner Info</h3>
 				</div>
 				<div class="col-1">
-					<a th:href="@{/admin/user/update/{id} (id=${user.getUserID()})}" class="shadow btn btn-primary">Edit</a>
+					<a th:href="@{/carparkOwner/update/{id} (id=${user.getUserID()})}" class="shadow btn btn-primary">Edit</a>
 				</div>
 				<div class="col-12">
 					<div class="shadow card">
 						<div class="card-body">
 							<h4 th:text="${username}" class="card-title"></h4>
 							<div class="row">
-								<p class="card-text col">Email: aaa@aaa.com</p>
+								<p th:text="${username}"class="card-text col"></p>
 								<p class="card-text col">User Type: Carpark Owner</p>
 							</div>
 

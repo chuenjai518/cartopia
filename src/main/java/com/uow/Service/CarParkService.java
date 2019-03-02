@@ -25,15 +25,20 @@ public class CarParkService {
 		
 	}
 	
-	public void editCarPark(CarPark carPark) {
-		carParkDAO.editCarPark(carPark);
+	public void updateCarPark(CarPark carPark) {
+		carParkDAO.updateCarPark(carPark);
 	}
 	
 	public void addCarPark(CarPark carPark) {
 		carParkDAO.addCarPark(carPark);
 	}
 	
-	public void deleteCarPark(CarPark carPark){
-		carParkDAO.deleteCarPark(carPark);
+	public void deleteCarPark(int carParkID){
+		carParkDAO.deleteCarPark(carParkID);
 	}
+	
+	public int getCarparkRealTimeSpace(CarPark carPark) {
+		return carParkDAO.getCarparkRealTimeSpace(carPark);
+	}
+	
 }

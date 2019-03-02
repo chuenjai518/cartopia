@@ -7,13 +7,14 @@
 		<!-- This is the content -->
 		<div id="page-content-wrapper">
 			<div class="container-fluid mt-4">
-				<h3>User Edit</h3>
+				<h3>Car Park Owner Edit</h3>
+
 				<div class="shadow card">
 					<div class="card-body">
 						<form method="POST" th:action="@{/adminUpdateUserProcess/} + ${user.getUserID()}" th:object="${user}">
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label  for="FirstName">First
+									<label th:field="*{firstName}" for="FirstName">First
 										Name</label> <input th:field="*{firstName}" th:value="${user.getFirstName()}" type="text"
 										class="form-control" id="FirstName"
 										placeholder="First Name...">
@@ -22,11 +23,6 @@
 									<label for="LastName">Last Name</label> <input type="text"
 										th:field="*{lastName}" th:value="${user.getLastName()}"
 										class="form-control" id="LastName" placeholder="Last Name...">
-								</div>
-								<div class="form-group col-md-12">
-									<label for="Email">Email</label> <input type="text"
-										th:field="*{email}" th:value="${user.getEmail()}"
-										class="form-control" id="Email" placeholder="Email...">
 								</div>
 							</div>
 							
