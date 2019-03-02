@@ -40,6 +40,8 @@ public class CarParkController {
 			bookmark = carParkService.getBookmark(userID);
 			user = userService.getUserInfo(userID);
 		}
+		int realTimeSpace = carParkService.getCarparkRealTimeSpace(carParkID);
+		model.addAttribute("realTimeSpace", realTimeSpace);
 		CarPark carPark = carParkService.getCarPark(carParkID);
 		model.addAttribute("user", user);
 		model.addAttribute("carPark", carPark);
@@ -73,12 +75,6 @@ public class CarParkController {
 	@PostMapping("deleteCarPark/{carParkID}")
 	public String deleteCarPark(@PathVariable("carParkID") Integer carParkID, Model model) {
 		carParkService.deleteCarPark(carParkID);
-		return ("redirect:/admin/carpark");
-	}
-
-	@PostMapping("getCarparkRealTimeSpace")
-	public String getCarparkSpace(@ModelAttribute CarPark carPark, Model model) {
-		carParkService.getCarparkRealTimeSpace(carPark);
 		return ("redirect:/admin/carpark");
 	}
 	
