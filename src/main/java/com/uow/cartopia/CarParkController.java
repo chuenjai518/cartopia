@@ -20,6 +20,7 @@ import com.uow.Model.CarPark;
 import com.uow.Model.User;
 import com.uow.Service.CarParkService;
 import com.uow.Service.UserService;
+import com.uow.Model.Comment;
 
 @Controller
 public class CarParkController {
@@ -43,7 +44,10 @@ public class CarParkController {
 
 		model.addAttribute("user", user);
 		model.addAttribute("carPark", carPark);
-		model.addAttribute("Bookmark", bookmark);
+		List<Bookmark> Bookmark = carParkService.getBookmark(userID);
+		model.addAttribute("Bookmark", Bookmark);
+		List<Comment> Comment = carParkService.getComment(carParkID);
+		model.addAttribute("Comment", Comment);
 		return "carparkInfo";
 	}
 

@@ -13,6 +13,8 @@ import com.uow.Model.Bookmark;
 import com.uow.Model.BookmarkRowMapper;
 import com.uow.Model.CarPark;
 import com.uow.Model.CarParkRowMapper;
+import com.uow.Model.Comment;
+import com.uow.Model.CommentRowMapper;
 
 @Repository
 public class CarParkDAO {
@@ -78,6 +80,16 @@ public class CarParkDAO {
 		try {
 			RowMapper<Bookmark> rowMapper = new BookmarkRowMapper();
 			return this.db.query(sql, rowMapper, userID);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
+	public List<Comment> getComment(int carParkID) {
+		String sql = "SELECT userID, carParkID, commentID, comment FROM userbookmark WHERE userID = " + carParkID;
+		try {
+			RowMapper<Comment> rowMapper = new CommentRowMapper();
+			return this.db.query(sql, rowMapper, carParkID);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
