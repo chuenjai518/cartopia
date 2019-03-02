@@ -16,19 +16,27 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.uow.Model.Bookmark;
 import com.uow.Model.CarPark;
+import com.uow.Model.User;
 import com.uow.Service.CarParkService;
+import com.uow.Service.UserService;
 
 @Controller
 public class CarParkController {
 	@Autowired
 	CarParkService carParkService;
 	
+	@Autowired
+	UserService userService;
+	
 	@GetMapping("carparkInfo/{carParkID}")
-	public String carpark(Model model, @PathVariable("carParkID") Integer id) {
-		CarPark carPark = carParkService.getCarPark(id);
-		//List<CarPark> list = carParkService.getAllCarPark();
-		//model.addAttribute("carParkList", list);
+	public String carpark(Model model, @PathVariable("carParkID") Integer carParkID, HttpSession session) {
+		CarPark carPark = carParkService.getCarPark(carParkID);
+		int userID = (int)session.getAttribute("userID");
+		User user = userService.getUserInfo(userID);
+		model.addAttribute("user", user);
 		model.addAttribute("carPark", carPark);
+		List<Bookmark> Bookmark = carParkService.getBookmark(userID);
+		model.addAttribute("Bookmark", Bookmark);
 		return "carparkInfo";
 	}
 	
@@ -65,8 +73,6 @@ public class CarParkController {
 	
 	@GetMapping("carParkInfo/{id}")
 	public String getBookamrk(@PathVariable("id") Integer id, Model model, HttpSession session) {
-		List<Bookmark> Bookmark = carParkService.getBookmark(id);
-		model.addAttribute("Bookmark", Bookmark);
 		return "Bookmark";
 	}
 }
