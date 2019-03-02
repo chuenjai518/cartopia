@@ -41,10 +41,11 @@ public class UserController {
 		return "userInfo";
 	}
 	
+	@PostMapping("/transaction")
 	public String transcation(Model model, @PathVariable("driverID") Integer id) {
 		Transaction transaction = userService.getTransactionRecord(id);
 		model.addAttribute("transaction", transaction);
-		return "userInfo";
+		return "transaction";
 	}
 	
 	//Need change to Post
