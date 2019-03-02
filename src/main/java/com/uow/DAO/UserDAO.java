@@ -209,16 +209,6 @@ public class UserDAO {
 		return result;
 	}
 
-	public void addComment() {
-		String sql = "";
-
-	}
-
-	public String getComment() {
-		String sql = "";
-		String cm = "";
-		return cm;
-	}
 	public void deleteCar(int driverCarID) {
 		String sql = "DELETE FROM DriverCar WHERE driverCarID = ?";
 		db.update(sql, driverCarID);
