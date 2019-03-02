@@ -27,6 +27,7 @@ import com.uow.Model.DriverCar;
 import com.uow.Model.Login;
 import com.uow.Model.User;
 import com.uow.Service.UserService;
+import com.uow.Model.Transaction;
 
 @Controller
 public class UserController {
@@ -39,6 +40,13 @@ public class UserController {
 		User user = userService.getUserInfo(id);
 		model.addAttribute("user", user);
 		return "userInfo";
+	}
+	
+	@PostMapping("/transaction")
+	public String transcation(Model model, @PathVariable("driverID") Integer id) {
+		Transaction transaction = userService.getTransactionRecord(id);
+		model.addAttribute("transaction", transaction);
+		return "transaction";
 	}
 	
 	//Need change to Post
@@ -150,6 +158,7 @@ public class UserController {
 		Driver driver = userService.getDriverInfo(userID);
 		User user = userService.getUserInfo(userID);
 		List<DriverCar> list = userService.getAllCar(driver.getDriverID());
+		
 		model.addAttribute("driver", driver);
 		model.addAttribute("user", user);
 		model.addAttribute("carList", list);
@@ -190,10 +199,10 @@ public class UserController {
 		return "redirect:/driverPage";
 	}
 
-	@PostMapping ("driverProfile/deleteCar/{driverCarID}")
+	@GetMapping ("driverProfile/deleteCar/{driverCarID}")
 	public String deleteCar(@PathVariable("driverCarID") Integer driverCarID, Model model) {
 		userService.deleteCar(driverCarID);
-		return "redirect:/driverPage";
+		return "redirect:/driverPage#profile";
 	}
 	
 	
@@ -223,6 +232,7 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "cpoR";
 	}
+	
 	
 	
 }

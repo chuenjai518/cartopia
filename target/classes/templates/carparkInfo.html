@@ -47,7 +47,8 @@
 						<div class="container align-content-center">
 							<h4 th:text="${carPark.getAddress()}"></h4>
 							<p th:text="${carPark.getDescription()}"></p>
-							<p th:text="'Time: ' + ${carPark.getOpenTime()} + ' - ' + ${carPark.getCloseTime()}"></p>
+							<p
+								th:text="'Time: ' + ${carPark.getOpenTime()} + ' - ' + ${carPark.getCloseTime()}"></p>
 							<p>No. of parking spaces: 300</p>
 							<p>Number of remaining parking spaces: 50</p>
 						</div>
@@ -57,30 +58,36 @@
 						<p></p>
 						<h4>Comment</h4>
 						<hr />
-						<div class="container">
-							<table border="0">
-								<tr>
-									<td>&nbsp;</td>
-									<td rowspan="2"><img src="/images/memberIcon.png" width="30"
-										height="30" alt=""></td>
-									<td>&nbsp;Username</td>
-								</tr>
-								<tr>
-									<td>&nbsp;</td>
-									<td>&nbsp;&nbsp;&nbsp;<i
-										class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i
-										class="fa fa-star-o"></i><i class="fa fa-star-o"></i><i
-										class="fa fa-star-o"></i></td>
-								</tr>
-							</table>
-						</div>
-						<p></p>
-						<textarea class="textarea ml-4 mr-4"
+						<textarea class="textarea ml-4 mr-4 font-control"
 							placeholder="Give a comment..."></textarea>
 						<p></p>
+							<fieldset class="rating">
+								<input type="radio" id="star5" name="rating" value="5" /><label
+									class="full" for="star5" title="Awesome - 5 stars"></label> <input
+									type="radio" id="star4half" name="rating" value="4 and a half" /><label
+									class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+								<input type="radio" id="star4" name="rating" value="4" /><label
+									class="full" for="star4" title="Pretty good - 4 stars"></label>
+								<input type="radio" id="star3half" name="rating"
+									value="3 and a half" /><label class="half" for="star3half"
+									title="Meh - 3.5 stars"></label> <input type="radio" id="star3"
+									name="rating" value="3" /><label class="full" for="star3"
+									title="Meh - 3 stars"></label> <input type="radio"
+									id="star2half" name="rating" value="2 and a half" /><label
+									class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+								<input type="radio" id="star2" name="rating" value="2" /><label
+									class="full" for="star2" title="Kinda bad - 2 stars"></label> <input
+									type="radio" id="star1half" name="rating" value="1 and a half" /><label
+									class="half" for="star1half" title="Meh - 1.5 stars"></label> <input
+									type="radio" id="star1" name="rating" value="1" /><label
+									class="full" for="star1" title="Sucks big time - 1 star"></label>
+								<input type="radio" id="starhalf" name="rating" value="half" /><label
+									class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+							</fieldset>
 						<div class="card-img-center">
-							<a href="#" class="btn btn-primary">Comment</a>
+							<a href="#" class="btn btn-primary ">Comment</a>
 						</div>
+
 						<p></p>
 						<div class="container ml-4">
 							<table>

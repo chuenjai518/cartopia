@@ -19,6 +19,8 @@ import com.uow.Model.Login;
 import com.uow.Model.LoginRowMapper;
 import com.uow.Model.User;
 import com.uow.Model.UserRowMapper;
+import com.uow.Model.Transaction;
+import com.uow.Model.TransactionRowMapper;
 
 @Repository
 public class UserDAO {
@@ -213,6 +215,15 @@ public class UserDAO {
 		String sql = "UPDATE User SET password = ? WHERE userID =?";
 		db.update(sql, password, userID);
 	}
-
+	
+	public List<Transaction> getTransactionRecord(int driverID) {
+		String sql = "SELECT transactionID, startTime, endTime, driverID, totalAmount, licensePlateNum FROM Transaction WHERE driverID = ?";
+		try {
+			RowMapper<Transaction> rowMapper = new TransactionRowMapper();
+			return db.query(sql, rowMapper, driverID);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
 
 }

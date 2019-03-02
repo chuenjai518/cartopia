@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.uow.Model.Bookmark;
+import com.uow.Model.Booking;
 import com.uow.Model.CarPark;
 import com.uow.Model.DriverCar;
 import com.uow.Model.Login;
@@ -35,8 +35,14 @@ public class WebController {
 	
 	@GetMapping("/")
 	public String index(Model model) {
-		return "redirect:/home";
+		return "redirect:/index";
 	}
+
+	@GetMapping("/index")
+	public String home(Model model) {
+		return "test";
+	}
+
 
 
 	@GetMapping("login")
@@ -44,23 +50,30 @@ public class WebController {
 		model.addAttribute("login", new Login());
 		model.addAttribute("user", new User());
 		if(session.getAttribute("userID") != null) {
-			return "redirect:/home";
+			return "redirect:/index";
 		}
 		return "login";
 	}
 	
+
 	
+	@GetMapping("PageTest")
+	public String pageTest(Model model, HttpSession session) {
+		model.addAttribute("userID", session.getAttribute("userID"));
+		return "test";
+	}
+	
+
 	@GetMapping("/home")
 	public String Home(Model model) {
 		List<CarPark> list = carParkService.getAllCarPark();
 		model.addAttribute("carParkList", list);
 		return "home";
 	}
-
-
+	
 	@GetMapping("/carparkInfo")
 	public String CarParkInfo(Model model) {
-
+		model.addAttribute("Booking", new Booking());
 		return "carparkInfo";
 	}
 	
@@ -75,5 +88,4 @@ public class WebController {
 		List<DriverCar> list = userService.getAllCar(driverID);
 		return new ResponseEntity<List<DriverCar>>(list, HttpStatus.OK);
 	}
-
 }
