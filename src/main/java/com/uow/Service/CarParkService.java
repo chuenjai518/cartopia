@@ -26,6 +26,14 @@ public class CarParkService {
 		return carParkDAO.getAllCarPark();
 		
 	}
+	public List<CarPark> getExceptCarPark(int userID){
+		return carParkDAO.getExceptCarPark(userID);
+		
+	}
+	public List<CarPark> getBookMarkCarPark(int userID){
+		return carParkDAO.getBookMarkCarPark(userID);
+		
+	}
 	
 	public void updateCarPark(CarPark carPark) {
 		carParkDAO.updateCarPark(carPark);

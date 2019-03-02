@@ -21,39 +21,93 @@
 		<div id="page-content-wrapper">
 			<div class="container-fluid mt-4 row">
 				<div class="col-12 mt-4">
-
-					<div class="shadow card mt-4"  th:each="carPark: ${carParkList}">
+					<div class="shadow card	 mt-4" th:each="carPark: ${bookmark} ">
 						<div class="card-body">
 							<div class="container">
 								<div class="row home-for">
-									<div class="bg-primary col-10 col-lg-9 col-sm-10 mt-2 mb-2 home-for text-center" th:text="${carPark.getName()}"></div>
-									<div class="bg-primary col-2 col-lg-3 col-sm-2 mt-2 mb-2" style="backgtound-color:#0f1834;">
-										<i class="fa fa-bookmark-o"></i>
+									<div
+										class="bg-primary col-10 col-lg-9 col-sm-10 mt-2 mb-2 home-for text-center"
+										th:text="${carPark.getName()}"></div>
+									<div class="bg-primary col-2 col-lg-3 col-sm-2 mt-2 mb-2"
+										style="backgtound-color: #0f1834;">
+										<i class="fa fa-bookmark"></i>
 									</div>
-
 								</div>
+								
 								<div class="row">
 									<div
-										class="col-12 col-lg-3 col-sm-12 mt-auto ml-auto mr-auto mb-auto" th:text="'Address: ' + ${carPark.getAddress()}"></div>
+										class="col-12 col-lg-3 col-sm-12 mt-auto ml-auto mr-auto mb-auto"
+										th:text="'Address: ' + ${carPark.getAddress()}"></div>
 									<div
 										class="col-12 col-lg-2 col-sm-12 mt-auto ml-auto mr-auto mb-auto">
-										<div th:text="'Time: ' + ${carPark.getOpenTime()} + ' - '"></div>  <div th:text="${carPark.getCloseTime()}"></div></div>
+										<div
+											th:text="'Office Hour: ' + ${carPark.getOpenTime()} + ' - '"></div>
+										<div th:text="${carPark.getCloseTime()}"></div>
+									</div>
 									<div
 										class="col-12  col-lg-2 col-sm-12 mt-auto ml-auto mr-auto mb-auto">
 										<div
-											th:text="'Number of private car parking spaces: ' + ${carPark.getPrivateCarSlot()}"></div></div>
+											th:text="'Number of private car parking spaces: ' + ${carPark.getPrivateCarSlot()}"></div>
+									</div>
 									<div
 										class="col-12 col-lg-3 col-sm-12 mt-auto ml-auto mr-auto mb-auto">
 										<div
-											th:text="'Number of motor parking spaces: ' + ${carPark.getMotorSlot()}"></div></div>
+											th:text="'Number of motor parking spaces: ' + ${carPark.getMotorSlot()}"></div>
+									</div>
 									<div
 										class="col-12 col-lg-2 col-sm-12 mt-auto ml-auto mr-auto mb-auto">
-										<a href="#" class="btn btn-primary" 
-										th:onclick="'location.href=\''+ @{/carparkInfo/{id} (id=${carPark.getCarParkID()})}+'\''">Details</a>
+										<a href="#" class="btn btn-primary"
+											th:onclick="'location.href=\''+ @{/carparkInfo/{id} (id=${carPark.getCarParkID()})}+'\''">Details</a>
 									</div>
 
 								</div>
+
+							</div>
+						</div>
+					</div>
+					
+					
+					<div class="shadow card	 mt-4" th:each="carPark: ${carParkList} ">
+						<div class="card-body">
+							<div class="container">
+								<div class="row home-for">
+									<div
+										class="bg-primary col-10 col-lg-9 col-sm-10 mt-2 mb-2 home-for text-center"
+										th:text="${carPark.getName()}"></div>
+									<div class="bg-primary col-2 col-lg-3 col-sm-2 mt-2 mb-2"
+										style="backgtound-color: #0f1834;">
+										<i th:onclick="'location.href=\''+ @{/bookmark/{id} (id=${carPark.getCarParkID()})}+'\''" class="fa fa-bookmark-o"></i>
+									</div>
+								</div>
 								
+								<div class="row">
+									<div
+										class="col-12 col-lg-3 col-sm-12 mt-auto ml-auto mr-auto mb-auto"
+										th:text="'Address: ' + ${carPark.getAddress()}"></div>
+									<div
+										class="col-12 col-lg-2 col-sm-12 mt-auto ml-auto mr-auto mb-auto">
+										<div
+											th:text="'Office Hour: ' + ${carPark.getOpenTime()} + ' - '"></div>
+										<div th:text="${carPark.getCloseTime()}"></div>
+									</div>
+									<div
+										class="col-12  col-lg-2 col-sm-12 mt-auto ml-auto mr-auto mb-auto">
+										<div
+											th:text="'Number of private car parking spaces: ' + ${carPark.getPrivateCarSlot()}"></div>
+									</div>
+									<div
+										class="col-12 col-lg-3 col-sm-12 mt-auto ml-auto mr-auto mb-auto">
+										<div
+											th:text="'Number of motor parking spaces: ' + ${carPark.getMotorSlot()}"></div>
+									</div>
+									<div
+										class="col-12 col-lg-2 col-sm-12 mt-auto ml-auto mr-auto mb-auto">
+										<a href="#" class="btn btn-primary"
+											th:onclick="'location.href=\''+ @{/carparkInfo/{id} (id=${carPark.getCarParkID()})}+'\''">Details</a>
+									</div>
+
+								</div>
+
 							</div>
 						</div>
 					</div>

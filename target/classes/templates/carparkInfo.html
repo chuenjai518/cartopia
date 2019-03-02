@@ -40,7 +40,7 @@
 						<p></p>
 							<h4 th:text="'Address: ' + ${carPark.getAddress()}"></h4>
 							<p th:text="${carPark.getDescription()}"></p>
-							<p th:text="'Time: ' + ${carPark.getOpenTime()} + ' - ' + ${carPark.getCloseTime()}"></p>
+							<p th:text="'Office Hour: ' + ${carPark.getOpenTime()} + ' - ' + ${carPark.getCloseTime()}"></p>
 							<p th:text="'Number of private car parking spaces: ' + ${carPark.getPrivateCarSlot()}"></p>
 							<p th:text="'Number of private car parking fees: ' + ${carPark.getPrivateCarFee()}"></p>
 							<p th:text="'Number of motor parking spaces: ' + ${carPark.getMotorSlot()}"></p>
@@ -53,8 +53,8 @@
 						<p></p>
 						<h4>Comment</h4>
 						<hr />
-						<textarea class="textarea ml-4 mr-4 font-control" placeholder="Give a comment..." th:if="${user.getUserID()!='0'}"></textarea>
-						<div th:unless="${user.getUserID()==0}">Please Login</div>
+						<textarea class="textarea ml-4 mr-4 font-control" placeholder="Give a comment..." th:if="${user.getUserID()==0}"></textarea>
+						<div th:unless="${user.getUserID()==0}">Please Login to comment!</div>
 						<p></p>
 						<div class="card-img-center">
 							<a href="#" class="btn btn-primary ">Comment</a>

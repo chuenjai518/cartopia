@@ -50,6 +50,20 @@ public class CarParkDAO {
 		RowMapper<CarPark> rowMapper = new CarParkRowMapper();
 		return this.db.query(sql, rowMapper);
 	}
+	
+	public List<CarPark> getExceptCarPark(int userID) {
+		String sql = "SELECT carParkID, name, address, Time(openTime), Time(closeTime), Description, privateCarSlot, privateCarFee, motorSlot, motorFee, photoLink FROM CarPark Where carParkID Not in(Select carParkID FROM userbookmark where userId =?)";
+		
+		RowMapper<CarPark> rowMapper = new CarParkRowMapper();
+		return this.db.query(sql, rowMapper, userID);
+	}
+	
+	public List<CarPark> getBookMarkCarPark(int userID) {
+		String sql = "SELECT carParkID, name, address, Time(openTime), Time(closeTime), Description, privateCarSlot, privateCarFee, motorSlot, motorFee, photoLink FROM CarPark Where carParkID in(Select carParkID FROM userbookmark where userId =?)";
+		
+		RowMapper<CarPark> rowMapper = new CarParkRowMapper();
+		return this.db.query(sql, rowMapper, userID);
+	}
 
 	public void updateCarPark(CarPark carPark) {
 		System.out.println("EXCUTE INSERT CarParkID - " + carPark.getCarParkID());
