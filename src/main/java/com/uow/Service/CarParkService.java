@@ -47,8 +47,8 @@ public class CarParkService {
 		carParkDAO.deleteCarPark(carParkID);
 	}
 	
-	public int getCarparkRealTimeSpace(CarPark carPark) {
-		return carParkDAO.getCarparkRealTimeSpace(carPark);
+	public int getCarparkRealTimeSpace(int carParkID) {
+		return carParkDAO.getCarparkRealTimeSpace(carParkID);
 	}
 	public List<Bookmark> getBookmark(int userID){
 		return carParkDAO.getBookmark(userID);

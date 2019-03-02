@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.uow.Model.Booking;
 import com.uow.Model.Bookmark;
 import com.uow.DAO.UserDAO;
 import com.uow.Model.CarPark;
@@ -104,4 +105,10 @@ public class UserService {
 		return userDAO.getBookmark(userID);
 	}
 
+	public void bookCarPark(int driverCarID, int carParkID, int carTypeID) {
+		userDAO.bookCarPark(driverCarID, carParkID, carTypeID);
+	}
+	public List<Booking> getBookingRecord(int userID){
+		return userDAO.getBookingRecord(userID);
+	}
 }

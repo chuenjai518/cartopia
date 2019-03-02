@@ -24,6 +24,8 @@ import com.uow.Model.UserRowMapper;
 import com.uow.Model.Transaction;
 import com.uow.Model.TransactionRowMapper;
 import com.uow.Model.BookmarkRowMapper;
+import com.uow.Model.BookingRowMapper;
+import com.uow.Model.Booking;
 
 @Repository
 public class UserDAO {
@@ -209,16 +211,6 @@ public class UserDAO {
 		return result;
 	}
 
-	public void addComment() {
-		String sql = "";
-
-	}
-
-	public String getComment() {
-		String sql = "";
-		String cm = "";
-		return cm;
-	}
 	public void deleteCar(int driverCarID) {
 		String sql = "DELETE FROM DriverCar WHERE driverCarID = ?";
 		db.update(sql, driverCarID);
@@ -239,6 +231,23 @@ public class UserDAO {
 		}
 	}
 	
-
+	public void bookCarPark(int driverCarID,int carParkID, int carTypeID ) {
+		String sql ="INSERT INTO Booking (carParkID,driverCarID)"+"Values(?, ?)";
+		db.update(sql, carParkID, driverCarID);
+		if(carTypeID == 1) {
+			String sql1 ="UPDATE CarParkSlot SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1;";
+		}
+		
+	}
+	
+	public List<Booking> getBookingRecord(int userID){
+		String sql = "SELECT b.bookingID, b.carParkID, b.driverCarID, Time(bookingTime) , c.name, c.address, c.photoLink FROM Booking b, CarPark c, DriverCar dc, Driver d, User u WHERE u.userID = ? and b.carParkID = c.carParkID and dc.driverCarID = b.driverCarID and d.driverID = dc.driverID and d.userID = u.userID;";
+		try {
+			RowMapper<Booking> rowMapper = new BookingRowMapper();
+			return this.db.query(sql, rowMapper, userID);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
 
 }

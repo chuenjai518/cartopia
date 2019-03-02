@@ -55,7 +55,7 @@ a:hover{
 	background-repeat: no-repeat;
 	background-size: auto;
 	height: 200px; 
-	object-fit:;
+	object-fit:cover;
 }
 
 .bookmarkCard{
@@ -81,13 +81,13 @@ a:hover{
 .reservationPhoto{
 	height: 200px; 
 	
-	object-fit: contain; 
+	object-fit: cover; 
 	padding-top: 10px; 
 	padding-bottom: 10px;
 }
 
-.noUnderline:hover{
-	text-decoration: none;
+.reservationText{
+	color:red;
 }
 
 
