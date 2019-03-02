@@ -37,11 +37,14 @@
 						<br />
 
 						<div class="container align-content-center">
-							<h4 th:text="${carPark.getAddress()}"></h4>
+						<p></p>
+							<h4 th:text="'Address: ' + ${carPark.getAddress()}"></h4>
 							<p th:text="${carPark.getDescription()}"></p>
-							<p
-								th:text="'Time: ' + ${carPark.getOpenTime()} + ' - ' + ${carPark.getCloseTime()}"></p>
-							<p>No. of parking spaces: 300</p>
+							<p th:text="'Time: ' + ${carPark.getOpenTime()} + ' - ' + ${carPark.getCloseTime()}"></p>
+							<p th:text="'Number of private car parking spaces: ' + ${carPark.getPrivateCarSlot()}"></p>
+							<p th:text="'Number of private car parking fees: ' + ${carPark.getPrivateCarFee()}"></p>
+							<p th:text="'Number of motor parking spaces: ' + ${carPark.getMotorSlot()}"></p>
+							<p th:text="'Number of motor parking spaces: ' + ${carPark.getMotorFee()}"></p>
 							<p>Number of remaining parking spaces: 50</p>
 						</div>
 					</div>
@@ -50,9 +53,8 @@
 						<p></p>
 						<h4>Comment</h4>
 						<hr />
-						<div  th:if="${user.getUserID()}">
-						<textarea class="textarea ml-4 mr-4 font-control" placeholder="Give a comment..."></textarea></div>
-						<div th:unless="${user.getUserID()}">Please Login</div>
+						<textarea class="textarea ml-4 mr-4 font-control" placeholder="Give a comment..." th:if="${user.getUserID()!='0'}"></textarea>
+						<div th:unless="${user.getUserID()==0}">Please Login</div>
 						<p></p>
 						<div class="card-img-center">
 							<a href="#" class="btn btn-primary ">Comment</a>
