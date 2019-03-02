@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.uow.Model.Bookmark;
+import com.uow.Model.BookmarkRowMapper;
 import com.uow.Model.CarPark;
 import com.uow.Model.CarParkRowMapper;
 
@@ -68,5 +70,16 @@ public class CarParkDAO {
 		String sql2 = "SELECT NumOfSlot FROM CarParkSlotInfo WHERE carParkID = " + carpark.getCarParkID();
 		result = db.queryForObject(sql2, Integer.class) - db.queryForObject(sql, Integer.class);
 		return result;
+	}
+	
+	
+	public List<Bookmark> getBookmark(int userID) {
+		String sql = "SELECT userID, carParkID FROM userbookmark WHERE userID = " + userID;
+		try {
+			RowMapper<Bookmark> rowMapper = new BookmarkRowMapper();
+			return this.db.query(sql, rowMapper, userID);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 }

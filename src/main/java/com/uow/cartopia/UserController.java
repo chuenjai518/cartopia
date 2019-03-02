@@ -144,7 +144,6 @@ public class UserController {
 		bookmark.setUserID(userID);
 		bookmark.setCarParkID(carParkID);
 		userService.bookmark(bookmark);	
-		String referer = request.getHeader("Referer");
 		
 		 return "redirect:/carparkInfo/"+carParkID;
 	}
@@ -231,13 +230,6 @@ public class UserController {
 		User user = userService.getUserInfo(userID);
 		model.addAttribute("user", user);
 		return "cpoR";
-	}
-	
-	@GetMapping("bookmark/{id}")
-	public String getBookamrk(@PathVariable("id") Integer id, Model model) {
-		List<Bookmark> Bookmark = userService.getBookmark(id);
-		model.addAttribute("Bookmark", Bookmark);
-		return "Bookmark";
 	}
 	
 }
