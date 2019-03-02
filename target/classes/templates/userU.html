@@ -13,8 +13,8 @@
 						<form method="POST" th:action="@{/adminUpdateUserProcess/} + ${user.getUserID()}" th:object="${user}">
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label th:field="*{firstName}" for="FirstName">First
-										Name</label> <input th:value="${user.getFirstName()}" type="text"
+									<label  for="FirstName">First
+										Name</label> <input th:field="*{firstName}" th:value="${user.getFirstName()}" type="text"
 										class="form-control" id="FirstName"
 										placeholder="First Name...">
 								</div>
