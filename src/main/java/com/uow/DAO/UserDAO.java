@@ -189,7 +189,16 @@ public class UserDAO {
 		String sql = "INSERT INTO userbookmark(carParkID, userID) " + "Values(?, ?)";
 		db.update(sql, bookmark.getCarParkID(), bookmark.getUserID());
 	}
-
+	
+	public List<Bookmark> getBookmark(int userID) {
+		String sql = "SELECT u.userID, u.carParkID, c.name, c.photoLink FROM userbookmark u, carPark c WHERE UserID = " + userID + "and c.carParkID = u.carParkID";
+		try {
+			RowMapper<Bookmark> rowMapper = new BookmarkRowMapper();
+			return this.db.query(sql, rowMapper, userID);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
 
 	public int countNewDriver() {
 		int result;

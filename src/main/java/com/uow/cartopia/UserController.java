@@ -39,14 +39,12 @@ public class UserController {
 	public String user(Model model, @PathVariable("userID") Integer id) {
 		User user = userService.getUserInfo(id);
 		model.addAttribute("user", user);
+		List<Bookmark> Bookmark = userService.getBookmark(id);
+		model.addAttribute("Bookmark", Bookmark);
 		return "userInfo";
 	}
 	
-	
-	
-	
-	
-	
+
 	//Need change to Post
 	@PostMapping("/loginProcess")
 	public RedirectView loginProcess(@ModelAttribute Login login,RedirectAttributes model, HttpSession session) {
