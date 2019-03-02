@@ -34,16 +34,18 @@
 								</div>
 								<div class="row">
 									<div
-										class="col-12 col-lg-3 col-sm-12 mt-auto ml-auto mr-auto mb-auto" th:text="${carPark.getAddress()}"></div>
+										class="col-12 col-lg-3 col-sm-12 mt-auto ml-auto mr-auto mb-auto" th:text="'Address: ' + ${carPark.getAddress()}"></div>
 									<div
 										class="col-12 col-lg-2 col-sm-12 mt-auto ml-auto mr-auto mb-auto">
 										<div th:text="'Time: ' + ${carPark.getOpenTime()} + ' - '"></div>  <div th:text="${carPark.getCloseTime()}"></div></div>
 									<div
-										class="col-12  col-lg-2 col-sm-12 mt-auto ml-auto mr-auto mb-auto">No.
-										of parking spaces: 300</div>
+										class="col-12  col-lg-2 col-sm-12 mt-auto ml-auto mr-auto mb-auto">
+										<div
+											th:text="'Number of private car parking spaces: ' + ${carPark.getPrivateCarSlot()}"></div></div>
 									<div
-										class="col-12 col-lg-3 col-sm-12 mt-auto ml-auto mr-auto mb-auto">Number
-										of remaining parking spaces: 50</div>
+										class="col-12 col-lg-3 col-sm-12 mt-auto ml-auto mr-auto mb-auto">
+										<div
+											th:text="'Number of motor parking spaces: ' + ${carPark.getMotorSlot()}"></div></div>
 									<div
 										class="col-12 col-lg-2 col-sm-12 mt-auto ml-auto mr-auto mb-auto">
 										<a href="#" class="btn btn-primary" 
