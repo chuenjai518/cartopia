@@ -57,7 +57,7 @@ public class CarParkDAO {
 		}
 
 	public void deleteCarPark(int carParkID) {
-		db.update("DELETE FROM carPark WHERE carParkID = ?", carParkID);
+		db.update("DELETE FROM CarPark WHERE carParkID = ?", carParkID);
 
 	}
 
