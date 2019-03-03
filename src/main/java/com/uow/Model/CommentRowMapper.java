@@ -10,7 +10,7 @@ public class CommentRowMapper implements RowMapper<Comment> {
 	@Override
 	public Comment mapRow(ResultSet row, int rowNum) throws SQLException {
 		Comment comment = new Comment();
-		comment.setCarParkID(row.getInt("carParID"));
+		comment.setCarParkID(row.getInt("carParkID"));
 		comment.setUserID(row.getInt("userID"));
 		comment.setComment(row.getString("comment"));
 		comment.setCommentID(row.getInt("commentID"));
