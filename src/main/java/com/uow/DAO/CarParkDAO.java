@@ -30,10 +30,10 @@ public class CarParkDAO {
 		System.out.println("EXCUTE INSERT CarPark - " + carPark.getName());
 		db.update(
 				"INSERT INTO CarPark(name, address, description, openTime, closeTime, privateCarSlot, privateCarFee, motorSlot, motorFee, photoLink) "
-						+ "Values (?,?,?,?,?,?,?,?,?)",
+						+ "Values (?,?,?,?,?,?,?,?,?,?)",
 				carPark.getName(), carPark.getAddress(), carPark.getDescription(), carPark.getOpenTime(),
 				carPark.getCloseTime(), carPark.getPrivateCarSlot(), carPark.getPrivateCarFee(), carPark.getMotorSlot(),
-				carPark.getMotorFee());
+				carPark.getMotorFee(), carPark.getPhotoLink());
 		
 		String sql = "Select carParkID from CarPark where address = ?";
 		
