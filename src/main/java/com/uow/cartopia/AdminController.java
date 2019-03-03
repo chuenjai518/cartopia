@@ -134,6 +134,7 @@ public class AdminController {
 //	}	
 		List<User> list = carParkService.getCPOList();
 		model.addAttribute("cpoList", list);
+		model.addAttribute("cpo", "");
 		model.addAttribute("carpark", new CarPark());
 		return "carparkC";
 	}

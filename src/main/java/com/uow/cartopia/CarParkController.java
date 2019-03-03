@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -70,8 +71,8 @@ public class CarParkController {
 	}
 
 	@PostMapping("addCarPark")
-	public String addCarPark(@ModelAttribute CarPark carPark, Model model) {
-		carParkService.addCarPark(carPark);
+	public String addCarPark(@RequestParam int cpo1, @ModelAttribute CarPark carPark, Model model) {
+		carParkService.addCarPark(carPark, cpo1);
 		return ("redirect:/admin/carpark");
 	}
 
