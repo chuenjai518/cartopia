@@ -47,8 +47,8 @@ public class CarParkController {
 			driverCarList = userService.getAllCar(driver.getDriverID());
 			model.addAttribute("driverCarList", driverCarList);
 		}
-		int realTimeSpace = carParkService.getCarparkRealTimeSpace(carParkID);
-		model.addAttribute("realTimeSpace", realTimeSpace);
+		//int realTimeSpace = carParkService.getCarparkRealTimeSpace(carParkID);
+		//model.addAttribute("realTimeSpace", realTimeSpace);
 		CarPark carPark = carParkService.getCarPark(carParkID);
 		model.addAttribute("user", user);
 		model.addAttribute("carPark", carPark);
