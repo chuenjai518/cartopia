@@ -138,7 +138,7 @@ public class CarParkDAO {
 	}
 	
 	public Booking getBookingDetail(int userID) {
-		String sql = "SELECT Time(NOW()) , credit FROM Driver WHERE userID = ?;";
+		String sql = "SELECT b.bookingID, b.carParkID, b.driverCarID, Time(NOW()) , d.credit, c.name, c.address, c.photoLink FROM Booking b, CarPark c, Driver d WHERE d.userID = ? ORDER BY d.userID limit 1;";
 		RowMapper<Booking> rowMapper = new BookingRowMapper();
 		Booking booking = new Booking();
 		try {
