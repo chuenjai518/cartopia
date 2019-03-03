@@ -10,7 +10,7 @@
 				<h3>Create New Car Park</h3>
 				<div class="shadow card">
 					<div class="card-body">
-						<form method="POST" th:action="@{/addCarPArk}" th:object="${carpark}">
+						<form method="POST" th:action="@{/addCarPark}" th:object="${carpark}">
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="carParkName">Carpark Name</label> <input type="text"
@@ -58,9 +58,9 @@
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-4">
-									<label for="owner">Car Park Owner</label> <select th:value="${cpo}" id="owner"
+									<label for="owner">Car Park Owner</label> <select th:value="${cpo1}" id="owner"
 										class="form-control">
-										<option value="member" selected>Member</option>
+										<option th:each="cpo : ${cpoList}" th:text="${cpo.getUsername()}" th:value="${cpo.getUserID()}" selected></option>
 									</select>
 								</div>
 							</div>
