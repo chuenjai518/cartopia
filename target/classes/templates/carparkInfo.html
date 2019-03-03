@@ -69,9 +69,8 @@
 						<!-- If the user doesn't login -->
 						<div th:if="${user.getUserID()==0}">Please Login to comment!</div>
 						<!-- If the user login -->
-						<form action="addComment" method="GET"
-							th:unless="${user.getUserID()==0}">
-							<textarea type="textarea"
+						<form method="POST" th:action="@{/addComment}" th:object="${comment}" th:unless="${user.getUserID()==0}">
+							<textarea
 								class="textarea col-10 ml-4 mr-4 font-control"
 								placeholder="Give a comment..." name="comment" id="addComment"
 								th:value="${comment}" required></textarea>
@@ -114,7 +113,7 @@
 				<h3 class="font-weight-bolder">Reservation</h3>
 				<hr>
 				<div class="container">
-					<form name="reserve" method="post" action="">
+					<form name="reserve" method="post" action="" th:action="@{/bookCarPark}" th:object="${driverCarID,carParkID,carTypeID,driverID}">
 
 						<strong class="text-center" th:text="${carPark.getName()}"></strong>
 						<p>&nbsp;</p>
@@ -123,9 +122,9 @@
 						<p th:text="'Credit: ' +${credit}"></p>
 						<p>Which car you want to reserve?
 							<label> <input type="radio" name="car"
-								value="Private Car" id="priCar"> Private Car
+								value="Private Car" id="priCar" th:field="*{carTypeID}"> Private Car
 							</label> <label> <input type="radio" name="car" value="Motor"
-								id="motor"> Motor
+								id="motor"  th:field="*{carTypeID}"> Motor
 							</label> <br>
 						</p>
 
