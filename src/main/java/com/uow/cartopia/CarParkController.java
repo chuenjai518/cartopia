@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.uow.Model.Bookmark;
+import com.uow.Model.Booking;
 import com.uow.Model.CarPark;
 import com.uow.Model.User;
 import com.uow.Service.CarParkService;
@@ -49,6 +50,8 @@ public class CarParkController {
 		}
 		//int realTimeSpace = carParkService.getCarparkRealTimeSpace(carParkID);
 		//model.addAttribute("realTimeSpace", realTimeSpace);
+		Booking bookingDetail = carParkService.getBookingDetail(userID);
+		model.addAttribute("bookingDetail", bookingDetail);
 		CarPark carPark = carParkService.getCarPark(carParkID);
 		model.addAttribute("user", user);
 		model.addAttribute("carPark", carPark);

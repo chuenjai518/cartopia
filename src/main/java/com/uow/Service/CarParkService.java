@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uow.DAO.CarParkDAO;
+import com.uow.Model.Booking;
 import com.uow.Model.Bookmark;
 import com.uow.Model.CarPark;
 import com.uow.Model.Comment;
@@ -68,5 +69,8 @@ public class CarParkService {
 	
 	public void carParkToOwner(int userID, int carParkID) {
 		carParkDAO.carParkToOwner(userID, carParkID);
+	}
+	public Booking getBookingDetail(int userID){
+		return carParkDAO.getBookingDetail(userID);
 	}
 }

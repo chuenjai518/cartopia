@@ -1,6 +1,7 @@
 package com.uow.DAO;
 
 import java.util.List;
+import java.sql.Time;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -9,6 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.uow.Model.Booking;
+import com.uow.Model.BookingRowMapper;
 import com.uow.Model.Bookmark;
 import com.uow.Model.BookmarkRowMapper;
 import com.uow.Model.CarPark;
@@ -132,5 +135,16 @@ public class CarParkDAO {
 	public void carParkToOwner(int userID, int carParkID) {
 		String sql = "Insert INTO CarParkOwnerCarPark(userID, carParkID) values(?,?)";
 		db.update(sql, userID, carParkID);
+	}
+	
+	public Booking getBookingDetail(int userID) {
+		String sql = "SELECT Time(bookingTime), d.credit FROM Booking b, CarPark c, DriverCar dc, Driver d, User u WHERE u.userID = ? and b.carParkID = c.carParkID and dc.driverCarID = b.driverCarID and d.driverID = dc.driverID and d.userID = u.userID;";
+		String sql1 = "SELECT d.credit FROM Booking b, CarPark c, DriverCar dc, Driver d, User u WHERE u.userID = ? and b.carParkID = c.carParkID and dc.driverCarID = b.driverCarID and d.driverID = dc.driverID and d.userID = u.userID;";
+		double credit = db.queryForObject(sql1, Integer.class);
+		Time bookingTime = db.queryForObject(sql, Time.class);
+		Booking booking = new Booking();
+		booking.setBookingTime(bookingTime);
+		booking.setCredit(credit);
+		return booking;
 	}
 }

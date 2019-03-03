@@ -14,6 +14,15 @@ public class Booking{
 	private String name;
 	private String address;
 	private String photoLink;
+	private double credit;
+
+	public double getCredit() {
+		return credit;
+	}
+
+	public void setCredit(double credit) {
+		this.credit = credit;
+	}
 
 	public int getBookingID() {
 		return bookingID;
