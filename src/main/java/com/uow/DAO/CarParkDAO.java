@@ -138,11 +138,11 @@ public class CarParkDAO {
 	}
 	
 	public Booking getBookingDetail(int userID) {
-		String sql = "SELECT b.bookingID, b.carParkID, b.driverCarID, Time(NOW() AS bookingTime) , d.credit, c.name, c.address, c.photoLink FROM Booking b, CarPark c, Driver d WHERE d.userID = ? ORDER BY d.userID limit 1;";
+		String sql = "SELECT b.bookingID, b.carParkID, b.driverCarID, Time(NOW() AS bookingTime) , d.credit, c.name, c.address, c.photoLink FROM Booking b, CarPark c, Driver d WHERE d.userID = "+ userID + " ORDER BY d.userID limit 1;";
 		RowMapper<Booking> rowMapper = new BookingRowMapper();
 		Booking booking = new Booking();
 		try {
-			booking = db.queryForObject(sql, rowMapper, userID);
+			booking = db.queryForObject(sql, rowMapper);
 		} catch (EmptyResultDataAccessException e) {
 		}
 		return booking;
