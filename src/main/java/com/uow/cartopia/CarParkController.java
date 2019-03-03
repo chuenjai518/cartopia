@@ -40,6 +40,7 @@ public class CarParkController {
 		List<Bookmark> bookmark = new ArrayList<Bookmark>();
 		List<DriverCar> driverCarList = new ArrayList<DriverCar>();
 		User user = new User();
+	
 		if (session.getAttribute("userID") != null) {
 			userID = (int) session.getAttribute("userID");
 			bookmark = carParkService.getBookmark(userID);
@@ -47,12 +48,15 @@ public class CarParkController {
 			Driver driver = userService.getDriverInfo(userID);
 			driverCarList = userService.getAllCar(driver.getDriverID());
 			model.addAttribute("driverCarList", driverCarList);
+			Booking bookingDetail = carParkService.getBookingDetail(userID);
+			model.addAttribute("bookingDetail", bookingDetail);
 		}
 		//int realTimeSpace = carParkService.getCarparkRealTimeSpace(carParkID);
 		//model.addAttribute("realTimeSpace", realTimeSpace);
-		Booking bookingDetail = carParkService.getBookingDetail(userID);
-		model.addAttribute("bookingDetail", bookingDetail);
+	
+	
 		CarPark carPark = carParkService.getCarPark(carParkID);
+		model.addAttribute("userID", userID);
 		model.addAttribute("user", user);
 		model.addAttribute("carPark", carPark);
 		model.addAttribute("bookmark", bookmark);

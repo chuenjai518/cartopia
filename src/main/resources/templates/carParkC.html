@@ -10,40 +10,44 @@
 				<h3>Create New Car Park</h3>
 				<div class="shadow card">
 					<div class="card-body">
-						<form method="POST" th:action="@{/addCarPark}" th:object="${carpark}">
+						<form method="POST" th:action="@{/addCarPark}"
+							th:object="${carpark}">
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label for="carParkName">Carpark Name</label> <input type="text"
-										th:field="*{name}" class="form-control" id="carparkName"
-										placeholder="carpark Name...">
+									<label for="carParkName">Carpark Name</label> <input
+										type="text" th:field="*{name}" class="form-control"
+										id="carparkName" placeholder="carpark Name...">
 								</div>
 								<div class="form-group col-md-6">
-									<label for="address">address</label> <input type="text" th:field="*{address}"
-										class="form-control" id="address" placeholder="address...">
+									<label for="address">address</label> <input type="text"
+										th:field="*{address}" class="form-control" id="address"
+										placeholder="address...">
 								</div>
 								<div class="form-group col-md-6">
-									<label for="openTime">open time</label> <input type="text" th:field="*{openTime}"
-										class="form-control" id="openTime" placeholder="open Time...">
+									<label for="openTime">open time</label> <input type="text"
+										th:field="*{openTime}" class="form-control" id="openTime"
+										placeholder="open Time...">
 								</div>
 								<div class="form-group col-md-6">
-									<label for="closeTime">close time</label> <input type="text" th:field="*{closeTime}"
-										class="form-control" id="closeTime"
+									<label for="closeTime">close time</label> <input type="text"
+										th:field="*{closeTime}" class="form-control" id="closeTime"
 										placeholder="close time...">
 								</div>
 								<div class="form-group col-md-12">
 									<label for="Description">Description</label>
-									<textarea th:field="*{description}" class="form-control" id="Description"
-										placeholder="Description..."></textarea>
+									<textarea th:field="*{description}" class="form-control"
+										id="Description" placeholder="Description..."></textarea>
 								</div>
 								<div class="form-group col-md-4">
-									<label for="pcSlot">Private car slot</label> <input type="number"
-										th:field="*{privateCarSlot}" class="form-control" id="pcSlot"
+									<label for="pcSlot">Private car slot</label> <input
+										type="number" th:field="*{privateCarSlot}"
+										class="form-control" id="pcSlot"
 										placeholder="Number of private car slots...">
 								</div>
 								<div class="form-group col-md-2">
-									<label for="pcSlotFee">Private car Fee</label> <input type="number"
-										th:field="*{privateCarFee}" class="form-control" id="pcSlotFee"
-										placeholder="Number of private car slot Fee...">
+									<label for="pcSlotFee">Private car Fee</label> <input
+										type="number" th:field="*{privateCarFee}" class="form-control"
+										id="pcSlotFee" placeholder="Number of private car slot Fee...">
 								</div>
 								<div class="form-group col-md-4">
 									<label for="motorSlot">Motor slot </label> <input type="number"
@@ -51,16 +55,26 @@
 										placeholder="Number of motor slots...">
 								</div>
 								<div class="form-group col-md-2">
-									<label for="motorSlotFee">Motor slot Fee</label> <input type="number"
-										th:field="*{motorFee}" class="form-control" id="motorSlotFee"
-										placeholder="Number of motor slots Fee...">
+									<label for="motorSlotFee">Motor slot Fee</label> <input
+										type="number" th:field="*{motorFee}" class="form-control"
+										id="motorSlotFee" placeholder="Number of motor slots Fee...">
 								</div>
+							
+								<div class="form-group col-md-12">
+									<label for="photoLink">Photo Link</label> <input type="text"
+										th:field="*{photoLink}" class="form-control" id="photoLink"
+										placeholder="Photo URL...">
+								</div>
+					
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-4">
-									<label for="owner">Car Park Owner</label> <select th:value="${userID}" id="owner" name="userID"
+									<label for="owner">Car Park Owner</label> <select
+										th:value="${userID}" id="owner" name="userID"
 										class="form-control">
-										<option th:each="cpo : ${cpoList}" th:text="${cpo.getUsername()}" th:value="${cpo.getUserID()}" selected></option>
+										<option th:each="cpo : ${cpoList}"
+											th:text="${cpo.getUsername()}" th:value="${cpo.getUserID()}"
+											selected></option>
 									</select>
 								</div>
 							</div>
