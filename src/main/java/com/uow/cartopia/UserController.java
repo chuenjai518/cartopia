@@ -125,7 +125,6 @@ public class UserController {
 		if(session.getAttribute("userID") == null) {
 			return "redirect:/login";
 		}
-		
 		userService.bookCarPark(driverCarID, carParkID, carTypeID, driverID );
 		
 		 return "redirect:/carparkInfo/"+carParkID;

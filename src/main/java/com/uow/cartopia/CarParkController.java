@@ -57,6 +57,15 @@ public class CarParkController {
 		model.addAttribute("comment", comment);
 		return "carparkInfo";
 	}
+	
+	@PostMapping("bookCarPark")
+	public String bookCarPark(@RequestParam Integer driverCarID, @RequestParam Integer carParkID, @RequestParam Integer carTypeID, @RequestParam Integer driverID, HttpSession session) {
+		if(session.getAttribute("userID") == null) {
+			return "redirect:/login";
+		}
+		userService.bookCarPark(driverCarID, carParkID, carTypeID, driverID);
+		return ("redirect:/carparkinfo/{carParkID}");
+	}
 
 	@GetMapping("carpark")
 	public ResponseEntity<List<CarPark>> getAllCarPark() {
