@@ -138,7 +138,7 @@ public class CarParkDAO {
 	}
 	
 	public Time getCurrTime() {
-		String sql = "SELECT NOW();";
+		String sql = "SELECT Time(NOW());";
 		Time currTime = db.queryForObject(sql, Time.class);
 		return currTime;
 	}
