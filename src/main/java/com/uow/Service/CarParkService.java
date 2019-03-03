@@ -40,8 +40,9 @@ public class CarParkService {
 		carParkDAO.updateCarPark(carPark);
 	}
 	
-	public void addCarPark(CarPark carPark) {
-		carParkDAO.addCarPark(carPark);
+	public void addCarPark(CarPark carPark, int userID) {
+		int carParkID = carParkDAO.addCarPark(carPark);
+		carParkDAO.carParkToOwner(userID, carParkID);
 	}
 	
 	public void deleteCarPark(int carParkID){
@@ -63,5 +64,9 @@ public class CarParkService {
 	
 	public List<User> getCPOList(){
 		return carParkDAO.getCPOList();
+	}
+	
+	public void carParkToOwner(int userID, int carParkID) {
+		carParkDAO.carParkToOwner(userID, carParkID);
 	}
 }

@@ -94,4 +94,6 @@ public class CarParkController {
 		carParkService.addComment(comment);
 		return ("redirect:/carparkinfo/" +carParkID);
 	}
+	
+
 }
