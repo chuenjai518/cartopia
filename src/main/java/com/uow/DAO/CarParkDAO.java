@@ -137,13 +137,14 @@ public class CarParkDAO {
 		db.update(sql, userID, carParkID);
 	}
 	
-	public List<Booking> getBookingDetail(int userID) {
+	public Booking getBookingDetail(int userID) {
 		String sql = "SELECT b.bookingID, b.carParkID, b.driverCarID, Time(NOW()) , c.name, c.address, c.photoLink, d.credit FROM Booking b, CarPark c, DriverCar dc, Driver d, User u WHERE u.userID = ? and b.carParkID = c.carParkID and dc.driverCarID = b.driverCarID and d.driverID = dc.driverID and d.userID = u.userID ORDER BY bookingTime LIMIT 1;";
+		RowMapper<Booking> rowMapper = new BookingRowMapper();
+		Booking booking = new Booking();
 		try {
-			RowMapper<Booking> rowMapper = new BookingRowMapper();
-			return this.db.query(sql, rowMapper, userID);
+			booking = db.queryForObject(sql, rowMapper, userID);
 		} catch (EmptyResultDataAccessException e) {
-			return null;
 		}
+		return booking;
 	}
 }
