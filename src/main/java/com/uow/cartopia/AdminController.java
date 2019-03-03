@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -184,5 +185,14 @@ public class AdminController {
 		adminService.updateUserProcess(user);
 		
 		return ("redirect:/admin/user");
+	}
+	
+	@PostMapping("createCarPark")
+	public String adminCreateCarPark(@ModelAttribute CarPark carPark, @RequestParam Integer userID, Model model) {
+		
+		carParkService.addCarPark(carPark, userID);
+		
+		
+		return ("redirect:/admin/carpark");
 	}
 }

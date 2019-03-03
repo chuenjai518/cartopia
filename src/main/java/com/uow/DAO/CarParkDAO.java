@@ -23,7 +23,7 @@ public class CarParkDAO {
 	@Autowired
 	private JdbcTemplate db;
 
-	public void addCarPark(CarPark carPark) {
+	public int addCarPark(CarPark carPark) {
 		System.out.println("EXCUTE INSERT CarPark - " + carPark.getName());
 		db.update(
 				"INSERT INTO CarPark(name, address, description, openTime, closeTime, privateCarSlot, privateCarFee, motorSlot, motorFee, photoLink) "
@@ -31,6 +31,10 @@ public class CarParkDAO {
 				carPark.getName(), carPark.getAddress(), carPark.getDescription(), carPark.getOpenTime(),
 				carPark.getCloseTime(), carPark.getPrivateCarSlot(), carPark.getPrivateCarFee(), carPark.getMotorSlot(),
 				carPark.getMotorFee());
+		
+		String sql = "Select carParkID from CarPark where address = ?";
+		
+		return (int) db.queryForObject(sql, int.class, carPark.getAddress());
 	}
 
 	public CarPark getCarPark(int carParkID) {
@@ -123,5 +127,10 @@ public class CarParkDAO {
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
+	}
+	
+	public void carParkToOwner(int userID, int carParkID) {
+		String sql = "Insert INTO CarParkOwnerCarPark(userID, carParkID) values(?,?)";
+		db.update(sql, userID, carParkID);
 	}
 }
