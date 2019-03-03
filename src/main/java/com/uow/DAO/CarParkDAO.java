@@ -138,7 +138,7 @@ public class CarParkDAO {
 	}
 	
 	public Booking getBookingDetail(int userID) {
-		String sql1 = "SELECT NOW();";
+		String sql1 = "SELECT Time(NOW());";
 		String sql = "SELECT d.credit FROM Driver WHERE userID = ?;";
 		Time bookingTime = db.queryForObject(sql1, Time.class);
 		double credit = db.queryForObject(sql, Integer.class, userID);
