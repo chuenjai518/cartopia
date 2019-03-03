@@ -187,12 +187,5 @@ public class AdminController {
 		return ("redirect:/admin/user");
 	}
 	
-	@PostMapping("createCarPark")
-	public String adminCreateCarPark(@ModelAttribute CarPark carPark, @RequestParam Integer userID, Model model) {
-		
-		carParkService.addCarPark(carPark, userID);
-		
-		
-		return ("redirect:/admin/carpark");
-	}
+
 }
