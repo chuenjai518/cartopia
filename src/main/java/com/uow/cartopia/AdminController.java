@@ -64,7 +64,8 @@ public class AdminController {
 //	}
 //	if((int)session.getAttribute("userID") != 2) {
 //		return "redirect:/login";
-//	}
+//	}	
+		model.addAttribute("user", new User());
 		return "userC";
 	}
 
@@ -129,7 +130,8 @@ public class AdminController {
 //	}
 //	if((int)session.getAttribute("userID") != 2) {
 //		return "redirect:/login";
-//	}
+//	}	
+		model.addAttribute("carpark", new CarPark());
 		return "carparkC";
 	}
 

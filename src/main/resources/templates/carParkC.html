@@ -7,48 +7,58 @@
 		<!-- This is the content -->
 		<div id="page-content-wrapper">
 			<div class="container-fluid mt-4">
-				<h3>Create New User</h3>
+				<h3>Create New Car Park</h3>
 				<div class="shadow card">
 					<div class="card-body">
-						<form>
+						<form method="POST" th:action="@{/addCarPArk}" th:object="${carpark}">
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="carParkName">Carpark Name</label> <input type="text"
-										class="form-control" id="carparkName"
+										th:field="*{name}" class="form-control" id="carparkName"
 										placeholder="carpark Name...">
 								</div>
 								<div class="form-group col-md-6">
-									<label for="address">address</label> <input type="text"
+									<label for="address">address</label> <input type="text" th:field="*{address}"
 										class="form-control" id="address" placeholder="address...">
 								</div>
 								<div class="form-group col-md-6">
-									<label for="openTime">open time</label> <input type="text"
+									<label for="openTime">open time</label> <input type="text" th:field="*{openTime}"
 										class="form-control" id="openTime" placeholder="open Time...">
 								</div>
 								<div class="form-group col-md-6">
-									<label for="closeTime">close time</label> <input type="text"
+									<label for="closeTime">close time</label> <input type="text" th:field="*{closeTime}"
 										class="form-control" id="closeTime"
 										placeholder="close time...">
 								</div>
 								<div class="form-group col-md-12">
 									<label for="Description">Description</label>
-									<textarea class="form-control" id="Description"
+									<textarea th:field="*{description}" class="form-control" id="Description"
 										placeholder="Description..."></textarea>
 								</div>
 								<div class="form-group col-md-4">
 									<label for="pcSlot">Private car slot</label> <input type="number"
-										class="form-control" id="pcSlot"
+										th:field="*{privateCarSlot}" class="form-control" id="pcSlot"
 										placeholder="Number of private car slots...">
 								</div>
+								<div class="form-group col-md-2">
+									<label for="pcSlotFee">Private car Fee</label> <input type="number"
+										th:field="*{privateCarFee}" class="form-control" id="pcSlotFee"
+										placeholder="Number of private car slot Fee...">
+								</div>
 								<div class="form-group col-md-4">
-									<label for="motorSlot">Motor slot</label> <input type="number"
-										class="form-control" id="motorSlot"
+									<label for="motorSlot">Motor slot </label> <input type="number"
+										th:field="*{motorSlot}" class="form-control" id="motorSlot"
 										placeholder="Number of motor slots...">
+								</div>
+								<div class="form-group col-md-2">
+									<label for="motorSlotFee">Motor slot Fee</label> <input type="number"
+										th:field="*{motorFee}" class="form-control" id="motorSlotFee"
+										placeholder="Number of motor slots Fee...">
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-4">
-									<label for="owner">Car Park Owner</label> <select id="owner"
+									<label for="owner">Car Park Owner</label> <select th:value="${cpo}" id="owner"
 										class="form-control">
 										<option value="member" selected>Member</option>
 									</select>
