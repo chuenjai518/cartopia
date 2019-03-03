@@ -8,7 +8,14 @@ public class Comment {
 	private int userID;
 	private int carParkID;
 	private String comment;
+	private String username;
 	
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 	public int getCarParkID() {
 		return carParkID;
 	}

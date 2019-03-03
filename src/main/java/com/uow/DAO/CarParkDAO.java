@@ -108,7 +108,7 @@ public class CarParkDAO {
 	}
 	
 	public List<Comment> getComment(int carParkID) {
-		String sql = "SELECT userID, carParkID, commentID, comment FROM Comment WHERE carParkID = ?";
+		String sql = "SELECT userID, carParkID, commentID, comment, username FROM Comment c, User u WHERE carParkID = ? and  c.userID = u.userID";
 		try {
 			RowMapper<Comment> rowMapper = new CommentRowMapper();
 			return this.db.query(sql, rowMapper, carParkID);
@@ -138,7 +138,7 @@ public class CarParkDAO {
 	}
 	
 	public List<Booking> getBookingDetail(int userID) {
-		String sql = "SELECT b.bookingID, b.carParkID, b.driverCarID, Time(NOW()) , c.name, c.address, c.photoLink, d.credit FROM Booking b, CarPark c, DriverCar dc, Driver d, User u WHERE u.userID = ? and b.carParkID = c.carParkID and dc.driverCarID = b.driverCarID and d.driverID = dc.driverID and d.userID = u.userID;";
+		String sql = "SELECT b.bookingID, b.carParkID, b.driverCarID, Time(NOW()) , c.name, c.address, c.photoLink, d.credit FROM Booking b, CarPark c, DriverCar dc, Driver d, User u WHERE u.userID = ? and b.carParkID = c.carParkID and dc.driverCarID = b.driverCarID and d.driverID = dc.driverID and d.userID = u.userID ORDER BY bookingTime LIMIT 1;";
 		try {
 			RowMapper<Booking> rowMapper = new BookingRowMapper();
 			return this.db.query(sql, rowMapper, userID);
