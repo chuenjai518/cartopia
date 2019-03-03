@@ -201,3 +201,32 @@ tbody tr:hover {
 .rating > input:checked ~ label:hover,
 .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
 .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+/***** CSS popup*****/
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.loginBrand{
+	color:#b89b6d;
+	font-size: 40px;
+	text-decoration: none;
+}
+.notice{
+	font-size:10px;
+}
