@@ -121,12 +121,12 @@ public class UserController {
 	}
 	
 	@PostMapping("/booking/{carParkID}")
-	public String bookingCarPark(Model model, HttpSession session,@PathVariable("carParkID") Integer carParkID,@RequestParam Integer driverCarID) {
+	public String bookingCarPark(Model model, HttpSession session,@PathVariable("carParkID") Integer carParkID,@RequestParam Integer driverCarID, @RequestParam Integer carTypeID, @RequestParam Integer driverID) {
 		if(session.getAttribute("userID") == null) {
 			return "redirect:/login";
 		}
 		
-		//userService.bookCarPark(driverCarID, carParkID);
+		userService.bookCarPark(driverCarID, carParkID, carTypeID, driverID );
 		
 		 return "redirect:/carparkInfo/"+carParkID;
 	}
@@ -164,10 +164,6 @@ public class UserController {
 		model.addAttribute("driverCar", new DriverCar());
 		return "driverHome";
 	}
-	
-	
-
-	
 	
 	@PostMapping("driverProfile/addCar")
 	public String addCar(@ModelAttribute DriverCar car, Model model, HttpSession session) {

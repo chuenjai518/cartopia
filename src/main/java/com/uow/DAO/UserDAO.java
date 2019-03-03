@@ -231,13 +231,21 @@ public class UserDAO {
 		}
 	}
 	
-	public void bookCarPark(int driverCarID,int carParkID, int carTypeID ) {
-		String sql ="INSERT INTO Booking (carParkID,driverCarID)"+"Values(?, ?)";
+	public void bookCarPark(int driverCarID,int carParkID, int carTypeID, int driverID ) {
+		String sql ="INSERT INTO Booking (carParkID,driverCarID)"+"Values(?, ?);";
 		db.update(sql, carParkID, driverCarID);
-		if(carTypeID == 1) {
-			String sql1 ="UPDATE CarParkSlot SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' WHERE CustomerID = 1;";
-		}
-		
+		int fee;
+		String feeSQL = "SELECT Fee FROM CarParkSlotInfo WHERE carParkID = " + carParkID + "and carTypeID = " + carTypeID + ";";
+		fee = db.queryForObject(feeSQL, Integer.class);
+		String setSlotStatusSQL ="UPDATE CarParkSlot SET statusID = 1 WHERE carTypeID = " + carTypeID + " and carParkID = " + carParkID + " and statusID = 0 ORDER BY carParkSlotID LIMIT 1;";
+		db.update(setSlotStatusSQL);
+		String chargeDriverSQL = "UPDATE Driver SET credit = credit - " + fee + "WHERE driverID = " + driverID + ";";
+		db.update(chargeDriverSQL);
+		String licensePlateNum;
+		String getLicensePlateNumSQL = "SELECT licensePlateNum FROM  DriverCar WHERE DriverID = " + driverID + ";";
+		licensePlateNum = db.queryForObject(getLicensePlateNumSQL, String.class);
+		String insertTransactionSQl = "INSERT INTO Transaction (driverID, totalAmount, startTime, endTime, licensePlateNum) values (?,?, NOW(), ADDTIME(NOW(), '01:00:00'), ?);";
+		db.update(insertTransactionSQl, driverID, fee, licensePlateNum);
 	}
 	
 	public List<Booking> getBookingRecord(int userID){
