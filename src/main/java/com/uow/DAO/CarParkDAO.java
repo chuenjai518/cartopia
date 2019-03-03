@@ -108,7 +108,7 @@ public class CarParkDAO {
 	}
 	
 	public List<Comment> getComment(int carParkID) {
-		String sql = "SELECT userID, carParkID, commentID, comment, username FROM Comment c, User u WHERE carParkID = ? and  c.userID = u.userID";
+		String sql = "SELECT c.userID, c.carParkID, c.commentID, c.comment, u.username FROM Comment c, User u WHERE carParkID = ? and c.userID = u.userID";
 		try {
 			RowMapper<Comment> rowMapper = new CommentRowMapper();
 			return this.db.query(sql, rowMapper, carParkID);
