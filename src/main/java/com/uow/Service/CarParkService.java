@@ -9,6 +9,7 @@ import com.uow.DAO.CarParkDAO;
 import com.uow.Model.Bookmark;
 import com.uow.Model.CarPark;
 import com.uow.Model.Comment;
+import com.uow.Model.User;
 
 @Service
 public class CarParkService {
@@ -50,5 +51,9 @@ public class CarParkService {
 	}
 	public void addComment(Comment comment){
 		carParkDAO.addComment(comment);
+	}
+	
+	public List<User> getCPOList(){
+		return carParkDAO.getCPOList();
 	}
 }

@@ -15,6 +15,8 @@ import com.uow.Model.CarPark;
 import com.uow.Model.CarParkRowMapper;
 import com.uow.Model.Comment;
 import com.uow.Model.CommentRowMapper;
+import com.uow.Model.User;
+import com.uow.Model.UserRowMapper;
 
 @Repository
 public class CarParkDAO {
@@ -97,5 +99,15 @@ public class CarParkDAO {
 	public void addComment(Comment comment) {
 		String sql = "INSERT INTO Comment (commentID, comment, userID, carParkID) values (?,?,?,?)";
 		db.update(sql, comment.getCommentID(), comment.getComment(), comment.getUserID(), comment.getCarParkID());
+	}
+	
+	public List<User> getCPOList(){
+		String sql = "Select userID, roleID, username, password, firstName, lastName, email From User where roleID = 3";
+		try {
+			RowMapper<User> rowMapper = new UserRowMapper();
+			return this.db.query(sql, rowMapper);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
 	}
 }

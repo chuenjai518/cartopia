@@ -62,6 +62,12 @@ public class CarParkController {
 		List<CarPark> list = carParkService.getAllCarPark();
 		return new ResponseEntity<List<CarPark>>(list, HttpStatus.OK);
 	}
+	
+	@GetMapping("cpo")
+	public ResponseEntity<List<User>> getCPOList() {
+		List<User> list = carParkService.getCPOList();
+		return new ResponseEntity<List<User>>(list, HttpStatus.OK);
+	}
 
 	@PostMapping("addCarPark")
 	public String addCarPark(@ModelAttribute CarPark carPark, Model model) {
