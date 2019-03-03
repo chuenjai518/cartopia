@@ -1,6 +1,7 @@
 package com.uow.Service;
 
 import java.util.List;
+import java.sql.Time;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,7 +71,10 @@ public class CarParkService {
 	public void carParkToOwner(int userID, int carParkID) {
 		carParkDAO.carParkToOwner(userID, carParkID);
 	}
-	public Booking getBookingDetail(int userID){
-		return carParkDAO.getBookingDetail(userID);
+	public double getCredit(int userID){
+		return carParkDAO.getCredit(userID);
+	}
+	public Time getCurrTime(){
+		return carParkDAO.getCurrTime();
 	}
 }

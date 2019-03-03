@@ -17,7 +17,7 @@ public class BookingRowMapper implements RowMapper<Booking> {
 		booking.setBookingID(row.getInt("bookingID"));
 		booking.setCarParkID(row.getInt("carParkID"));
 		booking.setDriverCarID(row.getInt("driverCarID"));
-		booking.setBookingTime(row.getTime("bookingTime"));
+		booking.setBookingTime(row.getTime("Time(bookingTime)"));
 		return booking;
 	}
 	

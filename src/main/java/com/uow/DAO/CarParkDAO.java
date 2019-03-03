@@ -118,8 +118,8 @@ public class CarParkDAO {
 	}
 	
 	public void addComment(Comment comment) {
-		String sql = "INSERT INTO Comment (commentID, comment, userID, carParkID) values (?,?,?,?)";
-		db.update(sql, comment.getCommentID(), comment.getComment(), comment.getUserID(), comment.getCarParkID());
+		String sql = "INSERT INTO Comment (comment, userID, carParkID) values (?,?,?);";
+		db.update(sql, comment.getComment(), comment.getUserID(), comment.getCarParkID());
 	}
 	
 	public List<User> getCPOList(){
@@ -137,14 +137,15 @@ public class CarParkDAO {
 		db.update(sql, userID, carParkID);
 	}
 	
-	public Booking getBookingDetail(int userID) {
-		String sql = "SELECT b.bookingID, b.carParkID, b.driverCarID, NOW() AS bookingTime , d.credit, c.name, c.address, c.photoLink FROM Booking b, CarPark c, Driver d WHERE d.userID = "+ userID + " ORDER BY d.userID limit 1;";
-		RowMapper<Booking> rowMapper = new BookingRowMapper();
-		Booking booking = new Booking();
-		try {
-			booking = db.queryForObject(sql, rowMapper);
-		} catch (EmptyResultDataAccessException e) {
-		}
-		return booking;
+	public Time getCurrTime() {
+		String sql = "SELECT NOW();";
+		Time currTime = db.queryForObject(sql, Time.class);
+		return currTime;
+	}
+	
+	public double getCredit(int userID) {
+		String sql = "SELECT credit FROM Driver d WHERE d.userID = "+ userID + ";";
+		double credit = db.queryForObject(sql, double.class);
+		return credit;
 	}
 }

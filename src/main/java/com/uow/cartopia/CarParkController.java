@@ -2,6 +2,7 @@ package com.uow.cartopia;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Time;
 
 import javax.servlet.http.HttpSession;
 
@@ -48,13 +49,13 @@ public class CarParkController {
 			Driver driver = userService.getDriverInfo(userID);
 			driverCarList = userService.getAllCar(driver.getDriverID());
 			model.addAttribute("driverCarList", driverCarList);
-			Booking bookingDetail = carParkService.getBookingDetail(userID);
-			model.addAttribute("bookingDetail", bookingDetail);
+			double credit = carParkService.getCredit(userID);
+			model.addAttribute("credit", credit);
+			Time currTime = carParkService.getCurrTime();
+			model.addAttribute("currTime", currTime);
 		}
 		//int realTimeSpace = carParkService.getCarparkRealTimeSpace(carParkID);
 		//model.addAttribute("realTimeSpace", realTimeSpace);
-		Booking bookingDetail = carParkService.getBookingDetail(userID);
-		model.addAttribute("bookingDetail", bookingDetail);
 		CarPark carPark = carParkService.getCarPark(carParkID);
 		model.addAttribute("userID", userID);
 		model.addAttribute("user", user);
