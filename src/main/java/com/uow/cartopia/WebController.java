@@ -50,6 +50,8 @@ public class WebController {
 	public String login(Model model, HttpSession session) {
 		model.addAttribute("login", new Login());
 		model.addAttribute("user", new User());
+		int userID = 0;
+		model.addAttribute("userID",userID);
 		if(session.getAttribute("userID") != null) {
 			return "redirect:/home";
 		}
