@@ -138,10 +138,10 @@ public class CarParkDAO {
 	}
 	
 	public Booking getBookingDetail(int userID) {
-		String sql = "SELECT Time(bookingTime), d.credit FROM Booking b, CarPark c, DriverCar dc, Driver d, User u WHERE u.userID = ? and b.carParkID = c.carParkID and dc.driverCarID = b.driverCarID and d.driverID = dc.driverID and d.userID = u.userID;";
-		String sql1 = "SELECT d.credit FROM Booking b, CarPark c, DriverCar dc, Driver d, User u WHERE u.userID = ? and b.carParkID = c.carParkID and dc.driverCarID = b.driverCarID and d.driverID = dc.driverID and d.userID = u.userID;";
-		double credit = db.queryForObject(sql1, Integer.class, userID);
-		Time bookingTime = db.queryForObject(sql, Time.class, userID);
+		String sql1 = "SELECT NOW();";
+		String sql = "SELECT d.credit FROM Driver WHERE userID = ?;";
+		Time bookingTime = db.queryForObject(sql1, Time.class);
+		double credit = db.queryForObject(sql, Integer.class, userID);
 		Booking booking = new Booking();
 		booking.setBookingTime(bookingTime);
 		booking.setCredit(credit);
