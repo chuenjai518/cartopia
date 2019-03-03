@@ -12,7 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-<nav th:include="navDriver :: nav"></nav>
+<nav th:include="nav :: nav"></nav>
 <script th:src="@{/js/jquery.min.js}" src="@{/js/jquery.min.js}"></script>
 
 <script>
@@ -78,7 +78,7 @@
 				<div th:each="reservation:${bookingList}" class="card flex-md-row mb-4 shadow-sm h-md-250 white row">
 					<div class="card-body d-flex flex-column align-items-start">
 						<h3 class="mb-0">
-							<a class="bookmarkTitle" href="#" th:text="${reservation.getCarParkName()}"></a>
+							<a class="bookmarkTitle" th:href="@{/carparkInfo/{id} (id=${reservation.getCarParkID()})}" th:text="${reservation.getName()}"></a>
 						</h3>
 						<hr>
 						<span class="text-darkblue">Reservation time: </span> <span class="reservationText" th:text="${reservation.getBookingTime()}"></span>
@@ -87,7 +87,7 @@
 
 					<img
 						class="col-sm-3 card-img-right flex-auto d-none d-lg-block reservationPhoto"
-						th:src="${bookmark.getPhotoLink()}"/>
+						th:src="${reservation.getPhotoLink()}"/>
 				</div>
 			
 		</div>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -64,7 +65,8 @@ public class AdminController {
 //	}
 //	if((int)session.getAttribute("userID") != 2) {
 //		return "redirect:/login";
-//	}
+//	}	
+		model.addAttribute("user", new User());
 		return "userC";
 	}
 
@@ -129,7 +131,11 @@ public class AdminController {
 //	}
 //	if((int)session.getAttribute("userID") != 2) {
 //		return "redirect:/login";
-//	}
+//	}	
+		List<User> list = carParkService.getCPOList();
+		model.addAttribute("cpoList", list);
+		model.addAttribute("cpo", "");
+		model.addAttribute("carpark", new CarPark());
 		return "carparkC";
 	}
 
@@ -183,4 +189,6 @@ public class AdminController {
 		
 		return ("redirect:/admin/user");
 	}
+	
+
 }

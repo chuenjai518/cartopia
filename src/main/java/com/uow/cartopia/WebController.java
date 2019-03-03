@@ -68,18 +68,19 @@ public class WebController {
 	@GetMapping("/home")
 	public String Home(Model model, HttpSession session) {
 		int userID = 0;
-		List<Bookmark> bookmark = new ArrayList<Bookmark>();
+		List<CarPark> bookmark = new ArrayList<CarPark>();
 		User user = new User();
 		if (session.getAttribute("userID") != null) {
 			userID = (int) session.getAttribute("userID");
-			bookmark = carParkService.getBookmark(userID);
 			user = userService.getUserInfo(userID);
 		}
-		List<CarPark> list = carParkService.getAllCarPark();
+		model.addAttribute("userID",userID);
+		List<CarPark> list = carParkService.getExceptCarPark(userID);
 		model.addAttribute("carParkList", list);
-		bookmark = carParkService.getBookmark(userID);
-		
+
+		bookmark = carParkService.getBookMarkCarPark(userID);
 		model.addAttribute("bookmark", bookmark);
+
 		return "home";
 	}
 	

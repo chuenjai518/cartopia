@@ -9,6 +9,7 @@ import com.uow.DAO.CarParkDAO;
 import com.uow.Model.Bookmark;
 import com.uow.Model.CarPark;
 import com.uow.Model.Comment;
+import com.uow.Model.User;
 
 @Service
 public class CarParkService {
@@ -26,13 +27,22 @@ public class CarParkService {
 		return carParkDAO.getAllCarPark();
 		
 	}
+	public List<CarPark> getExceptCarPark(int userID){
+		return carParkDAO.getExceptCarPark(userID);
+		
+	}
+	public List<CarPark> getBookMarkCarPark(int userID){
+		return carParkDAO.getBookMarkCarPark(userID);
+		
+	}
 	
 	public void updateCarPark(CarPark carPark) {
 		carParkDAO.updateCarPark(carPark);
 	}
 	
-	public void addCarPark(CarPark carPark) {
-		carParkDAO.addCarPark(carPark);
+	public void addCarPark(CarPark carPark, int userID) {
+		int carParkID = carParkDAO.addCarPark(carPark);
+		carParkDAO.carParkToOwner(userID, carParkID);
 	}
 	
 	public void deleteCarPark(int carParkID){
@@ -50,5 +60,13 @@ public class CarParkService {
 	}
 	public void addComment(Comment comment){
 		carParkDAO.addComment(comment);
+	}
+	
+	public List<User> getCPOList(){
+		return carParkDAO.getCPOList();
+	}
+	
+	public void carParkToOwner(int userID, int carParkID) {
+		carParkDAO.carParkToOwner(userID, carParkID);
 	}
 }

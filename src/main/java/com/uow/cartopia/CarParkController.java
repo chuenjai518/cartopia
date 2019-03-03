@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -62,10 +63,16 @@ public class CarParkController {
 		List<CarPark> list = carParkService.getAllCarPark();
 		return new ResponseEntity<List<CarPark>>(list, HttpStatus.OK);
 	}
+	
+	@GetMapping("cpo")
+	public ResponseEntity<List<User>> getCPOList() {
+		List<User> list = carParkService.getCPOList();
+		return new ResponseEntity<List<User>>(list, HttpStatus.OK);
+	}
 
 	@PostMapping("addCarPark")
-	public String addCarPark(@ModelAttribute CarPark carPark, Model model) {
-		carParkService.addCarPark(carPark);
+	public String addCarPark(@ModelAttribute CarPark carPark, @RequestParam Integer userID, Model model) {
+		carParkService.addCarPark(carPark, userID);
 		return ("redirect:/admin/carpark");
 	}
 
@@ -88,4 +95,6 @@ public class CarParkController {
 		carParkService.addComment(comment);
 		return ("redirect:/carparkinfo/" +carParkID);
 	}
+	
+
 }

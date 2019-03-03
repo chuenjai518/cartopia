@@ -59,7 +59,7 @@ public class UserController {
 		}else if(user.getRoleID() == 2) {
 			return new RedirectView("admin");
 		}else{
-			return new RedirectView("cpo");
+			return new RedirectView("carparkOwner");
 		}
 			
 	}
@@ -220,7 +220,7 @@ public class UserController {
 		//
 		User user = userService.getUserInfo(userID);
 		model.addAttribute("user", user);
-		return "cpoR";
+		return "carParkOwnerR";
 	}
 	@GetMapping("carparkOwner/update/{id}")
 	public String carparkOwnerUpdate(@PathVariable("id") Integer id, Model model, HttpSession session) {
@@ -229,7 +229,7 @@ public class UserController {
 		//
 		User user = userService.getUserInfo(userID);
 		model.addAttribute("user", user);
-		return "cpoR";
+		return "carParkOwnerU";
 	}
 	
 	

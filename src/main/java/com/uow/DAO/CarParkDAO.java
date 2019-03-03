@@ -15,13 +15,15 @@ import com.uow.Model.CarPark;
 import com.uow.Model.CarParkRowMapper;
 import com.uow.Model.Comment;
 import com.uow.Model.CommentRowMapper;
+import com.uow.Model.User;
+import com.uow.Model.UserRowMapper;
 
 @Repository
 public class CarParkDAO {
 	@Autowired
 	private JdbcTemplate db;
 
-	public void addCarPark(CarPark carPark) {
+	public int addCarPark(CarPark carPark) {
 		System.out.println("EXCUTE INSERT CarPark - " + carPark.getName());
 		db.update(
 				"INSERT INTO CarPark(name, address, description, openTime, closeTime, privateCarSlot, privateCarFee, motorSlot, motorFee, photoLink) "
@@ -29,6 +31,10 @@ public class CarParkDAO {
 				carPark.getName(), carPark.getAddress(), carPark.getDescription(), carPark.getOpenTime(),
 				carPark.getCloseTime(), carPark.getPrivateCarSlot(), carPark.getPrivateCarFee(), carPark.getMotorSlot(),
 				carPark.getMotorFee());
+		
+		String sql = "Select carParkID from CarPark where address = ?";
+		
+		return (int) db.queryForObject(sql, int.class, carPark.getAddress());
 	}
 
 	public CarPark getCarPark(int carParkID) {
@@ -49,6 +55,20 @@ public class CarParkDAO {
 		String sql = "SELECT carParkID, name, address, Time(openTime), Time(closeTime), Description, privateCarSlot, privateCarFee, motorSlot, motorFee, photoLink FROM CarPark";
 		RowMapper<CarPark> rowMapper = new CarParkRowMapper();
 		return this.db.query(sql, rowMapper);
+	}
+	
+	public List<CarPark> getExceptCarPark(int userID) {
+		String sql = "SELECT carParkID, name, address, Time(openTime), Time(closeTime), Description, privateCarSlot, privateCarFee, motorSlot, motorFee, photoLink FROM CarPark Where carParkID Not in(Select carParkID FROM userbookmark where userId =?)";
+		
+		RowMapper<CarPark> rowMapper = new CarParkRowMapper();
+		return this.db.query(sql, rowMapper, userID);
+	}
+	
+	public List<CarPark> getBookMarkCarPark(int userID) {
+		String sql = "SELECT carParkID, name, address, Time(openTime), Time(closeTime), Description, privateCarSlot, privateCarFee, motorSlot, motorFee, photoLink FROM CarPark Where carParkID in(Select carParkID FROM userbookmark where userId =?)";
+		
+		RowMapper<CarPark> rowMapper = new CarParkRowMapper();
+		return this.db.query(sql, rowMapper, userID);
 	}
 
 	public void updateCarPark(CarPark carPark) {
@@ -97,5 +117,20 @@ public class CarParkDAO {
 	public void addComment(Comment comment) {
 		String sql = "INSERT INTO Comment (commentID, comment, userID, carParkID) values (?,?,?,?)";
 		db.update(sql, comment.getCommentID(), comment.getComment(), comment.getUserID(), comment.getCarParkID());
+	}
+	
+	public List<User> getCPOList(){
+		String sql = "Select userID, roleID, username, password, firstName, lastName, email From User where roleID = 3";
+		try {
+			RowMapper<User> rowMapper = new UserRowMapper();
+			return this.db.query(sql, rowMapper);
+		} catch (EmptyResultDataAccessException e) {
+			return null;
+		}
+	}
+	
+	public void carParkToOwner(int userID, int carParkID) {
+		String sql = "Insert INTO CarParkOwnerCarPark(userID, carParkID) values(?,?)";
+		db.update(sql, userID, carParkID);
 	}
 }
