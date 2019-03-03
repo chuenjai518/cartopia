@@ -70,7 +70,7 @@ public class CarParkService {
 	public void carParkToOwner(int userID, int carParkID) {
 		carParkDAO.carParkToOwner(userID, carParkID);
 	}
-	public Booking getBookingDetail(int userID){
+	public List<Booking> getBookingDetail(int userID){
 		return carParkDAO.getBookingDetail(userID);
 	}
 }
