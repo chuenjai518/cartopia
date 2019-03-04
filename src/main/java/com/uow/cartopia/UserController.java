@@ -121,11 +121,11 @@ public class UserController {
 	}
 	
 	@PostMapping("/booking/{carParkID}")
-	public String bookingCarPark(Model model, HttpSession session,@PathVariable("carParkID") Integer carParkID,@RequestParam Integer driverCarID, @RequestParam Integer carTypeID, @RequestParam Integer driverID) {
+	public String bookingCarPark(Model model, HttpSession session,@PathVariable("carParkID") Integer carParkID,@RequestParam Integer carTypeID, @RequestParam Integer userID) {
 		if(session.getAttribute("userID") == null) {
 			return "redirect:/login";
 		}
-		userService.bookCarPark(driverCarID, carParkID, carTypeID, driverID );
+		userService.bookCarPark(userID, carParkID, carTypeID);
 		
 		 return "redirect:/carparkInfo/"+carParkID;
 	}
