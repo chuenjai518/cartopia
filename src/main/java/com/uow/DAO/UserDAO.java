@@ -241,7 +241,12 @@ public class UserDAO {
 		driverCarID = db.queryForObject(driverCarSQL, String.class);
 		db.update(sql, carParkID, driverCarID);
 		int fee;
-		String feeSQL = "SELECT Fee FROM CarParkSlotInfo WHERE carParkID = " + carParkID + " and carTypeID = " + carTypeID + ";";
+		String feeSQL = "";
+		if(carTypeID == 1) {
+			feeSQL = "SELECT privateCarFee FROM CarPark WHERE carParkID = " + carParkID + ";";
+		}else if(carTypeID == 2) {
+			feeSQL = "SELECT motorFee FROM CarPark WHERE carParkID = " + carParkID + ";";
+		}
 		fee = db.queryForObject(feeSQL, Integer.class);
 		String setSlotStatusSQL ="UPDATE CarParkSlot SET statusID = 1 WHERE carTypeID = " + carTypeID + " and carParkID = " + carParkID + " and statusID = 0 ORDER BY carParkSlotID LIMIT 1;";
 		db.update(setSlotStatusSQL);

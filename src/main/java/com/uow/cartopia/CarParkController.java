@@ -52,8 +52,8 @@ public class CarParkController {
 			double credit = carParkService.getCredit(userID);
 			model.addAttribute("credit", credit);
 		}
-		//int realTimeSpace = carParkService.getCarparkRealTimeSpace(carParkID);
-		//model.addAttribute("realTimeSpace", realTimeSpace);
+		int realTimeSpace = carParkService.getCarparkRealTimeSpace(carParkID);
+		model.addAttribute("realTimeSpace", realTimeSpace);
 		CarPark carPark = carParkService.getCarPark(carParkID);
 		model.addAttribute("userID", userID);
 		model.addAttribute("user", user);
