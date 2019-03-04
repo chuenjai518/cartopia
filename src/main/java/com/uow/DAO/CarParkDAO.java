@@ -85,7 +85,6 @@ public class CarParkDAO {
 
 	public void deleteCarPark(int carParkID) {
 		db.update("DELETE FROM CarPark WHERE carParkID = ?", carParkID);
-
 	}
 
 	public int getCarparkRealTimeSpace(int carParkID) {
