@@ -69,10 +69,10 @@
 						<!-- If the user doesn't login -->
 						<div th:if="${user.getUserID()==0}">Please Login to comment!</div>
 						<!-- If the user login -->
-						<!-- Error for action -->
-						<form method="POST" th:action="@{/carparkInfo/{id} (id=${carPark.getCarParkID()})/addComment}"
-							th:object="${comment}" th:unless="${user.getUserID()==0}">
-							<textarea class="textarea col-10 ml-4 mr-4 font-control"
+						<!-- Error for action -->s
+						<form method="POST" th:action="'addComment/' + ${carPark.getCarParkID()}"
+							th:object="${addComment}" th:unless="${user.getUserID()==0}">
+							<textarea class="textarea col-10 ml-4 mr-4 font-control" th:field="*{comment}"
 								placeholder="Give a comment..." name="comment" id="addComment"
 								th:value="${comment}" required></textarea>
 							<p></p>
@@ -116,7 +116,7 @@
 				<div class="container">
 					<form name="reserve" method="post" action="">
 						<!-- Error for th:object="${driverCarID carParkID carTypeID driverID}" th:action="@{/bookCarPark}" -->
-						<strong class="text-center" th:text="${carPark.getName()}"></strong>
+						<strong class="text-center" th:text="${carPark.getName()}" ></strong>
 						<p>&nbsp;</p>
 						<p th:text="'Address: ' + ${carPark.getAddress()}"></p>
 						<p

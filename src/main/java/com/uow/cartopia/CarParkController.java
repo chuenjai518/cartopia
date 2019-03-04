@@ -61,6 +61,8 @@ public class CarParkController {
 		model.addAttribute("bookmark", bookmark);
 		List<Comment> comment = carParkService.getComment(carParkID);
 		model.addAttribute("comment", comment);
+		Comment addComment = new Comment();
+		model.addAttribute("addComment", addComment);
 		return "carparkInfo";
 	}
 	
@@ -105,11 +107,13 @@ public class CarParkController {
 		return ("redirect:/admin/carpark");
 	}
 	
-	@PostMapping("addComment")
+	@PostMapping("carparkInfo/addComment/{carParkID}")
 	public String addComment(@ModelAttribute Comment comment, @PathVariable("carParkID") Integer carParkID, Model model) {
 		carParkService.addComment(comment);
-		return ("redirect:/carparkinfo/" +carParkID);
+		System.out.println(comment.getComment());
+		System.out.println("hihihihihihihihihihihihihihihi");
+		return ("redirect:/carparkInfo/" +carParkID);
 	}
-	
+
 
 }
