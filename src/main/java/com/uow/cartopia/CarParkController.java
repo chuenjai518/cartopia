@@ -61,17 +61,21 @@ public class CarParkController {
 		model.addAttribute("bookmark", bookmark);
 		List<Comment> comment = carParkService.getComment(carParkID);
 		model.addAttribute("comment", comment);
+		Booking booking = new Booking();
+
+		model.addAttribute("booking", booking);
 		Comment addComment = new Comment();
 		model.addAttribute("addComment", addComment);
 		return "carparkInfo";
 	}
 	
-	@PostMapping("bookCarPark")
-	public String bookCarPark(@RequestParam Integer carParkID, @RequestParam Integer carTypeID, HttpSession session) {
+	@PostMapping("carparkInfo/bookCarPark/{carParkID}")
+	public String bookCarPark(@ModelAttribute Booking booking,@PathVariable("carParkID") Integer carParkID, HttpSession session) {
 		int userID = (int)session.getAttribute("userID");
 		if(session.getAttribute("userID") == null) {
 			return "redirect:/login";
 		}
+		int carTypeID = booking.getCarTypeID();
 		userService.bookCarPark(userID, carParkID, carTypeID);
 		return ("redirect:/carparkinfo/{carParkID}");
 	}
