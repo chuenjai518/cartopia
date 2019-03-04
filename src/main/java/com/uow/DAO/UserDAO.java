@@ -237,7 +237,7 @@ public class UserDAO {
 		String driverID;
 		String driverSQL = "SELECT DriverID FROM Driver WHERE userID = " + userID + ";";
 		driverID = db.queryForObject(driverSQL, String.class);
-		String driverCarSQL = "SELECT driverCarID FROM DriverCar WHERE driverID = " + driverID + "and carTypeID = " + carTypeID + ";";
+		String driverCarSQL = "SELECT driverCarID FROM DriverCar WHERE driverID = " + driverID + " and carTypeID = " + carTypeID + ";";
 		driverCarID = db.queryForObject(driverCarSQL, String.class);
 		db.update(sql, carParkID, driverCarID);
 		int fee;
