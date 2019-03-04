@@ -67,11 +67,12 @@ public class CarParkController {
 	}
 	
 	@PostMapping("bookCarPark")
-	public String bookCarPark(@RequestParam Integer driverCarID, @RequestParam Integer carParkID, @RequestParam Integer carTypeID, @RequestParam Integer driverID, HttpSession session) {
+	public String bookCarPark(@RequestParam Integer carParkID, @RequestParam Integer carTypeID, HttpSession session) {
+		int userID = (int)session.getAttribute("userID");
 		if(session.getAttribute("userID") == null) {
 			return "redirect:/login";
 		}
-		userService.bookCarPark(driverCarID, carParkID, carTypeID, driverID);
+		userService.bookCarPark(userID, carParkID, carTypeID);
 		return ("redirect:/carparkinfo/{carParkID}");
 	}
 

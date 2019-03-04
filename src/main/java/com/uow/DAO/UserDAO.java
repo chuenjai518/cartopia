@@ -231,8 +231,14 @@ public class UserDAO {
 		}
 	}
 	
-	public void bookCarPark(int driverCarID,int carParkID, int carTypeID, int driverID ) {
+	public void bookCarPark(int userID,int carParkID, int carTypeID) {
 		String sql ="INSERT INTO Booking (carParkID,driverCarID)"+"Values(?, ?);";
+		String driverCarID;
+		String driverID;
+		String driverSQL = "SELECT DriverID FROM Driver WHERE userID = " + userID + ";";
+		driverID = db.queryForObject(driverSQL, String.class);
+		String driverCarSQL = "SELECT driverCarID FROM DriverCar WHERE driverID = " + driverID + "and carTypeID = " + carTypeID + ";";
+		driverCarID = db.queryForObject(driverCarSQL, String.class);
 		db.update(sql, carParkID, driverCarID);
 		int fee;
 		String feeSQL = "SELECT Fee FROM CarParkSlotInfo WHERE carParkID = " + carParkID + "and carTypeID = " + carTypeID + ";";
