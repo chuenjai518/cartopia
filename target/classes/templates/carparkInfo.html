@@ -114,7 +114,7 @@
 				<h3 class="font-weight-bolder">Reservation</h3>
 				<hr>
 				<div class="container">
-					<form name="reserve" method="post" action="">
+					<form th:object="${booking}" name="reserve" method="post" th:action="'bookCarPark/' + ${carPark.getCarParkID()}">
 						<!-- Error for th:object="${driverCarID carParkID carTypeID driverID}" th:action="@{/bookCarPark}" -->
 						<strong class="text-center" th:text="${carPark.getName()}" ></strong>
 						<p>&nbsp;</p>
@@ -122,17 +122,11 @@
 						<p
 							th:text="'Time: ' + ${#dates.format(#execInfo.now.time, 'yyyy-MM-dd HH:mm')}"></p>
 						<p th:text="'Credit: ' +${credit}"></p>
-						<p>Which car you want to reserve? 
-						<!-- Error for th:field="*{carTypeID}" -->
-							<label> <input
-								type="radio" name="car" value="Private Car" id="priCar">
-								Private Car
-							</label> 
-							
-							<label> <input type="radio" name="car" value="Motor"
-								id="motor"> Motor
-							</label> <br>
-						</p>
+									<label for="carType">Which car you want to reserve? </label> 
+									<select th:field="*{carTypeID}" id="carType" class="form-control">
+										<option th:value="1" >Private Car</option>
+										<option th:value="2" >Motor</option>
+									</select>
 						<p>&nbsp;</p>
 						<div class="notice font-italic">
 							<span class="text-center font-weight-bolder">Notice:</span>Reservation
