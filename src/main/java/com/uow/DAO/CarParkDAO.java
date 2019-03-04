@@ -117,9 +117,9 @@ public class CarParkDAO {
 		}
 	}
 	
-	public void addComment(Comment comment) {
+	public void addComment(Comment comment, int carParkID, int userID) {
 		String sql = "INSERT INTO Comment (comment, userID, carParkID) values (?,?,?);";
-		db.update(sql, comment.getComment(), comment.getUserID(), comment.getCarParkID());
+		db.update(sql, comment.getComment(), userID, carParkID);
 	}
 	
 	public List<User> getCPOList(){

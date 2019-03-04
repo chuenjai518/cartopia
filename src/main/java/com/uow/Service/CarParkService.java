@@ -60,8 +60,8 @@ public class CarParkService {
 	public List<Comment> getComment(int carParkID){
 		return carParkDAO.getComment(carParkID);
 	}
-	public void addComment(Comment comment){
-		carParkDAO.addComment(comment);
+	public void addComment(Comment comment, int carParkID, int userID){
+		carParkDAO.addComment(comment, carParkID, userID);
 	}
 	
 	public List<User> getCPOList(){

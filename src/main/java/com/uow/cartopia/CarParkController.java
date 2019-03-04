@@ -108,8 +108,9 @@ public class CarParkController {
 	}
 	
 	@PostMapping("carparkInfo/addComment/{carParkID}")
-	public String addComment(@ModelAttribute Comment comment, @PathVariable("carParkID") Integer carParkID, Model model) {
-		carParkService.addComment(comment);
+	public String addComment(@ModelAttribute Comment comment, @PathVariable("carParkID") Integer carParkID, Model model, HttpSession session) {
+		int userID = (int) session.getAttribute("userID");
+		carParkService.addComment(comment, carParkID, userID);
 		System.out.println(comment.getComment());
 		System.out.println("hihihihihihihihihihihihihihihi");
 		return ("redirect:/carparkInfo/" +carParkID);
