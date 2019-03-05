@@ -250,7 +250,7 @@ public class UserDAO {
 		fee = db.queryForObject(feeSQL, Integer.class);
 		String setSlotStatusSQL ="UPDATE CarParkSlot SET statusID = 1 WHERE carTypeID = " + carTypeID + " and carParkID = " + carParkID + " and statusID = 0 ORDER BY carParkSlotID LIMIT 1;";
 		db.update(setSlotStatusSQL);
-		String chargeDriverSQL = "UPDATE Driver SET credit = credit - " + fee + "WHERE driverID = " + driverID + ";";
+		String chargeDriverSQL = "UPDATE Driver SET credit = credit - " + fee + " WHERE driverID = " + driverID + ";";
 		db.update(chargeDriverSQL);
 		String licensePlateNum;
 		String getLicensePlateNumSQL = "SELECT licensePlateNum FROM  DriverCar WHERE DriverID = " + driverID + ";";

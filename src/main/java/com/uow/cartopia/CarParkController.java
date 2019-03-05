@@ -77,6 +77,7 @@ public class CarParkController {
 		}
 		int carTypeID = booking.getCarTypeID();
 		userService.bookCarPark(userID, carParkID, carTypeID);
+		System.out.println("hihihihihihihihihihihihihihihi");
 		return ("redirect:/carparkinfo/{carParkID}");
 	}
 
@@ -117,7 +118,6 @@ public class CarParkController {
 		int userID = (int) session.getAttribute("userID");
 		carParkService.addComment(comment, carParkID, userID);
 		System.out.println(comment.getComment());
-		System.out.println("hihihihihihihihihihihihihihihi");
 		return ("redirect:/carparkInfo/" +carParkID);
 	}
 
