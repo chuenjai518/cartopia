@@ -260,7 +260,7 @@ public class UserDAO {
 	}
 	
 	public List<Booking> getBookingRecord(int userID){
-		String sql = "SELECT b.bookingID, b.carParkID, b.driverCarID, Time(bookingTime) , c.name, c.address, c.photoLink, dc.carTypeID FROM Booking b, CarPark c, DriverCar dc, Driver d, User u WHERE u.userID = ? and b.carParkID = c.carParkID and dc.driverCarID = b.driverCarID and d.driverID = dc.driverID and d.userID = u.userID;";
+		String sql = "SELECT b.bookingID, b.carParkID, b.driverCarID, Time(bookingTime) , c.name, c.address, c.photoLink, dc.carTypeID FROM Booking b, CarPark c, DriverCar dc, Driver d, User u WHERE u.userID = ? and b.carParkID = c.carParkID and dc.driverCarID = b.driverCarID and d.driverID = dc.driverID and d.userID = u.userID Order by b.bookingID DESC Limit 5";
 		try {
 			RowMapper<Booking> rowMapper = new BookingRowMapper();
 			return this.db.query(sql, rowMapper, userID);
