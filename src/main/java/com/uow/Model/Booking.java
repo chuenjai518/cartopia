@@ -15,7 +15,6 @@ public class Booking{
 	private String name;
 	private String address;
 	private String photoLink;
-	private double credit;
 	
 	public int getCarTypeID() {
 		return carTypeID;
@@ -25,13 +24,6 @@ public class Booking{
 		this.carTypeID = carTypeID;
 	}
 	
-	public double getCredit() {
-		return credit;
-	}
-
-	public void setCredit(double credit) {
-		this.credit = credit;
-	}
 
 	public int getBookingID() {
 		return bookingID;
