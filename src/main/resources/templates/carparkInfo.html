@@ -35,7 +35,7 @@
 							</div>
 							<p></p>
 							<div class="card-img-center" th:if="${user.getUserID()==0}">
-								<a href="login" class="btn btn-primary">Reservation</a>
+								<a href="/cartopia/login" class="btn btn-primary">Reservation</a>
 							</div>
 							<div class="card-img-center" th:unless="${user.getUserID()==0}">
 								<a href="#reservationPop" class="btn btn-primary">Reservation</a>

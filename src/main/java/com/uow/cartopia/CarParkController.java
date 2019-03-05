@@ -77,11 +77,10 @@ public class CarParkController {
 		}
 		int carTypeID = booking.getCarTypeID();
 		userService.bookCarPark(userID, carParkID, carTypeID);
-		System.out.println("hihihihihihihihihihihihihihihi");
 		System.out.println(booking.getCarParkID());
 		System.out.println(userID);
 		System.out.println(booking.getCarTypeID());
-		return ("redirect:/carparkinfo/{carParkID}");
+		return "redirect:/carparkInfo/"+carParkID;
 	}
 
 	@GetMapping("carpark")
