@@ -16,7 +16,7 @@
 </head>
 <div th:fragment="nav">
 	<nav class="navbar navbar-expand-lg navbar-dark bg-light">
-		<a class="navbar-brand brandFont" href="home">Cartopia</a>
+		<a class="navbar-brand brandFont" th:href="@{/home}">Cartopia</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -27,11 +27,11 @@
    			 <button class="w3-button "style="background-color: #0f1834!important"><img src="/cartopia/images/memberIcon.png" width="30" height="30" alt="" style="background-color: #0f1834;"></button>
 			    <div class="w3-dropdown-content w3-bar-block w3-border" style="background-color: #0f1834!important;right:1em;">
 			      <span th:if="${userID==0}">
-			      <a href="/cartopia/login" class="w3-bar-item w3-button" style="color:#b89b6d;text-align: center !important;">Login</a>
+			      <a th:href="@{/login}" class="w3-bar-item w3-button" style="color:#b89b6d;text-align: center !important;">Login</a>
 			      </span>
 			      <span th:unless="${userID==0}">
-			       <a href="#profile" class="w3-bar-item w3-button " style="color:#b89b6d;text-align: center !important;">Profile</a>
-			      <a href="/cartopia/logout" class="w3-bar-item w3-button" style="color:#b89b6d;text-align: center !important;">Logout</a>
+			       <a href="/cartopia/driverPage#profile" class="w3-bar-item w3-button " style="color:#b89b6d;text-align: center !important;">Profile</a>
+			      <a th:href="@{/logout}" class="w3-bar-item w3-button" style="color:#b89b6d;text-align: center !important;">Logout</a>
 			      </span>
 			    </div>
 			  </div>

@@ -231,15 +231,26 @@ public class UserDAO {
 		}
 	}
 	
-	public void bookCarPark(int driverCarID,int carParkID, int carTypeID, int driverID ) {
+	public void bookCarPark(int userID,int carParkID, int carTypeID) {
 		String sql ="INSERT INTO Booking (carParkID,driverCarID)"+"Values(?, ?);";
+		String driverCarID;
+		String driverID;
+		String driverSQL = "SELECT DriverID FROM Driver WHERE userID = " + userID + ";";
+		driverID = db.queryForObject(driverSQL, String.class);
+		String driverCarSQL = "SELECT driverCarID FROM DriverCar WHERE driverID = " + driverID + " and carTypeID = " + carTypeID + ";";
+		driverCarID = db.queryForObject(driverCarSQL, String.class);
 		db.update(sql, carParkID, driverCarID);
 		int fee;
-		String feeSQL = "SELECT Fee FROM CarParkSlotInfo WHERE carParkID = " + carParkID + "and carTypeID = " + carTypeID + ";";
+		String feeSQL = "";
+		if(carTypeID == 1) {
+			feeSQL = "SELECT privateCarFee FROM CarPark WHERE carParkID = " + carParkID + ";";
+		}else if(carTypeID == 2) {
+			feeSQL = "SELECT motorFee FROM CarPark WHERE carParkID = " + carParkID + ";";
+		}
 		fee = db.queryForObject(feeSQL, Integer.class);
 		String setSlotStatusSQL ="UPDATE CarParkSlot SET statusID = 1 WHERE carTypeID = " + carTypeID + " and carParkID = " + carParkID + " and statusID = 0 ORDER BY carParkSlotID LIMIT 1;";
 		db.update(setSlotStatusSQL);
-		String chargeDriverSQL = "UPDATE Driver SET credit = credit - " + fee + "WHERE driverID = " + driverID + ";";
+		String chargeDriverSQL = "UPDATE Driver SET credit = credit - " + fee + " WHERE driverID = " + driverID + ";";
 		db.update(chargeDriverSQL);
 		String licensePlateNum;
 		String getLicensePlateNumSQL = "SELECT licensePlateNum FROM  DriverCar WHERE DriverID = " + driverID + ";";
@@ -249,7 +260,7 @@ public class UserDAO {
 	}
 	
 	public List<Booking> getBookingRecord(int userID){
-		String sql = "SELECT b.bookingID, b.carParkID, b.driverCarID, bookingTime , c.name, c.address, c.photoLink FROM Booking b, CarPark c, DriverCar dc, Driver d, User u WHERE u.userID = ? and b.carParkID = c.carParkID and dc.driverCarID = b.driverCarID and d.driverID = dc.driverID and d.userID = u.userID;";
+		String sql = "SELECT b.bookingID, b.carParkID, b.driverCarID, Time(bookingTime) , c.name, c.address, c.photoLink, dc.carTypeID FROM Booking b, CarPark c, DriverCar dc, Driver d, User u WHERE u.userID = ? and b.carParkID = c.carParkID and dc.driverCarID = b.driverCarID and d.driverID = dc.driverID and d.userID = u.userID Order by b.bookingID DESC Limit 5";
 		try {
 			RowMapper<Booking> rowMapper = new BookingRowMapper();
 			return this.db.query(sql, rowMapper, userID);

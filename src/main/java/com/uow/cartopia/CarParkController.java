@@ -52,8 +52,8 @@ public class CarParkController {
 			double credit = carParkService.getCredit(userID);
 			model.addAttribute("credit", credit);
 		}
-		//int realTimeSpace = carParkService.getCarparkRealTimeSpace(carParkID);
-		//model.addAttribute("realTimeSpace", realTimeSpace);
+		int realTimeSpace = carParkService.getCarparkRealTimeSpace(carParkID);
+		model.addAttribute("realTimeSpace", realTimeSpace);
 		CarPark carPark = carParkService.getCarPark(carParkID);
 		model.addAttribute("userID", userID);
 		model.addAttribute("user", user);
@@ -61,18 +61,26 @@ public class CarParkController {
 		model.addAttribute("bookmark", bookmark);
 		List<Comment> comment = carParkService.getComment(carParkID);
 		model.addAttribute("comment", comment);
+		Booking booking = new Booking();
+
+		model.addAttribute("booking", booking);
 		Comment addComment = new Comment();
 		model.addAttribute("addComment", addComment);
 		return "carparkInfo";
 	}
 	
-	@PostMapping("bookCarPark")
-	public String bookCarPark(@RequestParam Integer driverCarID, @RequestParam Integer carParkID, @RequestParam Integer carTypeID, @RequestParam Integer driverID, HttpSession session) {
+	@PostMapping("carparkInfo/bookCarPark/{carParkID}")
+	public String bookCarPark(@ModelAttribute Booking booking,@PathVariable("carParkID") Integer carParkID, HttpSession session) {
+		int userID = (int)session.getAttribute("userID");
 		if(session.getAttribute("userID") == null) {
 			return "redirect:/login";
 		}
-		userService.bookCarPark(driverCarID, carParkID, carTypeID, driverID);
-		return ("redirect:/carparkinfo/{carParkID}");
+		int carTypeID = booking.getCarTypeID();
+		userService.bookCarPark(userID, carParkID, carTypeID);
+		System.out.println(booking.getCarParkID());
+		System.out.println(userID);
+		System.out.println(booking.getCarTypeID());
+		return "redirect:/carparkInfo/"+carParkID;
 	}
 
 	@GetMapping("carpark")
@@ -112,7 +120,6 @@ public class CarParkController {
 		int userID = (int) session.getAttribute("userID");
 		carParkService.addComment(comment, carParkID, userID);
 		System.out.println(comment.getComment());
-		System.out.println("hihihihihihihihihihihihihihihi");
 		return ("redirect:/carparkInfo/" +carParkID);
 	}
 

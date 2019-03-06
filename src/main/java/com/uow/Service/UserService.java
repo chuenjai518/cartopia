@@ -105,8 +105,8 @@ public class UserService {
 		return userDAO.getBookmark(userID);
 	}
 
-	public void bookCarPark(int driverCarID,int carParkID, int carTypeID, int driverID ) {
-		userDAO.bookCarPark(driverCarID, carParkID, carTypeID, driverID );
+	public void bookCarPark(int userID,int carParkID, int carTypeID) {
+		userDAO.bookCarPark(userID, carParkID, carTypeID);
 	}
 	public List<Booking> getBookingRecord(int userID){
 		return userDAO.getBookingRecord(userID);

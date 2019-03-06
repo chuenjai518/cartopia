@@ -10,19 +10,20 @@ public class Booking{
 	private int bookingID;
 	private int carParkID;
 	private int driverCarID;
+	private int carTypeID;
 	private Time bookingTime;
 	private String name;
 	private String address;
 	private String photoLink;
-	private double credit;
-
-	public double getCredit() {
-		return credit;
+	
+	public int getCarTypeID() {
+		return carTypeID;
 	}
 
-	public void setCredit(double credit) {
-		this.credit = credit;
+	public void setCarTypeID(int carTypeID) {
+		this.carTypeID = carTypeID;
 	}
+	
 
 	public int getBookingID() {
 		return bookingID;
