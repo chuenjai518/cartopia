@@ -62,7 +62,6 @@ public class CarParkController {
 		List<Comment> comment = carParkService.getComment(carParkID);
 		model.addAttribute("comment", comment);
 		Booking booking = new Booking();
-
 		model.addAttribute("booking", booking);
 		Comment addComment = new Comment();
 		model.addAttribute("addComment", addComment);

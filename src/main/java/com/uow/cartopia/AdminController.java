@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.uow.Model.Booking;
 import com.uow.Model.CarPark;
 import com.uow.Model.Driver;
 import com.uow.Model.Login;
@@ -190,5 +191,9 @@ public class AdminController {
 		return ("redirect:/admin/user");
 	}
 	
-
+	@PostMapping("/chargeDriver/{id}")
+	public String chargeDriver(Model model, @PathVariable("id") Integer id, HttpSession session, @ModelAttribute Booking booking) {
+		userService.chargeDriver(id);
+		return ("redirect:/admin/user");
+	}
 }

@@ -268,5 +268,50 @@ public class UserDAO {
 			return null;
 		}
 	}
+	
+	public void chargeDriver(int userID) {
+		String driverID;
+		String driverSQL = "SELECT DriverID FROM Driver WHERE userID = " + userID + ";";
+		driverID = db.queryForObject(driverSQL, String.class);
+		
+		String driverCarID;
+		String driverCarSQL = "SELECT dc.driverCarID FROM Booking b, DriverCar dc WHERE b.driverCarID = dc.driverCarID and driverID = " + driverID + ";";
+		driverCarID = db.queryForObject(driverCarSQL, String.class);
+		
+		int carTypeID;
+		String carTypeIDSQL = "SELECT carTypeID FROM DriverCar WHERE driverCarID = " + driverCarID + ";";
+		carTypeID = db.queryForObject(carTypeIDSQL, Integer.class);
+		
+		String bookingTime;
+		String bookingTimeSQL = "SELECT bookingTime FROM Booking WHERE driverCarID = " + driverCarID + " ORDER BY bookingID limit 1;";
+		bookingTime = db.queryForObject(bookingTimeSQL, String.class);
+		
+		String carParkID;
+		String carParkIDSQL = "SELECT carParkID FROM Booking WHERE driverCarID = " + driverCarID + " ORDER BY bookingID limit 1;";
+		carParkID = db.queryForObject(carParkIDSQL, String.class);
+		
+		String licensePlateNum;
+		String licensePlateNumSQL = "SELECT licensePlateNum from DriverCar WHERE driverCarID = " + driverCarID + ";";
+		licensePlateNum = db.queryForObject(licensePlateNumSQL, String.class);
+		
+		int hourDifferent;
+		String hourDifferentSQL = "SELECT TIMESTAMPDIFF(hour, bookingTime, NOW()) from Booking WHERE driverCarID = " + driverCarID + " ORDER BY bookingID limit 1;";
+		hourDifferent = db.queryForObject(hourDifferentSQL, Integer.class);
+		
+		int fee;
+		String feeSQL = "";
+		if(carTypeID == 1) {
+			feeSQL = "SELECT privateCarFee FROM CarPark WHERE carParkID = " + carParkID + ";";
+		}else if(carTypeID == 2) {
+			feeSQL = "SELECT motorFee FROM CarPark WHERE carParkID = " + carParkID + ";";
+		}
+		fee = db.queryForObject(feeSQL, Integer.class);
+		
+		String chargeDriverSQL = "UPDATE Driver SET credit = credit - " + ((hourDifferent*fee) - 1) + " WHERE driverID = " + driverID + ";";
+		db.update(chargeDriverSQL);
+		
+		String transactionSQL = "INSERT INTO Transaction (startTime, endTime, driverID, totalAmount, licensePlateNum) values (?, NOW(), ?, ?, ?);";
+		db.update(transactionSQL, bookingTime, driverID, hourDifferent*fee, licensePlateNum);
+	}
 
 }
