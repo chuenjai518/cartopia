@@ -33,27 +33,33 @@ public class AdminController {
 	UserService userService;
 	@Autowired
 	CarParkService carParkService;
+	
+	public boolean checkAdminLogin(HttpSession session) {
+		boolean login = false;
+		if(session.getAttribute("userID") != null) {
+			if((int)session.getAttribute("userID") == 2) {
+				login = true;
+			}
+		}
+		return login;
+	}
 
 
 	@GetMapping("admin")
 	public String admin(Model model, HttpSession session) {
-//		if(session.getAttribute("userID") == null) {
-//			return "redirect:/login";
-//		}
-//		if((int)session.getAttribute("userID") != 2) {
-//			return "redirect:/login";
-//		}
+		if(!checkAdminLogin(session)) {
+			return "redirect:/login";
+		}
+
 		return "AdminDash";
 	}
 
 	@GetMapping("admin/user")
 	public String userOverview(Model model, HttpSession session) {
-//		if(session.getAttribute("userID") == null) {
-//		return "redirect:/login";
-//	}
-//	if((int)session.getAttribute("userID") != 2) {
-//		return "redirect:/login";
-//	}
+		if(!checkAdminLogin(session)) {
+			return "redirect:/login";
+		}
+
 		List<User> list = userService.getAllUser();
 		model.addAttribute("userList", list);
 		return "userCRUD";
@@ -61,24 +67,19 @@ public class AdminController {
 
 	@GetMapping("admin/user/create")
 	public String userCreate(Model model, HttpSession session) {
-//		if(session.getAttribute("userID") == null) {
-//		return "redirect:/login";
-//	}
-//	if((int)session.getAttribute("userID") != 2) {
-//		return "redirect:/login";
-//	}	
+		if(!checkAdminLogin(session)) {
+			return "redirect:/login";
+		}
+	
 		model.addAttribute("user", new User());
 		return "userC";
 	}
 
 	@GetMapping("admin/user/read/{userID}")
 	public String userRead(Model model, @PathVariable("userID") Integer id, HttpSession session) {
-//		if(session.getAttribute("userID") == null) {
-//		return "redirect:/login";
-//	}
-//	if((int)session.getAttribute("userID") != 2) {
-//		return "redirect:/login";
-//	}
+		if(!checkAdminLogin(session)) {
+			return "redirect:/login";
+		}
 		User user = userService.getUserInfo(id);
 		model.addAttribute("user", user);
 		if (user.getRoleID() == 1) {
@@ -114,12 +115,9 @@ public class AdminController {
 	
 	@GetMapping("admin/carpark")
 	public String carparkOverview(Model model, HttpSession session) {
-//		if(session.getAttribute("userID") == null) {
-//		return "redirect:/login";
-//	}
-//	if((int)session.getAttribute("userID") != 2) {
-//		return "redirect:/login";
-//	}
+		if(!checkAdminLogin(session)) {
+			return "redirect:/login";
+		}
 		List<CarPark> list = carParkService.getAllCarPark();
 		model.addAttribute("carParkList", list);
 		return "carparkCRUD";
@@ -127,12 +125,9 @@ public class AdminController {
 
 	@GetMapping("admin/carpark/create")
 	public String carparkCreate(Model model, HttpSession session) {
-//		if(session.getAttribute("userID") == null) {
-//		return "redirect:/login";
-//	}
-//	if((int)session.getAttribute("userID") != 2) {
-//		return "redirect:/login";
-//	}	
+		if(!checkAdminLogin(session)) {
+			return "redirect:/login";
+		}
 		List<User> list = carParkService.getCPOList();
 		model.addAttribute("cpoList", list);
 		model.addAttribute("cpo", "");
@@ -142,12 +137,9 @@ public class AdminController {
 
 	@GetMapping("admin/carpark/read/{carparkID}")
 	public String carparkRead(Model model,@PathVariable("carparkID") Integer id, HttpSession session) {
-//		if(session.getAttribute("userID") == null) {
-//		return "redirect:/login";
-//	}
-//	if((int)session.getAttribute("userID") != 2) {
-//		return "redirect:/login";
-//	}
+		if(!checkAdminLogin(session)) {
+			return "redirect:/login";
+		}
 		CarPark carPark = carParkService.getCarPark(id);
 		model.addAttribute("carPark", carPark);
 		return "carparkR";
@@ -163,12 +155,7 @@ public class AdminController {
 	
 	@PostMapping("/adminCreateUserProcess")
 	public RedirectView createUserProcess(@ModelAttribute User user, RedirectAttributes model, HttpSession session) {
-//		if(session.getAttribute("userID") == null) {
-//		return "redirect:/login";
-//	}
-//	if((int)session.getAttribute("userID") != 2) {
-//		return "redirect:/login";
-//	}
+
 		boolean valid = adminService.createUserProcess(user);
 		if (!valid) {
 			model.addFlashAttribute("message", "username has been used!");
@@ -179,12 +166,9 @@ public class AdminController {
 	
 	@PostMapping("/adminUpdateUserProcess/{id}")
 	public String adminUpdateUserProcess(@ModelAttribute User user, @PathVariable("id") Integer id, Model model, HttpSession session) {
-//		if(session.getAttribute("userID") == null) {
-//		return "redirect:/login";
-//	}
-//	if((int)session.getAttribute("userID") != 2) {
-//		return "redirect:/login";
-//	}	
+		if(!checkAdminLogin(session)) {
+			return "redirect:/login";
+		}
 		user.setUserID(id);
 		adminService.updateUserProcess(user);
 		

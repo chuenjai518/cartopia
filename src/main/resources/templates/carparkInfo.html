@@ -52,11 +52,11 @@
 							<p
 								th:text="'Number of private car parking spaces: ' + ${carPark.getPrivateCarSlot()}"></p>
 							<p
-								th:text="'Number of private car parking fees: ' + ${carPark.getPrivateCarFee()}"></p>
+								th:text="'Private car parking fees: $' + ${carPark.getPrivateCarFee()}"></p>
 							<p
 								th:text="'Number of motor parking spaces: ' + ${carPark.getMotorSlot()}"></p>
 							<p
-								th:text="'Number of motor parking spaces: ' + ${carPark.getMotorFee()}"></p>
+								th:text="'Motor parking fees: $' + ${carPark.getMotorFee()}"></p>
 							<p
 								th:text="'Number of remaining parking spaces: ' + ${realTimeSpace}"></p>
 						</div>
